@@ -1,0 +1,3481 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=claude:viewport-fit-sides content=cover><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>.md-table{overflow-x:auto}@media print{.md-table{overflow-x:visible}}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<h1>C++ Level 1 — Interview-Ready Handbook</h1>
+<blockquote>
+<p>40 problems · concepts first, then deep walkthroughs · C++17
+Every program in this file is compiled with <code>g++ -std=c++17 -Wall -Wextra -Wpedantic</code> and tested.</p>
+</blockquote>
+<h2>How to use this handbook</h2>
+<ol>
+<li>Read <strong>Part 0 (Core Concepts)</strong> once. Nearly every problem is a combination of those ideas.</li>
+<li>For each question, read <strong>How to think</strong> <em>before</em> the code, and try to write the solution yourself.</li>
+<li>Say the <strong>Dry run</strong> out loud. Interviewers care more about your reasoning than about the final code.</li>
+<li>Finish with <strong>Part 5 (Interview Q&amp;A)</strong> and the <strong>checklists</strong>.</li>
+</ol>
+<p><strong>Every solution in this file follows the same template:</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Problem</td>
+<td>What is asked, with examples</td>
+</tr>
+<tr>
+<td>Concepts</td>
+<td>The ideas you must know</td>
+</tr>
+<tr>
+<td>How to think</td>
+<td>The reasoning, from brute force to final idea</td>
+</tr>
+<tr>
+<td>Solution</td>
+<td>Clean, compilable code</td>
+</tr>
+<tr>
+<td>Dry run</td>
+<td>Step-by-step trace</td>
+</tr>
+<tr>
+<td>Edge cases</td>
+<td>Inputs that break naive code</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>Time and space</td>
+</tr>
+<tr>
+<td>Pitfalls</td>
+<td>Mistakes seen in practice</td>
+</tr>
+<tr>
+<td>Follow-ups</td>
+<td>What the interviewer asks next, with answers</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Compile and run</strong></p>
+<pre><code class="language-bash">g++ -std=c++17 -Wall -Wextra -Wpedantic file.cpp -o program
+./program
+</code></pre>
+<hr>
+<h2>Table of Contents</h2>
+<ul>
+<li><strong>Part 0 — Core Concepts</strong></li>
+<li><strong>Part 1 — Basics: I/O, Conditions (Q1–Q8)</strong></li>
+<li><strong>Part 2 — Loops and Digit Manipulation (Q9–Q16)</strong></li>
+<li><strong>Part 3 — Number Properties (Q17–Q24)</strong></li>
+<li><strong>Part 4 — Number Challenges (Q25–Q32) and Patterns (Q33–Q40)</strong></li>
+<li><strong>Part 5 — Interview Q&amp;A, Checklists, Concept Map</strong></li>
+</ul>
+<hr>
+<h1>PART 0 — CORE CONCEPTS</h1>
+<h2>C1. Program structure and I/O</h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;        // declares cin, cout
+using namespace std;       // lets you write cout instead of std::cout
+
+int main() {               // execution starts here
+    int x;
+    cin &gt;&gt; x;              // read
+    cout &lt;&lt; x &lt;&lt; &#39;\n&#39;;     // write
+    return 0;              // 0 = success (optional in main)
+}
+</code></pre>
+<ul>
+<li><code>cin &gt;&gt; a &gt;&gt; b</code> skips whitespace (spaces, tabs, newlines) between values, so <code>&quot;12 8&quot;</code> and <code>&quot;12\n8&quot;</code> both work.</li>
+<li><code>'\n'</code> only writes a newline. <code>endl</code> writes a newline <strong>and flushes</strong> the buffer (slower in loops).</li>
+<li><strong>Input failure:</strong> if the user types <code>abc</code> for an <code>int</code>, <code>cin</code> enters a fail state and <code>x</code> is set to 0 (C++11). Check with <code>if (!(cin &gt;&gt; x)) { ... }</code>.</li>
+<li><strong>Prompts vs judges:</strong> <code>cout &lt;&lt; &quot;Enter a number: &quot;</code> is nice interactively, but automated judges compare output exactly. Prompts make you fail. In this handbook the solutions print only the result.</li>
+<li><code>using namespace std;</code> is fine in small programs and interviews; in large codebases it can cause name clashes (for example your own <code>gcd</code> versus <code>std::gcd</code>).</li>
+</ul>
+<h2>C2. Data types, ranges, and overflow</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Typical size</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td>32-bit</td>
+<td>−2,147,483,648 … 2,147,483,647 (about ±2.1 × 10⁹)</td>
+</tr>
+<tr>
+<td><code>long long</code></td>
+<td>64-bit</td>
+<td>−9,223,372,036,854,775,808 … 9,223,372,036,854,775,807 (about ±9.2 × 10¹⁸)</td>
+</tr>
+<tr>
+<td><code>unsigned int</code></td>
+<td>32-bit</td>
+<td>0 … 4,294,967,295</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>64-bit</td>
+<td>about 15–17 significant decimal digits</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>8-bit</td>
+<td>one character, also a small integer ('0' is 48)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Signed overflow is undefined behavior (UB).</strong> It is not &quot;wraps around&quot;; the compiler may assume it never happens and produce surprising code. You must prevent it, not detect it afterwards.</p>
+<p><strong>Three safe patterns (used all through the problems):</strong></p>
+<pre><code class="language-cpp">// 1. Widen the type: compute in long long, then range-check.
+long long r = (long long)a * b;
+
+// 2. Pre-check addition:  a + b &lt;= MAX   &lt;=&gt;   a &lt;= MAX - b
+if (a &gt; LLONG_MAX - b) { /* overflow */ }
+
+// 3. Pre-check multiplication:  a * b &lt;= MAX   &lt;=&gt;   a &lt;= MAX / b   (b &gt; 0)
+if (a &gt; LLONG_MAX / b) { /* overflow */ }
+</code></pre>
+<p>Useful constants live in <code>&lt;climits&gt;</code>: <code>INT_MAX</code>, <code>INT_MIN</code>, <code>LLONG_MAX</code>, <code>LLONG_MIN</code>. Always include it when you use them.</p>
+<p><strong>Know these numbers:</strong> <code>20! = 2,432,902,008,176,640,000</code> is the largest factorial in <code>long long</code>. The 93rd Fibonacci number <code>F(92) = 7,540,113,804,746,346,429</code> is the last one that fits.</p>
+<h2>C3. Operators you must get exactly right</h2>
+<p><strong>Integer division truncates toward zero; <code>%</code> takes the sign of the dividend (C++11 and later):</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>7 / 2</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>-7 / 2</code></td>
+<td>-3 (not -4)</td>
+</tr>
+<tr>
+<td><code>7 % 2</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>-7 % 2</code></td>
+<td>-1 (not 1)</td>
+</tr>
+<tr>
+<td><code>7 / 2.0</code></td>
+<td>3.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Consequences:</p>
+<ul>
+<li>Test oddness with <code>n % 2 != 0</code>, never <code>n % 2 == 1</code> (fails for negatives).</li>
+<li><code>x / 10</code> drops the last digit and <code>x % 10</code> extracts it. Both work for negatives too, which is why <code>do { ... n /= 10; } while (n != 0)</code> can count digits of negative numbers without <code>abs()</code>.</li>
+</ul>
+<p><strong>Logical operators short-circuit:</strong> <code>A &amp;&amp; B</code> does not evaluate <code>B</code> if <code>A</code> is false. This lets you write <code>n &gt; 0 &amp;&amp; (n &amp; (n-1)) == 0</code> safely, and <code>i &lt;= n / i</code> style guards.</p>
+<p><strong>Bitwise operators:</strong> <code>&amp;</code> AND, <code>|</code> OR, <code>^</code> XOR, <code>~</code> NOT, <code>&lt;&lt;</code> shift left (multiply by 2), <code>&gt;&gt;</code> shift right (divide by 2).</p>
+<p><strong>Typical traps</strong></p>
+<ul>
+<li><code>=</code> assigns, <code>==</code> compares: <code>if (a = 5)</code> always true and overwrites <code>a</code>.</li>
+<li><code>&amp;&amp;</code> binds tighter than <code>||</code>: write <code>(year % 4 == 0 &amp;&amp; year % 100 != 0) || year % 400 == 0</code> with explicit parentheses.</li>
+<li>Integer division before conversion: <code>double d = 1 / 2;</code> gives <code>0</code>. Use <code>1.0 / 2</code>, or <code>static_cast&lt;double&gt;(a) / b</code>.</li>
+</ul>
+<h2>C4. Control flow</h2>
+<pre><code class="language-cpp">if (cond1) { ... }
+else if (cond2) { ... }
+else { ... }
+
+switch (op) {            // only for integral values (int, char, enum)
+case &#39;+&#39;: ...; break;    // forget `break` and execution falls through to the next case
+default: ...;            // everything else
+}
+
+int m = (a &gt; b) ? a : b; // ternary: condition ? value_if_true : value_if_false
+</code></pre>
+<p>Order conditions from most specific to most general, and make sure branches are mutually exclusive. Use <code>&gt;=</code> where ties must still choose a branch (Q5).</p>
+<h2>C5. Loops</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Loop</th>
+<th>Use when</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>for (init; cond; step)</code></td>
+<td>you know the count or range</td>
+<td>counter is scoped to the loop</td>
+</tr>
+<tr>
+<td><code>while (cond)</code></td>
+<td>repeat until a condition fails</td>
+<td>body may run zero times</td>
+</tr>
+<tr>
+<td><code>do { } while (cond);</code></td>
+<td>body must run <strong>at least once</strong></td>
+<td>perfect for digit loops where input <code>0</code> is valid</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Loop invariant thinking:</strong> before writing a loop, state in one sentence what is true at the start of every iteration. Example for Euclid: &quot;<code>gcd(a, b)</code> equals the gcd of the original pair.&quot;</p>
+<p><strong>Off-by-one checklist:</strong> <code>&lt;</code> vs <code>&lt;=</code>, start at 0 or 1, and what happens for <code>n = 0</code>, <code>1</code>, <code>2</code>.</p>
+<p><strong>Infinite-loop trap:</strong> <code>for (int n = start; n &lt;= end; n++)</code> never ends if <code>end == INT_MAX</code> (the increment overflows). The safe form is <code>for (int n = start;; n++) { ...; if (n == end) break; }</code> (Q27).</p>
+<h2>C6. Functions, references, and return values</h2>
+<pre><code class="language-cpp">void swapNumbers(int &amp;a, int &amp;b) { int t = a; a = b; b = t; }  // &amp; = reference: changes the caller&#39;s variables
+
+bool reverseInteger(int num, int &amp;result);   // return success/failure AND an output value
+</code></pre>
+<ul>
+<li><strong>Pass by value</strong> copies the argument; changes stay inside the function.</li>
+<li><strong>Pass by reference (<code>&amp;</code>)</strong> works on the original variable.</li>
+<li>Returning <code>bool</code> for success plus an output parameter is a clean way to report overflow (Q10).</li>
+<li>Break programs into small functions (<code>isPrime</code>, <code>gcd</code>): they are easier to test and to explain.</li>
+</ul>
+<h2>C7. The digit toolkit (the most reused idea in this handbook)</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>last digit</td>
+<td><code>n % 10</code></td>
+<td>remainder when dividing by 10</td>
+</tr>
+<tr>
+<td>remove last digit</td>
+<td><code>n /= 10</code></td>
+<td>integer division</td>
+</tr>
+<tr>
+<td>append digit <code>d</code></td>
+<td><code>r = r * 10 + d</code></td>
+<td>shift left in base 10</td>
+</tr>
+<tr>
+<td>loop over all digits</td>
+<td><code>while (n &gt; 0) { d = n % 10; n /= 10; }</code></td>
+<td>right to left</td>
+</tr>
+<tr>
+<td>count digits</td>
+<td><code>do { count++; n /= 10; } while (n != 0);</code></td>
+<td></td>
+</tr>
+<tr>
+<td>first digit</td>
+<td><code>while (n &gt;= 10) n /= 10;</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The same pattern works for any base: replace <code>10</code> with <code>2</code> for binary (Q29, Q30).</p>
+<h2>C8. Number theory essentials</h2>
+<ol>
+<li><strong>Divisors come in pairs</strong> <code>(i, n / i)</code>. If <code>i</code> is a divisor, so is <code>n / i</code>. One of the two is always ≤ √n, so scanning to √n finds everything.</li>
+<li><strong>Prime:</strong> an integer &gt; 1 with no divisors other than 1 and itself. Remember: 1 is not prime, 2 is the only even prime.</li>
+<li><strong>Every prime greater than 3 has the form 6k ± 1</strong>, which is why the fast test checks <code>i</code> and <code>i + 2</code> with step 6.</li>
+<li><strong>Euclid:</strong> <code>gcd(a, b) = gcd(b, a % b)</code>, and <code>gcd(a, 0) = a</code>. Then <code>lcm(a, b) = a / gcd(a, b) * b</code>.</li>
+<li><strong>Fundamental theorem:</strong> every integer &gt; 1 has a unique prime factorization.</li>
+<li><strong>Avoid <code>i * i &lt;= n</code></strong> (can overflow); write <code>i &lt;= n / i</code>.</li>
+</ol>
+<h2>C9. Bit basics</h2>
+<ul>
+<li>A number in binary is a sum of powers of two: <code>13 = 1101₂ = 8 + 4 + 0 + 1</code>.</li>
+<li><code>n &amp; 1</code> is the last bit (1 means odd).</li>
+<li><code>n &gt;&gt; 1</code> equals <code>n / 2</code> for non-negative <code>n</code>; <code>n &lt;&lt; 1</code> equals <code>n * 2</code>.</li>
+<li><code>n &amp; (n - 1)</code> clears the lowest set bit. Zero result means at most one bit was set.</li>
+<li><code>x ^ x == 0</code> and <code>x ^ 0 == x</code>; XOR is its own inverse (used in XOR swap).</li>
+</ul>
+<h2>C10. Characters and strings (minimal)</h2>
+<ul>
+<li>Digit character to number: <code>'7' - '0' == 7</code>. Number to character: <code>char('0' + 7) == '7'</code>.</li>
+<li>Build a string with <code>+=</code> and flip it with <code>reverse(s.begin(), s.end())</code> from <code>&lt;algorithm&gt;</code>.</li>
+<li>Read a long digit string with <code>string s; cin &gt;&gt; s;</code> when the number may not fit in any integer type (Q30).</li>
+</ul>
+<h2>C11. Pattern-printing method (Q33–Q40)</h2>
+<ol>
+<li>Outer loop = <strong>rows</strong> <code>i</code>. Inner loop(s) = what is printed <strong>in that row</strong>.</li>
+<li>Make a table: for row <code>i</code>, how many spaces? how many symbols? what values?</li>
+<li>Turn the table into formulas (<code>i</code>, <code>n - i</code>, <code>2i - 1</code>).</li>
+<li>Print separators <strong>between</strong> items, never after the last one.</li>
+</ol>
+<h2>C12. Complexity cheat sheet</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Growth</th>
+<th>Example in this handbook</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O(1)</td>
+<td>power of two via bits, digital root formula, sum formula</td>
+</tr>
+<tr>
+<td>O(log n)</td>
+<td>counting digits, Euclid's gcd, decimal-to-binary</td>
+</tr>
+<tr>
+<td>O(√n)</td>
+<td>prime test, perfect number, factorization</td>
+</tr>
+<tr>
+<td>O(n)</td>
+<td>factorial, Fibonacci, sum 1..N loop, multiplication table</td>
+</tr>
+<tr>
+<td>O(n²)</td>
+<td>pattern printing (rows × columns)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Rule of thumb: about 10⁸ simple operations per second. O(n) is fine up to ~10⁸, O(√n) up to ~10¹⁴, O(n²) only up to ~10⁴.</p>
+<h2>C13. Edge-case checklist (use on every problem)</h2>
+<p><code>0</code> · <code>1</code> · <code>2</code> · negative numbers · the maximum value of the type · equal inputs · very large inputs · repeated digits · trailing zeros (<code>1200</code>) · single-digit numbers · empty or invalid input.</p>
+<hr>
+<h1>PART 1 — BASICS: INPUT/OUTPUT AND CONDITIONS</h1>
+<hr>
+<h2>Q1. Print Hello, World!</h2>
+<p><strong>Problem:</strong> Print <code>Hello, World!</code> on the screen.</p>
+<p><strong>Concepts:</strong> program structure, <code>cout</code>, exact output matching.</p>
+<p><strong>How to think:</strong> There is no logic; the point is to know the skeleton and to match the text <strong>exactly</strong> (capital <code>W</code>, comma, exclamation mark).</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main() {
+    std::cout &lt;&lt; &#34;Hello, World!&#34; &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<p><strong>Edge cases:</strong> none, but a missing comma or wrong capital is a failed test.</p>
+<p><strong>Complexity:</strong> O(1).</p>
+<p><strong>Pitfalls:</strong> <code>Hello world!</code> vs <code>Hello, World!</code>; forgetting <code>#include &lt;iostream&gt;</code>; using <code>cout</code> without <code>std::</code> or <code>using namespace std;</code>.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em><code>endl</code> vs <code>'\n'</code>?</em> <code>endl</code> writes a newline and flushes the stream; <code>'\n'</code> only writes a newline and is faster in loops.</li>
+<li><em>Is <code>return 0;</code> required?</em> Not in <code>main</code> (the compiler adds it), but it documents success.</li>
+<li><em>What does <code>std::</code> mean?</em> It's the standard library namespace.</li>
+</ul>
+<hr>
+<h2>Q2. Sum of Two Integers</h2>
+<p><strong>Problem:</strong> Read two integers and print their sum. <code>Input: 12 8</code> → <code>Output: 20</code>.</p>
+<p><strong>Concepts:</strong> variables, <code>cin</code>, integer overflow (C2).</p>
+<p><strong>How to think:</strong> Read, add, print. The only trap is the type: two <code>int</code>s near 2·10⁹ add up to more than <code>INT_MAX</code>, which is undefined behavior. Use <code>long long</code>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    cout &lt;&lt; a + b &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run:</strong> <code>a = 12, b = 8</code> → <code>12 + 8 = 20</code>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>12 8</code></td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>-5 5</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>2000000000 2000000000</code></td>
+<td><code>4000000000</code> (would overflow <code>int</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(1).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>What if numbers go up to 10¹⁸?</em> The sum can reach 2·10¹⁸, still inside <code>long long</code>. For 9·10¹⁸ + 9·10¹⁸ you need an overflow check or <code>__int128</code>.</li>
+<li><em>What does <code>cin &gt;&gt; a &gt;&gt; b</code> do with <code>&quot;12\n8&quot;</code>?</em> Whitespace including newlines is skipped, so it still works.</li>
+</ul>
+<hr>
+<h2>Q3. Even or Odd</h2>
+<p><strong>Problem:</strong> Read an integer and say whether it is even or odd. <code>17</code> → <code>Odd</code>.</p>
+<p><strong>Concepts:</strong> <code>%</code> operator, sign behavior (C3), <code>if/else</code>.</p>
+<p><strong>How to think:</strong> Even means divisible by 2, so the remainder is 0. For negatives, <code>-3 % 2 == -1</code>, so test <code>== 0</code> for even and treat everything else as odd.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    cout &lt;&lt; (n % 2 == 0 ? &#34;Even&#34; : &#34;Odd&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Edge cases</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Even</td>
+<td>0 % 2 == 0</td>
+</tr>
+<tr>
+<td><code>-3</code></td>
+<td>Odd</td>
+<td><code>-3 % 2</code> is <code>-1</code>, not <code>0</code></td>
+</tr>
+<tr>
+<td><code>17</code></td>
+<td>Odd</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(1).</p>
+<p><strong>Pitfalls:</strong> Writing <code>n % 2 == 1</code> for &quot;odd&quot; gives the wrong answer for negative odd numbers.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Another way without <code>%</code>?</em> <code>n &amp; 1</code> is 1 for odd, 0 for even. It works for negatives in two's complement.</li>
+<li><em>Which is faster?</em> Compilers produce the same code for both; choose the clearer one.</li>
+</ul>
+<hr>
+<h2>Q4. Largest of Two Numbers</h2>
+<p><strong>Problem:</strong> Read two numbers and print the larger one. Handle equal numbers. <code>9 9</code> → <code>Equal</code>.</p>
+<p><strong>Concepts:</strong> comparison, <code>if / else if / else</code>, mutually exclusive branches.</p>
+<p><strong>How to think:</strong> Three possible outcomes: <code>a &gt; b</code>, <code>b &gt; a</code>, or neither (equal). Handle the equal case explicitly because the problem asks for it.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+
+    if (a &gt; b)      cout &lt;&lt; a &lt;&lt; &#39;\n&#39;;
+    else if (b &gt; a) cout &lt;&lt; b &lt;&lt; &#39;\n&#39;;
+    else            cout &lt;&lt; &#34;Equal\n&#34;;
+
+    return 0;
+}
+</code></pre>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3 8</code></td>
+<td><code>8</code></td>
+</tr>
+<tr>
+<td><code>9 9</code></td>
+<td><code>Equal</code></td>
+</tr>
+<tr>
+<td><code>-1 -5</code></td>
+<td><code>-1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(1).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Shortest way?</em> <code>max(a, b)</code> from <code>&lt;algorithm&gt;</code>, or <code>a &gt; b ? a : b</code>.</li>
+<li><em>How would you handle <code>double</code> inputs?</em> Same code; but comparing doubles with <code>==</code> is risky (use a tolerance).</li>
+</ul>
+<hr>
+<h2>Q5. Largest of Three Numbers</h2>
+<p><strong>Problem:</strong> Find the largest of three integers without a sorting function. <code>14 27 19</code> → <code>27</code>.</p>
+<p><strong>Concepts:</strong> compound conditions (<code>&amp;&amp;</code>), ties, running maximum.</p>
+<p><strong>How to think:</strong> <em>Approach 1:</em> test each number against the other two with <code>&gt;=</code>. <em>Approach 2 (scales better):</em> keep a running maximum.</p>
+<p><strong>Solution (running maximum)</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+
+    int largest = a;
+    if (b &gt; largest) largest = b;
+    if (c &gt; largest) largest = c;
+
+    cout &lt;&lt; largest &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Solution (direct comparison, shows tie handling)</strong></p>
+<pre><code class="language-cpp">if (a &gt;= b &amp;&amp; a &gt;= c)      cout &lt;&lt; a &lt;&lt; &#39;\n&#39;;
+else if (b &gt;= a &amp;&amp; b &gt;= c) cout &lt;&lt; b &lt;&lt; &#39;\n&#39;;
+else                       cout &lt;&lt; c &lt;&lt; &#39;\n&#39;;
+</code></pre>
+<p><strong>Why <code>&gt;=</code>?</strong> With <code>5 5 3</code>, <code>a &gt;= b &amp;&amp; a &gt;= c</code> is true so <code>5</code> is printed. With <code>&gt;</code> no branch would match when two values tie for the max, and the final <code>else</code> would wrongly print <code>c</code>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>14 27 19</code></td>
+<td><code>27</code></td>
+</tr>
+<tr>
+<td><code>5 5 3</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>7 7 7</code></td>
+<td><code>7</code></td>
+</tr>
+<tr>
+<td><code>-1 -2 -3</code></td>
+<td><code>-1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(1) for 3 values, O(n) for n values using the running maximum.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Generalize to n numbers?</em> Same running-maximum loop; initialize <code>largest</code> with the first element, <strong>not</strong> with 0 (all-negative input would break).</li>
+<li><em>Number of comparisons?</em> The running maximum needs <code>n - 1</code>.</li>
+</ul>
+<hr>
+<h2>Q6. Simple Calculator</h2>
+<p><strong>Problem:</strong> Read two numbers and an operator (<code>+ - * /</code>), print the result, handle division by zero. <code>10 2 /</code> → <code>5</code>.</p>
+<p><strong>Concepts:</strong> <code>switch</code>, <code>char</code>, <code>double</code>, division by zero.</p>
+<p><strong>How to think:</strong> Read in the order the example gives (numbers first, then operator). Use <code>double</code> so decimals work. Dispatch on the operator with <code>switch</code>. Guard <code>/</code> explicitly, since <code>double / 0</code> produces <code>inf</code> and integer <code>/ 0</code> is undefined behavior.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    double a, b;
+    char op;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; op;
+
+    switch (op) {
+    case &#39;+&#39;: cout &lt;&lt; a + b &lt;&lt; &#39;\n&#39;; break;
+    case &#39;-&#39;: cout &lt;&lt; a - b &lt;&lt; &#39;\n&#39;; break;
+    case &#39;*&#39;: cout &lt;&lt; a * b &lt;&lt; &#39;\n&#39;; break;
+    case &#39;/&#39;:
+        if (b == 0) cout &lt;&lt; &#34;Error: division by zero\n&#34;;
+        else        cout &lt;&lt; a / b &lt;&lt; &#39;\n&#39;;
+        break;
+    default:
+        cout &lt;&lt; &#34;Invalid operator\n&#34;;
+    }
+    return 0;
+}
+</code></pre>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10 2 /</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>7 0 /</code></td>
+<td><code>Error: division by zero</code></td>
+</tr>
+<tr>
+<td><code>2.5 2 *</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>3 4 %</code></td>
+<td><code>Invalid operator</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(1).</p>
+<p><strong>Pitfalls</strong></p>
+<ul>
+<li>Forgetting <code>break</code> makes execution fall through into the next case.</li>
+<li>With <code>int a, b</code>, <code>7 / 2</code> prints <code>3</code>. Use <code>double</code> (or cast) for real division.</li>
+<li><code>cout</code> prints doubles with 6 significant digits by default. For more, use <code>setprecision</code> from <code>&lt;iomanip&gt;</code>.</li>
+</ul>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why <code>switch</code> and not <code>if/else</code>?</em> Cleaner for many discrete values; the compiler can build a jump table.</li>
+<li><em>How do you add <code>%</code>?</em> Only for integers: <code>a % b</code> with a zero check. <code>double</code> needs <code>fmod</code>.</li>
+</ul>
+<hr>
+<h2>Q7. Leap Year</h2>
+<p><strong>Problem:</strong> Decide whether a year is a leap year (Gregorian rules). <code>2000</code> → <code>Leap year</code>.</p>
+<p><strong>Concepts:</strong> boolean logic, <code>&amp;&amp;</code>, <code>||</code>, precedence.</p>
+<p><strong>How to think:</strong> The rule has an exception to an exception:</p>
+<ol>
+<li>Divisible by 4 → leap, <strong>except</strong></li>
+<li>divisible by 100 → not leap, <strong>except</strong></li>
+<li>divisible by 400 → leap.</li>
+</ol>
+<p>In one expression: <code>(y % 4 == 0 &amp;&amp; y % 100 != 0) || y % 400 == 0</code>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int year;
+    cin &gt;&gt; year;
+
+    bool leap = (year % 4 == 0 &amp;&amp; year % 100 != 0) || year % 400 == 0;
+    cout &lt;&lt; (leap ? &#34;Leap year&#34; : &#34;Not leap year&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Result</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2000</td>
+<td>Leap</td>
+<td>divisible by 400</td>
+</tr>
+<tr>
+<td>1900</td>
+<td>Not leap</td>
+<td>divisible by 100 but not 400</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>Leap</td>
+<td>divisible by 4, not 100</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>Not leap</td>
+<td>not divisible by 4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(1).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why does the rule exist?</em> The solar year is about 365.2425 days; the 4/100/400 rule averages exactly 365.2425.</li>
+<li><em>Common wrong answer?</em> Only checking <code>year % 4 == 0</code> fails for 1900 and 2100.</li>
+</ul>
+<hr>
+<h2>Q8. Multiplication Table</h2>
+<p><strong>Problem:</strong> Print the multiplication table of a number from 1 to 10. <code>5</code> → <code>5 10 15 ... 50</code>.</p>
+<p><strong>Concepts:</strong> <code>for</code> loop, loop counter, formatting.</p>
+<p><strong>How to think:</strong> Repeat the same line ten times with a changing multiplier. A <code>for</code> loop from 1 to 10 inclusive does that.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= 10; i++)
+        cout &lt;&lt; n &lt;&lt; &#34; x &#34; &lt;&lt; i &lt;&lt; &#34; = &#34; &lt;&lt; n * i &lt;&lt; &#39;\n&#39;;
+
+    return 0;
+}
+</code></pre>
+<p><strong>Output for <code>5</code>:</strong></p>
+<pre><code>5 x 1 = 5
+5 x 2 = 10
+...
+5 x 10 = 50
+</code></pre>
+<p><strong>If the judge wants just the numbers</strong> (<code>5 10 15 ... 50</code>), change the loop body to print <code>n * i</code> with a space between values:</p>
+<pre><code class="language-cpp">for (int i = 1; i &lt;= 10; i++) {
+    if (i &gt; 1) cout &lt;&lt; &#39; &#39;;
+    cout &lt;&lt; n * i;
+}
+cout &lt;&lt; &#39;\n&#39;;
+</code></pre>
+<p><strong>Complexity:</strong> O(1) (always 10 iterations).</p>
+<p><strong>Pitfalls:</strong> <code>i &lt; 10</code> stops at 9 (off-by-one); trailing space at the end of a line.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Print a table up to N instead of 10?</em> Replace <code>10</code> with a variable; the complexity becomes O(N).</li>
+<li><em>What if <code>n</code> is huge?</em> <code>n * i</code> can overflow; use <code>long long</code> or a check.</li>
+</ul>
+<hr>
+<h1>PART 2 — LOOPS AND DIGIT MANIPULATION</h1>
+<hr>
+<h2>Q9. Sum of First N Natural Numbers</h2>
+<p><strong>Problem:</strong> Read <code>n</code> and compute <code>1 + 2 + … + n</code> using a loop. <code>5</code> → <code>15</code>.</p>
+<p><strong>Concepts:</strong> accumulator pattern, loop, overflow, closed-form formula.</p>
+<p><strong>How to think</strong></p>
+<ol>
+<li><strong>Brute force:</strong> <code>sum = 0</code>, add <code>1..n</code> one by one. O(n).</li>
+<li><strong>Optimization (Gauss):</strong> pair the first and last terms: <code>1+n</code>, <code>2+(n-1)</code>, … There are <code>n/2</code> pairs, each summing to <code>n + 1</code>, so <code>sum = n(n+1)/2</code>. O(1).</li>
+<li><strong>Overflow:</strong> <code>n * (n + 1)</code> can overflow before the division. Divide the even factor first.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; &#34;Enter a non-negative number\n&#34;;
+        return 0;
+    }
+
+    long long sum = 0;                    // loop version, O(n)
+    for (long long i = 1; i &lt;= n; i++)
+        sum += i;
+
+    long long formula = (n % 2 == 0)      // formula version, O(1)
+                          ? (n / 2) * (n + 1)
+                          : n * ((n + 1) / 2);
+
+    cout &lt;&lt; sum &lt;&lt; &#39;\n&#39; &lt;&lt; formula &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (n = 5):</strong> <code>sum</code>: 0 → 1 → 3 → 6 → 10 → 15. Formula: <code>n</code> odd → <code>5 * (6/2) = 15</code>. ✓</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>5</code></td>
+<td><code>15</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>100</code></td>
+<td><code>5050</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> loop O(n) time, formula O(1). Both O(1) space.</p>
+<p><strong>Pitfalls:</strong> starting <code>sum</code> uninitialized; using <code>int</code> for the sum; <code>i &lt; n</code> instead of <code>i &lt;= n</code>.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why divide the even factor first?</em> <code>n * (n+1)</code> is always even, but dividing <strong>after</strong> multiplying risks overflow even when the final answer fits.</li>
+<li><em>Proof of the formula?</em> Write the sum forwards and backwards and add: every column adds to <code>n + 1</code>, <code>n</code> columns, so <code>2·sum = n(n+1)</code>.</li>
+</ul>
+<hr>
+<h2>Q10. Reverse an Integer</h2>
+<p><strong>Problem:</strong> Reverse the digits of an integer without converting to a string. Detect overflow. <code>1234</code> → <code>4321</code>.</p>
+<p><strong>Concepts:</strong> digit toolkit (C7), widening to avoid overflow, <code>bool</code> + reference return.</p>
+<p><strong>How to think:</strong> Peel digits from the right with <code>% 10</code> and push them onto the result with <code>result * 10 + digit</code>. The reversed value of a 10-digit <code>int</code> can reach 9,999,999,999, bigger than <code>INT_MAX</code>, so compute in <code>long long</code> and check the range at the end.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+bool reverseInteger(int num, int &amp;result) {
+    long long n = num;                       // widen first: -INT_MIN is safe in long long
+    int sign = (n &lt; 0) ? -1 : 1;
+    if (n &lt; 0) n = -n;
+
+    long long reversed = 0;
+    while (n &gt; 0) {
+        reversed = reversed * 10 + n % 10;   // push the last digit of n
+        n /= 10;                             // drop it from n
+    }
+    reversed *= sign;
+
+    if (reversed &lt; INT_MIN || reversed &gt; INT_MAX)
+        return false;                        // does not fit in int
+
+    result = static_cast&lt;int&gt;(reversed);
+    return true;
+}
+
+int main() {
+    int num, result;
+    cin &gt;&gt; num;
+    if (reverseInteger(num, result)) cout &lt;&lt; result &lt;&lt; &#39;\n&#39;;
+    else                             cout &lt;&lt; &#34;Overflow\n&#34;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (1234):</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>n</th>
+<th>n % 10</th>
+<th>reversed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1234</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>123</td>
+<td>3</td>
+<td>43</td>
+</tr>
+<tr>
+<td>12</td>
+<td>2</td>
+<td>432</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>4321</td>
+</tr>
+<tr>
+<td>0</td>
+<td>loop ends</td>
+<td><strong>4321</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1200</code></td>
+<td><code>21</code></td>
+<td>trailing zeros vanish</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>0</code></td>
+<td>loop skipped</td>
+</tr>
+<tr>
+<td><code>1534236469</code></td>
+<td><code>Overflow</code></td>
+<td>reverse is 9646324351</td>
+</tr>
+<tr>
+<td><code>-123</code></td>
+<td><code>-321</code></td>
+<td>sign handled</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log₁₀ n) time (one step per digit), O(1) space.</p>
+<p><strong>Pitfalls:</strong> doing <code>reversed</code> in <code>int</code> (overflows silently, undefined behavior); forgetting that <code>-INT_MIN</code> overflows <code>int</code>.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>How do you detect overflow without <code>long long</code>?</em> Before <code>rev = rev * 10 + d</code>: if <code>rev &gt; INT_MAX / 10</code> or (<code>rev == INT_MAX / 10</code> and <code>d &gt; 7</code>), report overflow.</li>
+<li><em>Why does <code>1200</code> give <code>21</code>?</em> The digits are <code>0,0,2,1</code>; leading zeros of a number are not stored.</li>
+</ul>
+<hr>
+<h2>Q11. Count the Digits</h2>
+<p><strong>Problem:</strong> Count the digits of an integer using arithmetic. <code>0</code> has one digit. Bonus: negatives, without <code>abs()</code>.</p>
+<p><strong>Concepts:</strong> <code>do-while</code>, truncating division by 10, negatives.</p>
+<p><strong>How to think:</strong> Each division by 10 removes one digit; count the divisions until the number becomes 0. The input <code>0</code> must still count once, so the body must run <strong>before</strong> the test: <code>do-while</code>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    int count = 0;
+    do {
+        count++;
+        n /= 10;
+    } while (n != 0);              // != 0 (not &gt; 0) so negatives work too
+
+    cout &lt;&lt; count &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (-987):</strong> count 1, n = -98 → count 2, n = -9 → count 3, n = 0 → stop. Output <code>3</code>.</p>
+<p>Why negatives work: C++ integer division truncates toward zero, so <code>-98 / 10 = -9</code> and <code>-9 / 10 = 0</code>. No <code>abs()</code> needed (and <code>abs(INT_MIN)</code> would overflow anyway).</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>12345</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>-987</code></td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log₁₀ n) time, O(1) space.</p>
+<p><strong>Pitfalls:</strong> <code>while (n &gt; 0)</code> returns <code>0</code> for input <code>0</code>; <code>int</code> is enough for 10 digits, but <code>long long</code> keeps larger inputs safe.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Count digits with logarithms?</em> <code>floor(log10(n)) + 1</code> for <code>n &gt; 0</code>, but floating-point error can bite near powers of 10; the loop is exact.</li>
+</ul>
+<hr>
+<h2>Q12. Check for a Prime Number</h2>
+<p><strong>Problem:</strong> Decide whether an integer is prime. Handle numbers &lt; 2 and avoid testing every divisor up to <code>n - 1</code>.</p>
+<p><strong>Concepts:</strong> primes, √n bound, the 6k ± 1 form (C8), overflow-safe loop condition.</p>
+<p><strong>How to think</strong></p>
+<ol>
+<li><strong>Brute force:</strong> test <code>2 .. n-1</code>. O(n).</li>
+<li><strong>√n bound:</strong> if <code>n = a × b</code> is composite, one of <code>a, b</code> is ≤ √n. So test only up to √n. O(√n).</li>
+<li><strong>Skip obvious multiples:</strong> after excluding 2 and 3, all primes are <code>6k ± 1</code>, so test <code>i</code> and <code>i + 2</code> with step 6 (about 3× fewer checks).</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+bool isPrime(int n) {
+    if (n &lt;= 1) return false;                 // 0, 1, negatives
+    if (n &lt;= 3) return true;                  // 2 and 3
+    if (n % 2 == 0 || n % 3 == 0) return false;
+
+    for (int i = 5; i &lt;= n / i; i += 6)       // i * i &lt;= n, written overflow-safe
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    return true;
+}
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    cout &lt;&lt; (isPrime(n) ? &#34;Prime&#34; : &#34;Not prime&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (n = 49):</strong> not ≤ 3, 49 % 2 = 1, 49 % 3 = 1. <code>i = 5</code>: <code>5 &lt;= 49/5 = 9</code> → 49 % 5 = 4, 49 % 7 = 0 → <strong>Not prime</strong>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2</code>, <code>3</code></td>
+<td>Prime</td>
+</tr>
+<tr>
+<td><code>1</code>, <code>0</code>, <code>-7</code></td>
+<td>Not prime</td>
+</tr>
+<tr>
+<td><code>49</code></td>
+<td>Not prime (7 × 7)</td>
+</tr>
+<tr>
+<td><code>29</code></td>
+<td>Prime</td>
+</tr>
+<tr>
+<td><code>2147483647</code></td>
+<td>Prime (a Mersenne prime)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(√n) time, O(1) space.</p>
+<p><strong>Pitfalls:</strong> declaring 1 prime; treating 2 as non-prime because <code>2 % 2 == 0</code>; <code>i * i &lt;= n</code> overflowing for <code>n</code> near <code>INT_MAX</code>.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why is 6k ± 1 enough?</em> Any integer is <code>6k + r</code>, <code>r ∈ {0..5}</code>. <code>6k, 6k+2, 6k+4</code> are even, <code>6k+3</code> is divisible by 3, leaving only <code>6k+1</code> and <code>6k+5 = 6(k+1) − 1</code>.</li>
+<li><em>Test many numbers?</em> Use the Sieve of Eratosthenes (see Q27).</li>
+</ul>
+<hr>
+<h2>Q13. Factorial of a Number</h2>
+<p><strong>Problem:</strong> Compute <code>n!</code> with a loop. Handle <code>0! = 1</code> and overflow.</p>
+<p><strong>Concepts:</strong> product accumulator, overflow pre-check (C2).</p>
+<p><strong>How to think:</strong> <code>n! = 1 × 2 × … × n</code>. Start the accumulator at 1 (the multiplicative identity), which handles <code>0!</code> and <code>1!</code> for free because the loop never runs. Factorials grow extremely fast: <code>21!</code> already exceeds <code>long long</code>. Check <strong>before</strong> multiplying: <code>fact * i &lt;= LLONG_MAX</code> ⟺ <code>fact &lt;= LLONG_MAX / i</code>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; &#34;Factorial is undefined for negative numbers\n&#34;;
+        return 0;
+    }
+
+    long long fact = 1;
+    for (int i = 2; i &lt;= n; i++) {
+        if (fact &gt; LLONG_MAX / i) {          // fact * i would overflow
+            cout &lt;&lt; &#34;Overflow\n&#34;;
+            return 0;
+        }
+        fact *= i;
+    }
+    cout &lt;&lt; fact &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (n = 5):</strong> 1 → ×2 = 2 → ×3 = 6 → ×4 = 24 → ×5 = <strong>120</strong>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code>, <code>1</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td><code>120</code></td>
+</tr>
+<tr>
+<td><code>20</code></td>
+<td><code>2432902008176640000</code></td>
+</tr>
+<tr>
+<td><code>21</code></td>
+<td><code>Overflow</code></td>
+</tr>
+<tr>
+<td><code>-3</code></td>
+<td>undefined message</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(n) time, O(1) space.</p>
+<p><strong>Pitfalls:</strong> starting <code>fact</code> at 0; multiplying first and testing afterwards (already undefined behavior); using <code>int</code> (overflows at 13!).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why does <code>0! = 1</code>?</em> It is the empty product, and it makes <code>n! = n × (n−1)!</code> and combinatorics formulas consistent.</li>
+<li><em>Need bigger factorials?</em> Use big-integer arithmetic (array of digits) or modular arithmetic.</li>
+</ul>
+<hr>
+<h2>Q14. Fibonacci Sequence</h2>
+<p><strong>Problem:</strong> Print the first <code>n</code> Fibonacci numbers using iteration. <code>6</code> → <code>0 1 1 2 3 5</code>.</p>
+<p><strong>Concepts:</strong> two-variable rolling state, iteration vs recursion, overflow.</p>
+<p><strong>How to think:</strong> Each term is the sum of the previous two. Only the last two values matter, so keep two variables and slide them forward. This is O(n) time and O(1) space; the naive recursive <code>fib(n-1) + fib(n-2)</code> is exponential.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; &#34;Enter a non-negative number\n&#34;;
+        return 0;
+    }
+
+    long long a = 0, b = 1;                   // F(0), F(1)
+    for (int i = 0; i &lt; n; i++) {
+        if (i &gt; 0) cout &lt;&lt; &#39; &#39;;
+        cout &lt;&lt; a;
+
+        if (i &lt; n - 1) {                      // don&#39;t compute a term we won&#39;t print
+            if (a &gt; LLONG_MAX - b) {          // a + b would overflow
+                cout &lt;&lt; &#34;\nOverflow\n&#34;;
+                return 0;
+            }
+            long long next = a + b;
+            a = b;
+            b = next;
+        }
+    }
+    cout &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (n = 6):</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>i</th>
+<th>print a</th>
+<th>next = a + b</th>
+<th>(a, b) after</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>(1, 1)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>(1, 2)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>(2, 3)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>5</td>
+<td>(3, 5)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>8</td>
+<td>(5, 8)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>skipped</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Output: <code>0 1 1 2 3 5</code>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>(empty line)</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td><code>0 1</code></td>
+</tr>
+<tr>
+<td><code>92</code></td>
+<td>prints all 92 terms (largest is F(91) = 4660046610375530309)</td>
+</tr>
+<tr>
+<td><code>93</code> or more</td>
+<td>prints 92 terms, then <code>Overflow</code> (the loop computes one look-ahead term, F(93), which exceeds <code>long long</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(n) time, O(1) space.</p>
+<p><strong>Pitfalls:</strong> off-by-one in how many terms print; trailing space; recursion for large <code>n</code>.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Recursive version complexity?</em> O(2ⁿ); memoization makes it O(n).</li>
+<li><em>Fast Fibonacci?</em> Matrix exponentiation or fast doubling gives O(log n).</li>
+<li><em>Why check overflow before the addition?</em> After a signed overflow the behavior is already undefined.</li>
+</ul>
+<hr>
+<h2>Q15. Sum of Digits</h2>
+<p><strong>Problem:</strong> Sum all digits of an integer. <code>583</code> → <code>16</code>.</p>
+<p><strong>Concepts:</strong> digit toolkit, accumulator, <code>do-while</code>.</p>
+<p><strong>How to think:</strong> Take <code>n % 10</code>, add it, drop it with <code>n /= 10</code>, repeat. Use the absolute value so negatives work, and <code>do-while</code> so <code>0</code> is handled.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) n = -n;
+
+    int sum = 0;
+    do {
+        sum += static_cast&lt;int&gt;(n % 10);
+        n /= 10;
+    } while (n &gt; 0);
+
+    cout &lt;&lt; sum &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (583):</strong> <code>3</code> → sum 3; <code>8</code> → 11; <code>5</code> → <strong>16</strong>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>583</code></td>
+<td><code>16</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>-45</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>1000</code></td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log₁₀ n) time, O(1) space.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Where else does this idea appear?</em> Digital root (Q32), divisibility by 3 or 9 (a number is divisible by 9 iff its digit sum is), Armstrong and Strong numbers.</li>
+</ul>
+<hr>
+<h2>Q16. Armstrong Number</h2>
+<p><strong>Problem:</strong> Check whether a non-negative integer equals the sum of its digits each raised to the number of digits. <code>153</code> → Armstrong.</p>
+<p><strong>Concepts:</strong> two passes over digits, integer power without <code>pow</code>, overflow guard.</p>
+<p><strong>How to think</strong></p>
+<ol>
+<li><strong>Pass 1:</strong> count digits <code>d</code>.</li>
+<li><strong>Pass 2:</strong> sum <code>digit^d</code> for every digit.</li>
+<li>Compare with the original. Use an integer power loop; <code>std::pow</code> returns <code>double</code> and can give <code>124.99999</code> that truncates to 124.</li>
+<li>For 19-digit inputs the sum could overflow, but the sum only grows, so stop as soon as it exceeds <code>n</code>.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+long long integerPower(int base, int exp) {
+    long long result = 1;
+    while (exp-- &gt; 0)
+        result *= base;
+    return result;
+}
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; &#34;Not an Armstrong number\n&#34;;
+        return 0;
+    }
+
+    long long temp = n;                        // pass 1: count digits
+    int digits = 0;
+    do {
+        digits++;
+        temp /= 10;
+    } while (temp &gt; 0);
+
+    temp = n;                                  // pass 2: sum of powers
+    long long sum = 0;
+    do {
+        int digit = static_cast&lt;int&gt;(temp % 10);
+        sum += integerPower(digit, digits);
+        if (sum &gt; n) break;                    // can never come back down
+        temp /= 10;
+    } while (temp &gt; 0);
+
+    cout &lt;&lt; (sum == n ? &#34;Armstrong number&#34; : &#34;Not an Armstrong number&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (153):</strong> <code>digits = 3</code>; <code>3³ = 27</code>, <code>5³ = 125</code>, <code>1³ = 1</code> → <code>153</code> ✓.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>153</code>, <code>370</code>, <code>371</code>, <code>407</code></td>
+<td>Armstrong (3-digit ones)</td>
+</tr>
+<tr>
+<td><code>9474</code></td>
+<td>Armstrong (9⁴ + 4⁴ + 7⁴ + 4⁴)</td>
+</tr>
+<tr>
+<td><code>0</code> – <code>9</code></td>
+<td>all Armstrong (d¹ = d)</td>
+</tr>
+<tr>
+<td><code>123</code></td>
+<td>Not</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(d²) worst case (d digits, each power costs O(d)); trivial for 64-bit inputs.</p>
+<p><strong>Pitfalls:</strong> hard-coding the exponent as 3; <code>pow</code> with floating-point rounding; counting digits of <code>0</code> as zero.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Same idea, other names?</em> &quot;Narcissistic numbers&quot; or pluperfect digital invariants.</li>
+<li><em>Faster?</em> Precompute <code>d^k</code> for digits 0–9 once instead of recomputing per digit.</li>
+</ul>
+<hr>
+<h1>PART 3 — NUMBER PROPERTIES</h1>
+<hr>
+<h2>Q17. Palindrome Number</h2>
+<p><strong>Problem:</strong> Check whether a non-negative integer reads the same forwards and backwards. <code>1221</code> → Palindrome.</p>
+<p><strong>Concepts:</strong> digit reversal (Q10), comparing to the original, widening type.</p>
+<p><strong>How to think:</strong> A number is a palindrome if it equals its own reversal. Reverse it with the digit toolkit and compare with a saved copy of the original. Negative numbers are not palindromes (the minus sign has no mirror).</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; &#34;Not a palindrome\n&#34;;
+        return 0;
+    }
+
+    int original = n;
+    long long reversed = 0;                  // reversal can exceed INT_MAX
+    while (n &gt; 0) {
+        reversed = reversed * 10 + n % 10;
+        n /= 10;
+    }
+
+    cout &lt;&lt; (reversed == original ? &#34;Palindrome&#34; : &#34;Not a palindrome&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (1221):</strong> reversed builds 1 → 12 → 122 → 1221 == original → <strong>Palindrome</strong>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1221</code></td>
+<td>Palindrome</td>
+<td></td>
+</tr>
+<tr>
+<td><code>123</code></td>
+<td>Not a palindrome</td>
+<td></td>
+</tr>
+<tr>
+<td><code>0</code>, <code>7</code></td>
+<td>Palindrome</td>
+<td>single digit</td>
+</tr>
+<tr>
+<td><code>10</code></td>
+<td>Not a palindrome</td>
+<td>reverses to <code>1</code></td>
+</tr>
+<tr>
+<td><code>1999999999</code></td>
+<td>Not a palindrome</td>
+<td>reversal is 9999999991, needs <code>long long</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log₁₀ n) time, O(1) space.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Avoid overflow without <code>long long</code>?</em> Reverse only <strong>half</strong> the digits: while <code>n &gt; reversed</code>, move digits across; then compare <code>n == reversed</code> or <code>n == reversed / 10</code>. Numbers ending in 0 (except 0) are never palindromes.</li>
+<li><em>String approach?</em> Convert to a string and compare with its reverse (the problem here forbids it, but it's a valid alternative in other settings).</li>
+</ul>
+<hr>
+<h2>Q18. Greatest Common Divisor (GCD)</h2>
+<p><strong>Problem:</strong> Find the GCD of two non-negative integers. Try the Euclidean algorithm. <code>48 18</code> → <code>6</code>.</p>
+<p><strong>Concepts:</strong> Euclid's algorithm, loop invariant, <code>%</code>.</p>
+<p><strong>How to think</strong></p>
+<ol>
+<li><strong>Brute force:</strong> try every number from <code>min(a, b)</code> down to 1. O(min(a, b)).</li>
+<li><strong>Euclid's insight:</strong> any common divisor of <code>a</code> and <code>b</code> also divides <code>a - b</code>, hence also <code>a mod b</code>. So <code>gcd(a, b) = gcd(b, a mod b)</code>. The numbers shrink very fast, and when <code>b = 0</code> the answer is <code>a</code>.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+
+    if (a &lt; 0 || b &lt; 0) {
+        cout &lt;&lt; &#34;Enter non-negative numbers\n&#34;;
+        return 0;
+    }
+
+    while (b != 0) {
+        long long r = a % b;
+        a = b;
+        b = r;
+    }
+    cout &lt;&lt; a &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (48, 18):</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a % b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>48</td>
+<td>18</td>
+<td>12</td>
+</tr>
+<tr>
+<td>18</td>
+<td>12</td>
+<td>6</td>
+</tr>
+<tr>
+<td>12</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0</td>
+<td>stop, answer <strong>6</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>48 18</code></td>
+<td><code>6</code></td>
+</tr>
+<tr>
+<td><code>7 0</code></td>
+<td><code>7</code></td>
+</tr>
+<tr>
+<td><code>0 0</code></td>
+<td><code>0</code> (convention)</td>
+</tr>
+<tr>
+<td><code>17 13</code></td>
+<td><code>1</code> (coprime)</td>
+</tr>
+<tr>
+<td><code>18 48</code></td>
+<td><code>6</code> (first step swaps them)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log(min(a, b))). The worst case is two consecutive Fibonacci numbers. Space O(1).</p>
+<p><strong>Pitfalls:</strong> dividing by zero if you compute <code>a % b</code> when <code>b == 0</code>; forgetting that <code>gcd(a, 0) = a</code>.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Library version?</em> <code>std::gcd(a, b)</code> in <code>&lt;numeric&gt;</code> (C++17).</li>
+<li><em>Extended Euclid?</em> Also returns <code>x, y</code> with <code>ax + by = gcd(a, b)</code>, used for modular inverses.</li>
+<li><em>GCD of many numbers?</em> Fold: <code>g = gcd(g, x)</code>.</li>
+</ul>
+<hr>
+<h2>Q19. Least Common Multiple (LCM)</h2>
+<p><strong>Problem:</strong> Find the LCM of two integers. Handle zero and reduce overflow risk. <code>4 6</code> → <code>12</code>.</p>
+<p><strong>Concepts:</strong> <code>gcd · lcm = a · b</code>, divide before multiplying, overflow pre-check.</p>
+<p><strong>How to think:</strong> Since <code>gcd(a, b) × lcm(a, b) = a × b</code>, we get <code>lcm = a / gcd × b</code>. Dividing <strong>first</strong> keeps the intermediate value small: <code>a * b / g</code> can overflow even when the final answer fits. Handle zero separately (<code>lcm(a, 0) = 0</code>, and it avoids dividing by a zero gcd).</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+long long gcd(long long a, long long b) {
+    while (b != 0) {
+        long long r = a % b;
+        a = b;
+        b = r;
+    }
+    return a;
+}
+
+int main() {
+    long long a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+
+    if (a &lt; 0 || b &lt; 0) {
+        cout &lt;&lt; &#34;Enter non-negative numbers\n&#34;;
+        return 0;
+    }
+    if (a == 0 || b == 0) {
+        cout &lt;&lt; 0 &lt;&lt; &#39;\n&#39;;
+        return 0;
+    }
+
+    long long g = gcd(a, b);
+    long long reduced = a / g;               // exact division, no loss
+
+    if (reduced &gt; LLONG_MAX / b) {           // reduced * b would overflow
+        cout &lt;&lt; &#34;Overflow\n&#34;;
+        return 0;
+    }
+    cout &lt;&lt; reduced * b &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (4, 6):</strong> <code>g = 2</code>, <code>reduced = 2</code>, <code>2 * 6 = 12</code>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>4 6</code></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td><code>7 13</code></td>
+<td><code>91</code></td>
+</tr>
+<tr>
+<td><code>5 0</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>9000000000000000000 9000000000000000001</code></td>
+<td><code>Overflow</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log(min(a, b))).</p>
+<p><strong>Pitfalls:</strong> forgetting <code>#include &lt;climits&gt;</code> for <code>LLONG_MAX</code>; naming your function <code>gcd</code> and getting an ambiguity with <code>std::gcd</code> when <code>&lt;numeric&gt;</code> is included together with <code>using namespace std;</code> (rename it <code>myGcd</code> if that happens).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why divide first?</em> <code>a / g</code> is exact (g divides a), so you lose nothing and keep numbers smaller.</li>
+<li><em>LCM of a list?</em> Fold with <code>lcm = lcm / gcd(lcm, x) * x</code>; it grows fast, so overflow checks matter.</li>
+</ul>
+<hr>
+<h2>Q20. Perfect Number</h2>
+<p><strong>Problem:</strong> Check whether a positive integer equals the sum of its proper divisors. <code>6 = 1 + 2 + 3</code>.</p>
+<p><strong>Concepts:</strong> divisor pairs, √n loop, avoiding double counting.</p>
+<p><strong>How to think:</strong> A proper divisor is a divisor smaller than <code>n</code>. Scanning <code>1..n-1</code> is O(n). Using divisor pairs <code>(i, n/i)</code> we only scan to √n and add both members of each pair. The only trap is a perfect square, where <code>i == n / i</code> must be added once.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt;= 1) {                              // 1 has no proper divisors that sum to 1
+        cout &lt;&lt; &#34;Not a perfect number\n&#34;;
+        return 0;
+    }
+
+    long long sum = 1;                         // 1 divides every n &gt; 1
+    for (long long i = 2; i &lt;= n / i; i++) {
+        if (n % i == 0) {
+            sum += i;
+            long long other = n / i;
+            if (other != i)                    // do not count a square root twice
+                sum += other;
+        }
+    }
+
+    cout &lt;&lt; (sum == n ? &#34;Perfect number&#34; : &#34;Not a perfect number&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (28):</strong> <code>sum = 1</code>; <code>i = 2</code>: <code>+2 +14 = 17</code>; <code>i = 3</code>: no; <code>i = 4</code>: <code>+4 +7 = 28</code>; <code>i = 5</code>: <code>5 &lt;= 28/5 = 5</code>, no divisor; <code>i = 6</code>: <code>6 &lt;= 4</code>? stop. <code>sum = 28 == n</code> → <strong>Perfect</strong>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>6</code>, <code>28</code>, <code>496</code>, <code>8128</code></td>
+<td>Perfect</td>
+</tr>
+<tr>
+<td><code>12</code></td>
+<td>Not (1+2+3+4+6 = 16, abundant)</td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td>Not (1+2+4 = 7, deficient)</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Not</td>
+</tr>
+<tr>
+<td><code>16</code></td>
+<td>Not (<code>other == i</code> case handled)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(√n) time, O(1) space.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Known perfect numbers?</em> 6, 28, 496, 8128, 33550336. Every even perfect number has the form <code>2^(p-1)(2^p − 1)</code> where <code>2^p − 1</code> is a Mersenne prime (Euclid–Euler theorem).</li>
+<li><em>Terminology:</em> sum of proper divisors <code>&lt; n</code> → deficient, <code>= n</code> → perfect, <code>&gt; n</code> → abundant.</li>
+</ul>
+<hr>
+<h2>Q21. Strong Number</h2>
+<p><strong>Problem:</strong> Check whether a number equals the sum of the factorials of its digits. <code>145 = 1! + 4! + 5!</code>.</p>
+<p><strong>Concepts:</strong> digit toolkit, factorial of a single digit, lookup table.</p>
+<p><strong>How to think:</strong> Peel each digit and add its factorial. Digits are only 0–9, so factorials are at most <code>9! = 362880</code>; there is no overflow risk and no need for a general factorial function. A lookup table is the cleanest.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    const int fact[10] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
+
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt;= 0) {
+        cout &lt;&lt; &#34;Not a strong number\n&#34;;
+        return 0;
+    }
+
+    long long temp = n, sum = 0;
+    while (temp &gt; 0) {
+        sum += fact[temp % 10];
+        temp /= 10;
+    }
+
+    cout &lt;&lt; (sum == n ? &#34;Strong number&#34; : &#34;Not a strong number&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (145):</strong> <code>5! = 120</code>, <code>4! = 24</code>, <code>1! = 1</code> → <code>145</code> ✓.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>145</code></td>
+<td>Strong</td>
+</tr>
+<tr>
+<td><code>40585</code></td>
+<td>Strong (24 + 1 + 120 + 40320 + 120)</td>
+</tr>
+<tr>
+<td><code>1</code>, <code>2</code></td>
+<td>Strong (<code>1! = 1</code>, <code>2! = 2</code>)</td>
+</tr>
+<tr>
+<td><code>123</code></td>
+<td>Not (1 + 2 + 6 = 9)</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>Not (<code>0! = 1 ≠ 0</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Only four strong numbers exist in base 10: <code>1, 2, 145, 40585</code>.</p>
+<p><strong>Complexity:</strong> O(log₁₀ n) time, O(1) space.</p>
+<p><strong>Pitfalls:</strong> <code>0! = 1</code>, so the digit 0 contributes 1 (the table handles it); looping on <code>n &gt; 0</code> makes input <code>0</code> skip the loop, so decide its answer explicitly.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why can't a strong number be large?</em> A d-digit number is at least <code>10^(d-1)</code>, but the digit-factorial sum is at most <code>d × 362880</code>. For d ≥ 8 the sum is always smaller, so none exist.</li>
+</ul>
+<hr>
+<h2>Q22. Power Without <code>std::pow()</code></h2>
+<p><strong>Problem:</strong> Compute <code>a^b</code> with a loop, <code>b ≥ 0</code>. Consider overflow and <code>0^0</code>.</p>
+<p><strong>Concepts:</strong> repeated multiplication, overflow pre-check, special cases, fast exponentiation.</p>
+<p><strong>How to think</strong></p>
+<ol>
+<li><code>a^b = a × a × … × a</code> (b times); <code>a^0 = 1</code>.</li>
+<li><strong>Convention:</strong> <code>0^0 = 1</code> (empty product; consistent with the binomial theorem and <code>std::pow</code>).</li>
+<li>Work with magnitudes <code>|a|</code>, check overflow before each multiply, and apply the sign at the end: negative only if <code>a &lt; 0</code> and <code>b</code> is odd.</li>
+<li>If <code>|a| ≤ 1</code> the value never grows, so skip the loop (otherwise <code>1^2000000000</code> would loop 2 billion times). If <code>|a| ≥ 2</code> it doubles at least each step, so overflow ends the loop within about 63 iterations.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+int main() {
+    long long a;
+    int b;
+    cin &gt;&gt; a &gt;&gt; b;
+
+    if (b &lt; 0) {
+        cout &lt;&lt; &#34;Exponent must be non-negative\n&#34;;
+        return 0;
+    }
+    if (a == LLONG_MIN) {                      // -a would overflow
+        cout &lt;&lt; &#34;Input too large\n&#34;;
+        return 0;
+    }
+
+    long long absA = (a &lt; 0) ? -a : a;
+    long long mag = 1;
+
+    if (b == 0)          mag = 1;              // includes 0^0 = 1
+    else if (absA == 0)  mag = 0;
+    else if (absA == 1)  mag = 1;
+    else {
+        for (int i = 0; i &lt; b; i++) {
+            if (mag &gt; LLONG_MAX / absA) {      // mag * absA would overflow
+                cout &lt;&lt; &#34;Overflow\n&#34;;
+                return 0;
+            }
+            mag *= absA;
+        }
+    }
+
+    bool negative = (a &lt; 0) &amp;&amp; (b % 2 == 1);
+    cout &lt;&lt; (negative ? -mag : mag) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input (a b)</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2 10</code></td>
+<td><code>1024</code></td>
+</tr>
+<tr>
+<td><code>5 0</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>0 0</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>0 5</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>-2 3</code></td>
+<td><code>-8</code></td>
+</tr>
+<tr>
+<td><code>2 62</code></td>
+<td><code>4611686018427387904</code></td>
+</tr>
+<tr>
+<td><code>2 63</code></td>
+<td><code>Overflow</code> (note: −2⁶³ exists, but 2⁶³ itself does not fit)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(b), but at most about 63 iterations when <code>|a| ≥ 2</code> because overflow stops it.</p>
+<p><strong>Bonus — fast exponentiation (binary exponentiation), O(log b)</strong></p>
+<pre><code class="language-cpp">long long power(long long base, long long exp) {
+    long long result = 1;
+    while (exp &gt; 0) {
+        if (exp &amp; 1) result *= base;   // current bit is 1: multiply in
+        base *= base;                  // square the base
+        exp &gt;&gt;= 1;                     // next bit
+    }
+    return result;
+}
+</code></pre>
+<p>Trace for <code>3^13</code>: <code>13 = 1101₂</code> → <code>3¹ · 3⁴ · 3⁸ = 3 · 81 · 6561 = 1,594,323</code>. (Add overflow checks or use modular arithmetic for real use.)</p>
+<p><strong>Pitfalls:</strong> using <code>double</code> and printing <code>1.04858e+06</code> for <code>2^20</code>; starting the result at 0; ignoring <code>0^0</code>.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why is fast exponentiation correct?</em> <code>a^b = (a²)^(b/2)</code> for even <code>b</code>, and <code>a · (a²)^((b-1)/2)</code> for odd <code>b</code>; the binary digits of <code>b</code> choose which squares to multiply.</li>
+<li><em>Modular version?</em> Take <code>% mod</code> after every multiplication (used in cryptography and combinatorics).</li>
+<li><em>Negative exponents or real bases?</em> Use <code>double</code> and <code>1.0 / a^|b|</code>, and print with <code>setprecision</code>.</li>
+</ul>
+<hr>
+<h2>Q23. Count Even and Odd Digits</h2>
+<p><strong>Problem:</strong> Count the even and odd digits of an integer. <code>123456</code> → 3 even, 3 odd.</p>
+<p><strong>Concepts:</strong> digit toolkit, parity test, <code>do-while</code>.</p>
+<p><strong>How to think:</strong> Peel each digit and classify it with <code>% 2</code>. Use <code>do-while</code> so <code>0</code> counts as one even digit. Testing <code>digit % 2 == 0</code> for evenness works for negatives too, because <code>-3 % 2 = -1 ≠ 0</code> falls into the odd branch.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    int evenCount = 0, oddCount = 0;
+    do {
+        int digit = static_cast&lt;int&gt;(n % 10);
+        if (digit % 2 == 0) evenCount++;
+        else                oddCount++;
+        n /= 10;
+    } while (n != 0);
+
+    cout &lt;&lt; &#34;Even digits: &#34; &lt;&lt; evenCount &lt;&lt; &#39;\n&#39;;
+    cout &lt;&lt; &#34;Odd digits: &#34; &lt;&lt; oddCount &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (123456):</strong> digits 6,5,4,3,2,1 → even <code>6, 4, 2</code> = 3; odd <code>5, 3, 1</code> = 3.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>123456</code></td>
+<td>3 even, 3 odd</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>1 even, 0 odd</td>
+</tr>
+<tr>
+<td><code>-2468</code></td>
+<td>4 even, 0 odd</td>
+</tr>
+<tr>
+<td><code>1357</code></td>
+<td>0 even, 4 odd</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log₁₀ n) time, O(1) space.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Count a specific digit?</em> Compare <code>digit == target</code> instead.</li>
+<li><em>Total digits check:</em> <code>evenCount + oddCount</code> equals the digit count from Q11.</li>
+</ul>
+<hr>
+<h2>Q24. Find the First and Last Digit</h2>
+<p><strong>Problem:</strong> Extract the first and last digits of a non-negative integer without strings. <code>95731</code> → first 9, last 1.</p>
+<p><strong>Concepts:</strong> <code>% 10</code>, repeated division.</p>
+<p><strong>How to think:</strong> The <strong>last</strong> digit is <code>n % 10</code>. The <strong>first</strong> digit is what remains after dividing by 10 until only one digit is left (<code>n &lt; 10</code>). Use a copy so the original stays intact.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; &#34;Enter a non-negative number\n&#34;;
+        return 0;
+    }
+
+    int last = static_cast&lt;int&gt;(n % 10);
+
+    long long first = n;
+    while (first &gt;= 10)
+        first /= 10;
+
+    cout &lt;&lt; &#34;First digit: &#34; &lt;&lt; first &lt;&lt; &#39;\n&#39;;
+    cout &lt;&lt; &#34;Last digit: &#34; &lt;&lt; last &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (95731):</strong> <code>last = 1</code>. <code>first</code>: 95731 → 9573 → 957 → 95 → <strong>9</strong>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>First</th>
+<th>Last</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>95731</code></td>
+<td>9</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>1000</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log₁₀ n) time, O(1) space.</p>
+<p><strong>Pitfalls:</strong> destroying <code>n</code> before computing <code>last</code>; using <code>pow(10, digits-1)</code> (floating-point rounding).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Swap the first and last digits of a number?</em> <code>n - first * p - last + last * p + first</code>, where <code>p = 10^(digits-1)</code>; compute <code>p</code> while stripping digits.</li>
+<li><em>Why is the loop condition <code>&gt;= 10</code> and not <code>&gt; 0</code>?</em> <code>&gt; 0</code> would strip the last remaining digit and return 0.</li>
+</ul>
+<hr>
+<h1>PART 4 — NUMBER CHALLENGES AND PATTERNS</h1>
+<hr>
+<h2>Q25. Swap Two Numbers</h2>
+<p><strong>Problem:</strong> Swap two variables, first with a temporary variable, then without one.</p>
+<p><strong>Concepts:</strong> references (C6), arithmetic trick, XOR trick (C9), <code>std::swap</code>.</p>
+<p><strong>How to think:</strong> You cannot do <code>a = b; b = a;</code> because the first assignment destroys <code>a</code>. Either save one value (temp), or encode both values into one variable and decode.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;utility&gt;                 // std::swap
+using namespace std;
+
+void swapWithTemp(int &amp;a, int &amp;b) {          // method 1: clear and safe
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void swapArithmetic(int &amp;a, int &amp;b) {        // method 2: no temp
+    a = a + b;                               // a holds the sum
+    b = a - b;                               // (a+b) - b = old a
+    a = a - b;                               // (a+b) - old a = old b
+}
+
+void swapXor(int &amp;a, int &amp;b) {               // method 3: no temp
+    if (&amp;a == &amp;b) return;                    // x ^ x == 0 would erase the value
+    a ^= b;
+    b ^= a;
+    a ^= b;
+}
+
+int main() {
+    int a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+
+    int x = a, y = b;
+    swapWithTemp(x, y);
+    cout &lt;&lt; &#34;Temp:       &#34; &lt;&lt; x &lt;&lt; &#39; &#39; &lt;&lt; y &lt;&lt; &#39;\n&#39;;
+
+    x = a; y = b;
+    swapArithmetic(x, y);
+    cout &lt;&lt; &#34;Arithmetic: &#34; &lt;&lt; x &lt;&lt; &#39; &#39; &lt;&lt; y &lt;&lt; &#39;\n&#39;;
+
+    x = a; y = b;
+    swapXor(x, y);
+    cout &lt;&lt; &#34;XOR:        &#34; &lt;&lt; x &lt;&lt; &#39; &#39; &lt;&lt; y &lt;&lt; &#39;\n&#39;;
+
+    x = a; y = b;
+    swap(x, y);
+    cout &lt;&lt; &#34;std::swap:  &#34; &lt;&lt; x &lt;&lt; &#39; &#39; &lt;&lt; y &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (arithmetic, a = 5, b = 8):</strong> a = 13 → b = 13 − 8 = 5 → a = 13 − 5 = 8 ✓
+<strong>Dry run (XOR, a = 5 = 101₂, b = 3 = 011₂):</strong> a = 110 → b = 110 ^ 011 = 101 (5) → a = 110 ^ 101 = 011 (3) ✓</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Temp variable</td>
+<td>clear, works for any type</td>
+<td>one extra variable</td>
+</tr>
+<tr>
+<td>Arithmetic</td>
+<td>no temp</td>
+<td><code>a + b</code> can overflow (signed overflow is UB)</td>
+</tr>
+<tr>
+<td>XOR</td>
+<td>no temp, no overflow</td>
+<td>integers only; fails if both names refer to the same variable</td>
+</tr>
+<tr>
+<td><code>std::swap</code></td>
+<td>idiomatic, optimized, any type</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(1).</p>
+<p><strong>Pitfalls:</strong> forgetting <code>&amp;</code> (parameters by value swap local copies only); XOR swap on the same object zeroing it.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Which would you use in production?</em> <code>std::swap</code>. The &quot;no temp&quot; tricks are curiosities and often slower on modern CPUs, because they create dependencies between instructions.</li>
+</ul>
+<hr>
+<h2>Q26. Optimized Prime Check (√n)</h2>
+<p><strong>Problem:</strong> Improve the prime checker to test divisors only up to √n. Explain why it works.</p>
+<p><strong>Concepts:</strong> √n bound proof, 6k ± 1, overflow-safe condition (see Q12 for the code).</p>
+<p><strong>How to think (the proof interviewers want)</strong></p>
+<p>Suppose <code>n</code> is composite, so <code>n = a × b</code> with <code>1 &lt; a ≤ b &lt; n</code>.</p>
+<ul>
+<li>If both <code>a</code> and <code>b</code> were greater than √n, then <code>a × b &gt; √n × √n = n</code>. Contradiction.</li>
+<li>So the smaller factor <code>a</code> satisfies <code>a ≤ √n</code>.</li>
+<li>Therefore, if <code>n</code> has no divisor in <code>[2, √n]</code>, it has none at all and is prime.</li>
+</ul>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+bool isPrime(int n) {
+    if (n &lt;= 1) return false;
+    if (n &lt;= 3) return true;
+    if (n % 2 == 0 || n % 3 == 0) return false;
+    for (int i = 5; i &lt;= n / i; i += 6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    return true;
+}
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    cout &lt;&lt; (isPrime(n) ? &#34;Prime&#34; : &#34;Not prime&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Example (n = 36, √n = 6):</strong> divisor pairs <code>(2, 18) (3, 12) (4, 9) (6, 6)</code>: every pair has a member ≤ 6, so the very first test finds a factor.</p>
+<p><strong>Speed comparison (n ≈ 10⁹):</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Approximate checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all <code>i</code> in <code>[2, n-1]</code></td>
+<td>1,000,000,000</td>
+</tr>
+<tr>
+<td><code>i</code> up to √n</td>
+<td>31,623</td>
+</tr>
+<tr>
+<td>√n with step 6</td>
+<td>~10,500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(√n).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em><code>i &lt;= n / i</code> vs <code>i * i &lt;= n</code>?</em> Equivalent, but the first cannot overflow.</li>
+<li><em>Even faster for many numbers?</em> Sieve of Eratosthenes (Q27) or a deterministic Miller–Rabin test for huge numbers.</li>
+</ul>
+<hr>
+<h2>Q27. Print All Primes in a Range</h2>
+<p><strong>Problem:</strong> Print every prime between two integers. <code>10 30</code> → <code>11 13 17 19 23 29</code>.</p>
+<p><strong>Concepts:</strong> reusing a function, safe loop bounds, Sieve of Eratosthenes.</p>
+<p><strong>How to think:</strong> For each number in <code>[start, end]</code>, call <code>isPrime</code>. Cost: <code>(end − start) × √end</code>. The unusual loop shape protects against <code>end == INT_MAX</code>, where <code>n &lt;= end; n++</code> would overflow and never terminate.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+bool isPrime(int n) {
+    if (n &lt;= 1) return false;
+    for (int i = 2; i &lt;= n / i; i++)
+        if (n % i == 0) return false;
+    return true;
+}
+
+int main() {
+    int start, end;
+    cin &gt;&gt; start &gt;&gt; end;
+
+    if (start &gt; end) {
+        cout &lt;&lt; &#34;Invalid range\n&#34;;
+        return 0;
+    }
+
+    bool first = true;
+    for (int n = start;; n++) {                // safe even when end == INT_MAX
+        if (isPrime(n)) {
+            if (!first) cout &lt;&lt; &#39; &#39;;
+            cout &lt;&lt; n;
+            first = false;
+        }
+        if (n == end) break;
+    }
+    cout &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10 30</code></td>
+<td><code>11 13 17 19 23 29</code></td>
+</tr>
+<tr>
+<td><code>1 10</code></td>
+<td><code>2 3 5 7</code></td>
+</tr>
+<tr>
+<td><code>24 28</code></td>
+<td>(empty line)</td>
+</tr>
+<tr>
+<td><code>30 10</code></td>
+<td><code>Invalid range</code></td>
+</tr>
+<tr>
+<td><code>2147483600 2147483647</code></td>
+<td><code>2147483629 2147483647</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O((end − start) · √end).</p>
+<p><strong>Better for big ranges — Sieve of Eratosthenes, O(N log log N)</strong></p>
+<pre><code class="language-cpp">#include &lt;vector&gt;
+// primes up to N
+vector&lt;bool&gt; isP(N + 1, true);
+isP[0] = isP[1] = false;
+for (long long i = 2; i * i &lt;= N; i++)
+    if (isP[i])
+        for (long long j = i * i; j &lt;= N; j += i)   // start at i*i: smaller multiples already crossed
+            isP[j] = false;
+</code></pre>
+<p>Idea: cross out the multiples of each prime; whatever stays un-crossed is prime.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why start the inner loop at <code>i * i</code>?</em> Any smaller multiple <code>i × k</code> with <code>k &lt; i</code> was already crossed out by a smaller prime factor.</li>
+<li><em>Memory?</em> <code>vector&lt;bool&gt;</code> uses one bit per number.</li>
+</ul>
+<hr>
+<h2>Q28. Prime Factorization</h2>
+<p><strong>Problem:</strong> Print the prime factors of a positive integer, including repeats. <code>12</code> → <code>2 2 3</code>.</p>
+<p><strong>Concepts:</strong> trial division, dividing out repeatedly, leftover prime.</p>
+<p><strong>How to think:</strong> Try divisors <code>i = 2, 3, 4, …</code>. Whenever <code>i</code> divides <code>n</code>, print it and divide it out, <strong>repeating</strong> while it still divides. Composite <code>i</code> never divide <code>n</code> because their prime factors were already removed. Stop when <code>i &gt; √n</code>; whatever remains (&gt; 1) is a single prime larger than √n.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 2) {
+        cout &lt;&lt; &#34;Enter a number greater than 1\n&#34;;
+        return 0;
+    }
+
+    bool first = true;
+    auto printFactor = [&amp;](long long f) {      // separators only BETWEEN factors
+        if (!first) cout &lt;&lt; &#39; &#39;;
+        cout &lt;&lt; f;
+        first = false;
+    };
+
+    for (long long i = 2; i &lt;= n / i; i++) {
+        while (n % i == 0) {                   // repeated factors
+            printFactor(i);
+            n /= i;
+        }
+    }
+    if (n &gt; 1)                                 // leftover prime &gt; sqrt(original n)
+        printFactor(n);
+
+    cout &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (84):</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>i</th>
+<th>divides?</th>
+<th>printed</th>
+<th>n after</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>yes, yes</td>
+<td>2, 2</td>
+<td>21</td>
+</tr>
+<tr>
+<td>3</td>
+<td>yes</td>
+<td>3</td>
+<td>7</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>4 &lt;= 7/4 = 1</code>? no, loop ends</td>
+<td></td>
+<td>7</td>
+</tr>
+<tr>
+<td>after loop</td>
+<td><code>n = 7 &gt; 1</code></td>
+<td>7</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Output: <code>2 2 3 7</code>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>12</code></td>
+<td><code>2 2 3</code></td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td><code>2 2 2</code></td>
+</tr>
+<tr>
+<td><code>97</code></td>
+<td><code>97</code></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>message</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(√n) worst case (when <code>n</code> is prime or a product of two large primes).</p>
+<p><strong>Pitfalls:</strong> forgetting the leftover <code>n &gt; 1</code>; using <code>if</code> instead of <code>while</code> (loses repeated factors); trailing space.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why only check up to √n?</em> After removing all prime factors ≤ √n, at most one prime factor &gt; √n can remain (two such factors would multiply to more than n).</li>
+<li><em>Faster for many queries?</em> Precompute the smallest prime factor for all numbers with a sieve; each factorization then takes O(log n).</li>
+<li><em>Count divisors from factorization:</em> if <code>n = p₁^e₁ · p₂^e₂ …</code>, the divisor count is <code>(e₁+1)(e₂+1)…</code>.</li>
+</ul>
+<hr>
+<h2>Q29. Convert Decimal to Binary</h2>
+<p><strong>Problem:</strong> Convert a non-negative integer to binary without a conversion library. <code>13</code> → <code>1101</code>.</p>
+<p><strong>Concepts:</strong> base conversion by repeated division, reversing, <code>char</code> arithmetic (C10).</p>
+<p><strong>How to think:</strong> Dividing by 2 repeatedly, the <strong>remainders</strong> are the binary digits from least significant to most significant. So collect them and reverse. Handle <code>0</code> separately, since the loop would produce an empty string.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; &#34;Enter a non-negative number\n&#34;;
+        return 0;
+    }
+
+    string binary;
+    if (n == 0) {
+        binary = &#34;0&#34;;
+    } else {
+        while (n &gt; 0) {
+            binary += char(&#39;0&#39; + n % 2);       // next bit, least significant first
+            n /= 2;
+        }
+        reverse(binary.begin(), binary.end()); // bits came out backwards
+    }
+
+    cout &lt;&lt; binary &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (13):</strong></p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>n</th>
+<th>n % 2</th>
+<th>bits so far</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13</td>
+<td>1</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>0</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td><code>101</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td><code>1011</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Reverse → <code>1101</code> (8 + 4 + 0 + 1 = 13 ✓).</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10</code></td>
+<td><code>1010</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>255</code></td>
+<td><code>11111111</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(log₂ n) time and space.</p>
+<p><strong>Alternative (bit scanning, no reverse):</strong> loop <code>for (int i = 62; i &gt;= 0; i--)</code> printing <code>(n &gt;&gt; i) &amp; 1</code>, skipping leading zeros.</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Convert to any base up to 36?</em> Replace <code>2</code> with the base; map digits ≥ 10 to letters.</li>
+<li><em>Negative numbers?</em> Use two's complement (a fixed width such as 32 bits).</li>
+</ul>
+<hr>
+<h2>Q30. Convert Binary to Decimal</h2>
+<p><strong>Problem:</strong> Convert a binary number (given as digits) to decimal. Validate that only <code>0</code> and <code>1</code> appear. <code>1101</code> → <code>13</code>.</p>
+<p><strong>Concepts:</strong> Horner's method, string input, validation, overflow pre-check.</p>
+<p><strong>How to think:</strong> Reading left to right, each new bit shifts the value left by one position and adds the bit: <code>value = value × 2 + bit</code> (Horner's method). Read the input as a <strong>string</strong>; a long binary number cannot be stored in an integer. Validate every character and check overflow before each step.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+int main() {
+    string binary;
+    cin &gt;&gt; binary;
+
+    if (binary.empty()) {
+        cout &lt;&lt; &#34;Invalid binary number\n&#34;;
+        return 0;
+    }
+
+    long long decimal = 0;
+    for (char bit : binary) {
+        if (bit != &#39;0&#39; &amp;&amp; bit != &#39;1&#39;) {        // validation
+            cout &lt;&lt; &#34;Invalid binary number\n&#34;;
+            return 0;
+        }
+        int digit = bit - &#39;0&#39;;
+
+        if (decimal &gt; (LLONG_MAX - digit) / 2) { // decimal*2 + digit would overflow
+            cout &lt;&lt; &#34;Number is too large\n&#34;;
+            return 0;
+        }
+        decimal = decimal * 2 + digit;
+    }
+
+    cout &lt;&lt; decimal &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>Dry run (1101):</strong> 0 → <code>0·2+1 = 1</code> → <code>1·2+1 = 3</code> → <code>3·2+0 = 6</code> → <code>6·2+1 = 13</code>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1101</code></td>
+<td><code>13</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>00101</code></td>
+<td><code>5</code> (leading zeros are fine)</td>
+</tr>
+<tr>
+<td><code>1021</code></td>
+<td><code>Invalid binary number</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(length) time, O(1) extra space.</p>
+<p><strong>Why the overflow condition is right:</strong> <code>decimal * 2 + digit &lt;= LLONG_MAX</code> ⟺ <code>decimal &lt;= (LLONG_MAX - digit) / 2</code> (integer division floors, which is exactly what we need).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Same idea in any base?</em> <code>value = value × base + digit</code>.</li>
+<li><em>Alternative:</em> sum <code>bit × 2^position</code> going right to left.</li>
+</ul>
+<hr>
+<h2>Q31. Power of Two</h2>
+<p><strong>Problem:</strong> Decide whether a positive integer is a power of two. Bonus: use a bitwise operation.</p>
+<p><strong>Concepts:</strong> binary representation, <code>n &amp; (n - 1)</code> (C9).</p>
+<p><strong>How to think:</strong> A power of two has <strong>exactly one</strong> <code>1</code> bit (<code>8 = 1000₂</code>). Subtracting 1 turns that bit into 0 and every lower bit into 1 (<code>7 = 0111₂</code>), so <code>n &amp; (n - 1)</code> is <code>0</code>. For any other number, at least one higher set bit survives. Guard <code>n &gt; 0</code>, because <code>0 &amp; -1 == 0</code> would wrongly pass.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    bool result = n &gt; 0 &amp;&amp; (n &amp; (n - 1)) == 0;
+    cout &lt;&lt; (result ? &#34;Power of two&#34; : &#34;Not a power of two&#34;) &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<pre><code>n = 8 = 1000        n = 6 = 0110
+n-1   = 0111        n-1   = 0101
+n&amp;n-1 = 0000 → yes  n&amp;n-1 = 0100 → no
+</code></pre>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>Power of two (2⁰)</td>
+</tr>
+<tr>
+<td><code>16</code></td>
+<td>Power of two</td>
+</tr>
+<tr>
+<td><code>18</code></td>
+<td>Not</td>
+</tr>
+<tr>
+<td><code>0</code>, <code>-8</code></td>
+<td>Not (<code>n &gt; 0</code> guard)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(1).</p>
+<p><strong>Loop alternative:</strong> <code>while (n % 2 == 0) n /= 2; return n == 1;</code> — O(log n).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Count set bits?</em> Kernighan: <code>while (n) { n &amp;= n - 1; count++; }</code> runs once per set bit.</li>
+<li><em>Find the next power of two ≥ n?</em> Smear bits right then add 1, or use <code>bit_ceil</code> (C++20).</li>
+</ul>
+<hr>
+<h2>Q32. Digital Root</h2>
+<p><strong>Problem:</strong> Repeatedly sum the digits until one digit remains. <code>9875</code> → <code>2</code>.</p>
+<p><strong>Concepts:</strong> digit sum loop, modulo-9 shortcut.</p>
+<p><strong>How to think:</strong> Do exactly what the statement says: <code>9875 → 29 → 11 → 2</code>. Mathematically, a number is congruent to its digit sum modulo 9, so the digital root equals <code>n mod 9</code>, with <code>9</code> standing in for multiples of 9 (and <code>0</code> for 0): <code>1 + (n − 1) % 9</code> for <code>n &gt; 0</code>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; &#34;Enter a non-negative number\n&#34;;
+        return 0;
+    }
+
+    while (n &gt;= 10) {                      // repeat until a single digit
+        long long sum = 0;
+        while (n &gt; 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        n = sum;
+    }
+
+    cout &lt;&lt; n &lt;&lt; &#39;\n&#39;;
+    return 0;
+}
+</code></pre>
+<p><strong>O(1) formula</strong></p>
+<pre><code class="language-cpp">long long root = (n == 0) ? 0 : 1 + (n - 1) % 9;
+</code></pre>
+<p>Check: <code>1 + (9875 − 1) % 9 = 1 + 9874 % 9 = 1 + 1 = 2</code> ✓</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>9875</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td><code>7</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>99</code></td>
+<td><code>9</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> loop O(log n) per pass and very few passes; formula O(1).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Why does mod 9 work?</em> <code>10 ≡ 1 (mod 9)</code>, so each digit contributes <code>digit × 1</code>; the digit sum has the same remainder as the number.</li>
+<li><em>Use:</em> quick divisibility test for 3 and 9.</li>
+</ul>
+<hr>
+<h1>PATTERN PROBLEMS (Q33–Q40)</h1>
+<p><strong>Method (recap of C11):</strong> outer loop = rows <code>i</code>; for each row decide how many <strong>spaces</strong> and how many <strong>symbols</strong>; print separators only between items; end each row with <code>'\n'</code>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Row <code>i</code> content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q33 right triangle</td>
+<td><code>i</code> stars</td>
+</tr>
+<tr>
+<td>Q34 inverted triangle</td>
+<td><code>n - i + 1</code> stars (or count <code>i</code> downward)</td>
+</tr>
+<tr>
+<td>Q35 number triangle</td>
+<td>numbers <code>1..i</code> (column index)</td>
+</tr>
+<tr>
+<td>Q36 repeated numbers</td>
+<td>the number <code>i</code>, <code>i</code> times (row index)</td>
+</tr>
+<tr>
+<td>Q37 pyramid</td>
+<td><code>n - i</code> spaces, <code>2i - 1</code> stars</td>
+</tr>
+<tr>
+<td>Q38 diamond</td>
+<td>pyramid up to the middle, then mirrored</td>
+</tr>
+<tr>
+<td>Q39 Floyd</td>
+<td>the next <code>i</code> numbers from a running counter</td>
+</tr>
+<tr>
+<td>Q40 hollow square</td>
+<td>star on the border, space inside</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2>Q33. Right-Angled Star Triangle</h2>
+<p><strong>Problem:</strong> For <code>n = 4</code> print rows of <code>1, 2, 3, 4</code> stars.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i++) {          // row i
+        for (int j = 1; j &lt;= i; j++)        // i stars
+            cout &lt;&lt; &#39;*&#39;;
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+    return 0;
+}
+</code></pre>
+<p><strong>Output (n = 4):</strong></p>
+<pre><code>*
+**
+***
+****
+</code></pre>
+<p><strong>Dry run:</strong> <code>i = 1</code> → inner loop runs once → <code>*</code>; <code>i = 2</code> → twice → <code>**</code>; …</p>
+<p><strong>Edge cases:</strong> <code>n = 0</code> or negative prints nothing (loop never runs); <code>n = 1</code> prints <code>*</code>.</p>
+<p><strong>Complexity:</strong> O(n²) time (number of characters printed is <code>n(n+1)/2</code>), O(1) space.</p>
+<p><strong>Pitfalls:</strong> printing <code>&quot;* &quot;</code> adds spaces the expected output doesn't have; forgetting the <code>'\n'</code>.</p>
+<hr>
+<h2>Q34. Inverted Star Triangle</h2>
+<p><strong>Problem:</strong> For <code>n = 4</code> print rows of <code>4, 3, 2, 1</code> stars.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    for (int i = n; i &gt;= 1; i--) {          // counts DOWN
+        for (int j = 1; j &lt;= i; j++)
+            cout &lt;&lt; &#39;*&#39;;
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+    return 0;
+}
+</code></pre>
+<p><strong>Output (n = 4):</strong></p>
+<pre><code>****
+***
+**
+*
+</code></pre>
+<p><strong>How to think:</strong> Same inner loop as Q33; only the outer loop direction changes. Equivalent form: row <code>r = 1..n</code> prints <code>n - r + 1</code> stars.</p>
+<p><strong>Complexity:</strong> O(n²).</p>
+<hr>
+<h2>Q35. Number Triangle</h2>
+<p><strong>Problem:</strong> For <code>n = 4</code> print <code>1</code>, <code>12</code>, <code>123</code>, <code>1234</code>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= i; j++)
+            cout &lt;&lt; j;                      // the COLUMN number
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+    return 0;
+}
+</code></pre>
+<p><strong>Output (n = 4):</strong></p>
+<pre><code>1
+12
+123
+1234
+</code></pre>
+<p><strong>How to think:</strong> Row <code>i</code> has <code>i</code> columns, and the value in column <code>j</code> is <code>j</code>.</p>
+<p><strong>Pitfalls / follow-up:</strong> for <code>n ≥ 10</code> the numbers run together (<code>12345678910</code>). In an interview, ask whether to put a separator; then print <code>if (j &gt; 1) cout &lt;&lt; ' ';</code> before <code>j</code>.</p>
+<hr>
+<h2>Q36. Repeated-Number Triangle</h2>
+<p><strong>Problem:</strong> For <code>n = 4</code> print <code>1</code>, <code>22</code>, <code>333</code>, <code>4444</code>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= i; j++)
+            cout &lt;&lt; i;                      // the ROW number
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+    return 0;
+}
+</code></pre>
+<p><strong>Output (n = 4):</strong></p>
+<pre><code>1
+22
+333
+4444
+</code></pre>
+<p><strong>Q35 vs Q36 (a favorite interview pair):</strong> same loops. Q35 prints the <strong>column</strong> <code>j</code>; Q36 prints the <strong>row</strong> <code>i</code>.</p>
+<hr>
+<h2>Q37. Pyramid Pattern</h2>
+<p><strong>Problem:</strong> For <code>n = 4</code> print a centered pyramid with <code>1, 3, 5, 7</code> stars.</p>
+<p><strong>How to think:</strong> Make a table and find formulas.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Row i</th>
+<th>Leading spaces <code>n - i</code></th>
+<th>Stars <code>2i - 1</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Only <strong>leading</strong> spaces are printed (never trailing), so lines match the expected output exactly.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int s = 0; s &lt; n - i; s++)         // leading spaces
+            cout &lt;&lt; &#39; &#39;;
+        for (int j = 0; j &lt; 2 * i - 1; j++)     // stars: 1, 3, 5, 7, ...
+            cout &lt;&lt; &#39;*&#39;;
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+    return 0;
+}
+</code></pre>
+<p><strong>Output (n = 4):</strong></p>
+<pre><code>   *
+  ***
+ *****
+*******
+</code></pre>
+<p><strong>Complexity:</strong> O(n²).</p>
+<p><strong>Follow-up:</strong> <em>Inverted pyramid?</em> Loop <code>i</code> from <code>n</code> down to <code>1</code>.</p>
+<hr>
+<h2>Q38. Diamond Pattern</h2>
+<p><strong>Problem:</strong> Print a symmetric diamond of stars for a given <strong>height</strong>. Define whether the height is odd or even and handle it consistently.</p>
+<p><strong>How to think</strong></p>
+<ol>
+<li>A diamond with a single-star tip and a single widest row has an <strong>odd</strong> height <code>h</code>. That is the definition I'll state in the interview: <em>&quot;Height must be odd; if an even number is given, I round it up to the next odd number.&quot;</em></li>
+<li>The middle row is <code>mid = (h + 1) / 2</code>.</li>
+<li>For row <code>i</code>, let <code>k = i</code> for the top half and <code>k = h - i + 1</code> for the bottom half (the distance from the nearest tip). Then spaces <code>= mid - k</code> and stars <code>= 2k - 1</code>, exactly like the pyramid.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int h;
+    cin &gt;&gt; h;
+
+    if (h &lt;= 0) return 0;
+
+    if (h % 2 == 0) {                          // even -&gt; round up to odd
+        h++;
+        cerr &lt;&lt; &#34;Even height: using &#34; &lt;&lt; h &lt;&lt; &#34; instead\n&#34;;   // stderr keeps stdout clean
+    }
+
+    int mid = (h + 1) / 2;                     // row with the widest line
+
+    for (int i = 1; i &lt;= h; i++) {
+        int k = (i &lt;= mid) ? i : h - i + 1;    // distance from the nearest tip
+
+        for (int s = 0; s &lt; mid - k; s++)
+            cout &lt;&lt; &#39; &#39;;
+        for (int j = 0; j &lt; 2 * k - 1; j++)
+            cout &lt;&lt; &#39;*&#39;;
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+    return 0;
+}
+</code></pre>
+<p><strong>Output (h = 7):</strong></p>
+<pre><code>   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+</code></pre>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Row i</th>
+<th>k</th>
+<th>spaces <code>mid-k</code></th>
+<th>stars <code>2k-1</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>5-row diamond</td>
+</tr>
+<tr>
+<td><code>6</code></td>
+<td>treated as <code>7</code></td>
+</tr>
+<tr>
+<td><code>0</code>, negative</td>
+<td>prints nothing</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Variant with spaced stars (<code>* * *</code> style)</strong></p>
+<pre><code class="language-cpp">for (int s = 0; s &lt; 2 * (mid - k); s++) cout &lt;&lt; &#39; &#39;;
+for (int j = 0; j &lt; 2 * k - 1; j++) {
+    if (j &gt; 0) cout &lt;&lt; &#39; &#39;;                    // space BETWEEN stars only
+    cout &lt;&lt; &#39;*&#39;;
+}
+</code></pre>
+<p><strong>Complexity:</strong> O(h²).</p>
+<p><strong>Follow-ups</strong></p>
+<ul>
+<li><em>Hollow diamond?</em> Print a star only at the first and last positions of each row.</li>
+<li><em>Alternative implementation?</em> Print the top half (like Q37 up to <code>mid</code>) and the bottom half with <code>i</code> from <code>mid - 1</code> down to 1; both are fine, but the single-loop form avoids duplicated code.</li>
+</ul>
+<hr>
+<h2>Q39. Floyd's Triangle</h2>
+<p><strong>Problem:</strong> For <code>n = 4</code> print consecutive numbers in a triangle: <code>1 / 2 3 / 4 5 6 / 7 8 9 10</code>.</p>
+<p><strong>How to think:</strong> Row <code>i</code> has <code>i</code> numbers. The numbers are simply <code>1, 2, 3, …</code> taken in order, so use <strong>one counter that never resets</strong>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    long long number = 1;                       // running counter across rows
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            if (j &gt; 1) cout &lt;&lt; &#39; &#39;;             // separator only between numbers
+            cout &lt;&lt; number++;
+        }
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+    return 0;
+}
+</code></pre>
+<p><strong>Output (n = 4):</strong></p>
+<pre><code>1
+2 3
+4 5 6
+7 8 9 10
+</code></pre>
+<p><strong>Useful formulas:</strong> total numbers <code>n(n+1)/2</code>; last number of row <code>i</code> is <code>i(i+1)/2</code>; first number of row <code>i</code> is <code>i(i−1)/2 + 1</code>.</p>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>What row <code>i</code> prints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q35</td>
+<td><code>1 … i</code> (restarts every row)</td>
+</tr>
+<tr>
+<td>Q36</td>
+<td><code>i</code> repeated <code>i</code> times</td>
+</tr>
+<tr>
+<td>Q39</td>
+<td>the next <code>i</code> values of a global counter</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(n²).</p>
+<p><strong>Follow-up:</strong> <em>Why <code>long long</code>?</em> For large <code>n</code> the counter reaches <code>n(n+1)/2</code>, which exceeds <code>int</code> once <code>n &gt; 65535</code>.</p>
+<hr>
+<h2>Q40. Hollow Square Pattern</h2>
+<p><strong>Problem:</strong> For <code>n = 4</code> print a square whose border is stars and whose inside is empty.</p>
+<pre><code>****
+*  *
+*  *
+****
+</code></pre>
+<p><strong>How to think:</strong> Every cell is on a grid <code>(i, j)</code>. It is a border cell if it is in the <strong>first or last row</strong> or the <strong>first or last column</strong>. Print <code>*</code> for border cells and a space inside. Each cell is exactly <strong>one character</strong> so the width is <code>n</code>.</p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i++) {              // row
+        for (int j = 1; j &lt;= n; j++) {          // column
+            if (i == 1 || i == n || j == 1 || j == n)
+                cout &lt;&lt; &#39;*&#39;;
+            else
+                cout &lt;&lt; &#39; &#39;;
+        }
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+    return 0;
+}
+</code></pre>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>n</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td><code>**</code> / <code>**</code></td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td><code>***</code> / <code>* *</code> / <code>***</code></td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>the square above</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Complexity:</strong> O(n²).</p>
+<p><strong>Follow-ups (same trick, different condition)</strong></p>
+<ul>
+<li>Add <code>|| i == j</code> → hollow square with a main diagonal.</li>
+<li>Add <code>|| i == j || i + j == n + 1</code> → hollow square with an <strong>X</strong>.</li>
+<li>Always print <code>*</code> → filled square.</li>
+</ul>
+<hr>
+<h1>PART 5 — INTERVIEW Q&amp;A, CHECKLISTS, CONCEPT MAP</h1>
+<h2>5.1 How to run a coding interview (5 steps)</h2>
+<ol>
+<li><strong>Understand:</strong> restate the problem; ask about input range, negatives, zero, invalid input, output format.</li>
+<li><strong>Examples:</strong> write one normal case and two edge cases <em>before</em> coding.</li>
+<li><strong>Plan:</strong> say the brute force first with its complexity, then the improvement.</li>
+<li><strong>Code:</strong> small functions, meaningful names, no clever tricks you cannot explain.</li>
+<li><strong>Test:</strong> dry-run an example out loud, then run the edge cases.</li>
+</ol>
+<h2>5.2 Rapid-fire conceptual questions</h2>
+<p><strong>Q: What is undefined behavior? Give two examples from this handbook.</strong>
+Behavior the standard does not define; the program may crash, give wrong results, or appear to work. Examples: signed integer overflow (<code>INT_MAX + 1</code>, Q2/Q13), dividing by zero (Q6), reading an uninitialized variable.</p>
+<p><strong>Q: <code>int</code> vs <code>long long</code>: when do you switch?</strong>
+When intermediate or final values can exceed about 2.1 × 10⁹ (sums, products, factorials, reversed numbers). In contests and interviews, defaulting to <code>long long</code> for arithmetic is a safe habit.</p>
+<p><strong>Q: How do you detect overflow <em>before</em> it happens?</strong>
+Addition: <code>a &gt; MAX - b</code>. Multiplication: <code>a &gt; MAX / b</code>. Or compute in a wider type and range-check (Q10, Q13, Q14, Q19, Q22, Q30).</p>
+<p><strong>Q: Result of <code>-7 / 2</code> and <code>-7 % 2</code>?</strong>
+<code>-3</code> and <code>-1</code> (division truncates toward zero; the remainder takes the sign of the dividend).</p>
+<p><strong>Q: <code>while</code> vs <code>do-while</code>?</strong>
+<code>while</code> may run zero times; <code>do-while</code> runs at least once. Use <code>do-while</code> whenever the input <code>0</code> must still produce an iteration (Q11, Q15, Q23).</p>
+<p><strong>Q: Why is checking up to √n enough for primality?</strong>
+A composite <code>n = a·b</code> has a factor ≤ √n, because two factors &gt; √n would multiply to more than <code>n</code> (Q26).</p>
+<p><strong>Q: Why write <code>i &lt;= n / i</code> instead of <code>i * i &lt;= n</code>?</strong>
+<code>i * i</code> can overflow near <code>INT_MAX</code>; the division form cannot (Q12, Q20, Q28).</p>
+<p><strong>Q: Euclid's algorithm: why does it work and how fast is it?</strong>
+Any common divisor of <code>a</code> and <code>b</code> divides <code>a mod b</code>, so <code>gcd(a, b) = gcd(b, a mod b)</code>. It finishes in O(log min(a, b)) steps; the worst case is consecutive Fibonacci numbers (Q18).</p>
+<p><strong>Q: How is LCM computed from GCD?</strong>
+<code>lcm = a / gcd(a, b) * b</code>; divide first to limit overflow (Q19).</p>
+<p><strong>Q: What does <code>n &amp; (n - 1)</code> do?</strong>
+Clears the lowest set bit. Zero result ⇒ <code>n</code> has at most one set bit ⇒ power of two for <code>n &gt; 0</code> (Q31). Repeating it counts the set bits.</p>
+<p><strong>Q: <code>endl</code> vs <code>'\n'</code>?</strong>
+<code>endl</code> = newline + flush. Prefer <code>'\n'</code> unless you need to flush.</p>
+<p><strong>Q: Pass by value vs by reference?</strong>
+By value copies the argument; by reference (<code>T&amp;</code>) operates on the caller's variable (Q10, Q25).</p>
+<p><strong>Q: Why avoid <code>std::pow</code> for integer results?</strong>
+It returns <code>double</code>; large or exact results can be off by rounding (e.g. <code>124.99999</code> truncating to 124). Use an integer loop (Q16, Q22).</p>
+<p><strong>Q: Recursion vs iteration for Fibonacci/factorial?</strong>
+Iteration is O(1) space and cannot overflow the call stack. Naive recursive Fibonacci is O(2ⁿ).</p>
+<p><strong>Q: What is a loop invariant?</strong>
+A statement that is true before and after every iteration, used to prove correctness (Euclid: &quot;the gcd of the current pair equals the gcd of the original pair&quot;).</p>
+<p><strong>Q: How do you make the output match exactly?</strong>
+No prompts, print separators only <em>between</em> items, exactly one newline per line, and exact words (<code>Hello, World!</code>).</p>
+<p><strong>Q: Is 1 prime? Is 0 a palindrome? Is 0 an Armstrong number?</strong>
+1 is not prime. Single digits and <code>0</code> are palindromes. <code>0</code> and all single digits are Armstrong numbers (<code>d¹ = d</code>).</p>
+<h2>5.3 Mistakes to avoid (found while reviewing these exact problems)</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Where it bites</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wrong text / punctuation</td>
+<td>Q1 (<code>Hello world!</code>)</td>
+<td>copy the sample output exactly</td>
+</tr>
+<tr>
+<td><code>int</code> for sums or products</td>
+<td>Q2, Q9, Q13</td>
+<td>use <code>long long</code> and pre-checks</td>
+</tr>
+<tr>
+<td>Reading input in the wrong order</td>
+<td>Q6</td>
+<td>follow the sample input format</td>
+</tr>
+<tr>
+<td>Formula instead of the requested loop</td>
+<td>Q9</td>
+<td>show the loop, mention the formula as optimization</td>
+</tr>
+<tr>
+<td><code>std::pow</code> or <code>double</code> for integer powers</td>
+<td>Q16, Q22</td>
+<td>integer loop; guard overflow</td>
+</tr>
+<tr>
+<td><code>n % 2 == 1</code> for odd</td>
+<td>Q3, Q23</td>
+<td>use <code>!= 0</code></td>
+</tr>
+<tr>
+<td><code>while (n &gt; 0)</code> losing input <code>0</code></td>
+<td>Q11, Q15, Q23</td>
+<td><code>do-while</code></td>
+</tr>
+<tr>
+<td><code>i * i &lt;= n</code> overflow</td>
+<td>Q12, Q20, Q26–Q28</td>
+<td><code>i &lt;= n / i</code></td>
+</tr>
+<tr>
+<td>Missing <code>&lt;climits&gt;</code></td>
+<td>Q10, Q13, Q14, Q19, Q22, Q30</td>
+<td>include what you use</td>
+</tr>
+<tr>
+<td>Trailing spaces</td>
+<td>Q14, Q27, Q28, Q39</td>
+<td>separator only between items</td>
+</tr>
+<tr>
+<td>Extra spaces in patterns</td>
+<td>Q33–Q36, Q40</td>
+<td>print one character per cell</td>
+</tr>
+<tr>
+<td>Incomplete requirements</td>
+<td>Q25 (only one swap method), Q38 (odd/even undefined)</td>
+<td>re-read the problem, tick every requirement</td>
+</tr>
+<tr>
+<td>Infinite loop at <code>INT_MAX</code></td>
+<td>Q27</td>
+<td><code>for (n = start;; n++) { ...; if (n == end) break; }</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>5.4 Complexity table for all 40 problems</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Q</th>
+<th>Time</th>
+<th>Space</th>
+<th></th>
+<th>Q</th>
+<th>Time</th>
+<th>Space</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–8</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td></td>
+<td>25</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>O(n) / O(1)</td>
+<td>O(1)</td>
+<td></td>
+<td>26</td>
+<td>O(√n)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>10, 11, 15, 17</td>
+<td>O(log n)</td>
+<td>O(1)</td>
+<td></td>
+<td>27</td>
+<td>O(R·√N)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>O(√n)</td>
+<td>O(1)</td>
+<td></td>
+<td>28</td>
+<td>O(√n)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>13, 14</td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td></td>
+<td>29</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>16</td>
+<td>O(d²)</td>
+<td>O(1)</td>
+<td></td>
+<td>30</td>
+<td>O(len)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>18, 19</td>
+<td>O(log min)</td>
+<td>O(1)</td>
+<td></td>
+<td>31</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>20</td>
+<td>O(√n)</td>
+<td>O(1)</td>
+<td></td>
+<td>32</td>
+<td>O(log n) / O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>21, 23, 24</td>
+<td>O(log n)</td>
+<td>O(1)</td>
+<td></td>
+<td>33–37, 39, 40</td>
+<td>O(n²)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>22</td>
+<td>O(b) (≤ 63 steps) / O(log b)</td>
+<td>O(1)</td>
+<td></td>
+<td>38</td>
+<td>O(h²)</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>5.5 Concept → problems map</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Problems</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I/O and program structure</td>
+<td>1, 2</td>
+</tr>
+<tr>
+<td>Conditions and boolean logic</td>
+<td>3, 4, 5, 6, 7</td>
+</tr>
+<tr>
+<td><code>for</code> loops and accumulators</td>
+<td>8, 9, 13, 14</td>
+</tr>
+<tr>
+<td>Digit extraction (<code>% 10</code>, <code>/ 10</code>)</td>
+<td>10, 11, 15, 16, 17, 21, 23, 24, 32</td>
+</tr>
+<tr>
+<td><code>do-while</code> for the zero case</td>
+<td>11, 15, 16, 23</td>
+</tr>
+<tr>
+<td>Overflow handling</td>
+<td>2, 9, 10, 13, 14, 19, 22, 30</td>
+</tr>
+<tr>
+<td>Primes and divisors</td>
+<td>12, 20, 26, 27, 28</td>
+</tr>
+<tr>
+<td>GCD / LCM</td>
+<td>18, 19</td>
+</tr>
+<tr>
+<td>Base conversion and bits</td>
+<td>29, 30, 31, 25</td>
+</tr>
+<tr>
+<td>Math shortcuts (formulas)</td>
+<td>9, 32, 39</td>
+</tr>
+<tr>
+<td>Nested loops and patterns</td>
+<td>8, 33–40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>5.6 Pre-submit checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Output text and format match the sample exactly (no prompts, no trailing spaces).</li>
+<li><input disabled="" type="checkbox"> Types are wide enough (<code>long long</code>) and overflow is checked before it happens.</li>
+<li><input disabled="" type="checkbox"> Tested: <code>0</code>, <code>1</code>, negative, maximum, equal values, repeated digits.</li>
+<li><input disabled="" type="checkbox"> Loops: no off-by-one; <code>do-while</code> where <code>0</code> must be processed.</li>
+<li><input disabled="" type="checkbox"> No division or modulo by zero.</li>
+<li><input disabled="" type="checkbox"> Complexity is stated and acceptable.</li>
+<li><input disabled="" type="checkbox"> All requirements of the problem are covered (read it once more).</li>
+</ul>
+<h2>5.7 Practice next (same level, to extend this handbook)</h2>
+<p>Count set bits · Fibonacci with memoization · Sieve up to 10⁶ · Palindrome by reversing half the digits · Binary to octal/hex · Pascal's triangle · Pyramid of numbers · Check for automorphic and happy numbers · GCD of an array.</p>
+<hr>
+<p><em>End of handbook.</em></p>
+
+</body></html>
