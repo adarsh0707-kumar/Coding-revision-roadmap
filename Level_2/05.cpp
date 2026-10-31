@@ -4,38 +4,49 @@
 Find the second-largest distinct element without sorting.
 */
 
-#include<iostream>
-#include<climits>
+#include <iostream>
+#include <iterator>
+#include <climits>
 
-int main(){
+int main()
+{
+    int arr[] = {5, INT_MIN};
+    int n = std::size(arr);
 
-    int arr[] = {0, 3, 1, 9, 5, 7, 4, 6, 8, 9};
-
-    int largest = INT_MIN;
-    int secondLargest = INT_MIN;
-
-    int arrSize = std::size(arr);
-
-    if(arrSize < 2)
+    if (n < 2)
     {
-        std::cout << "Invalid array, size must be greater than 2" << std::endl;
+        std::cout << "Array needs at least two elements\n";
         return 0;
     }
 
-    for(int num : arr){
-        if(num > largest){
+    int largest = INT_MIN;
+    int secondLargest = INT_MIN;
+    bool foundSecond = false;
+
+    for (int num : arr)
+    {
+        if (num > largest)
+        {
             secondLargest = largest;
             largest = num;
+            foundSecond = true;
         }
-        else if(num > secondLargest && num != largest){
+        else if (num < largest &&
+                 (!foundSecond || num > secondLargest))
+        {
             secondLargest = num;
+            foundSecond = true;
         }
     }
 
-    if(secondLargest == INT_MIN){
-        std::cout << "No second largest is in this arr (All element might be equal)." << std::endl;
-    }else{
-        std::cout << "Second Largest of an array is : " << secondLargest << std::endl;
+    if (foundSecond)
+    {
+        std::cout << "Second largest: " << secondLargest << '\n';
     }
+    else
+    {
+        std::cout << "No distinct second-largest element\n";
+    }
+
     return 0;
 }

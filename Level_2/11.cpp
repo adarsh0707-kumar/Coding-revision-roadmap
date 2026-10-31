@@ -5,7 +5,7 @@ Reverse a string without using a built-in reverse function.
 */
 
 #include<iostream>
-#include<cstring>
+#include<string>
 
 void reverseString(std::string &s){
     if(s.length() <= 0){

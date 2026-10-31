@@ -7,10 +7,10 @@ Reverse an array in place without creating another array.
 #include<iostream>
 
 void swap(int &a, int &b)
-{              
-    a = a + b; // a holds the sum
-    b = a - b; // (a+b) - b = old a
-    a = a - b; // (a+b) - old a = old b
+{
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 int main(){

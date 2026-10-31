@@ -39,6 +39,9 @@ void reverseArray(int arr[], int start, int end){
 
 void leftRotation(int k, int arr[], int arrSize){
 
+    if (arrSize <= 0 || k < 0)
+        return;
+    
     k = k % arrSize;
 
     if(k == 0){
@@ -68,6 +71,8 @@ void leftRotation(int k, int arr[], int arrSize){
 }
 
 void rightRotation(int k, int arr[], int arrSize){
+    if (arrSize <= 0 || k < 0)
+        return;
 
     k = k % arrSize;
 
