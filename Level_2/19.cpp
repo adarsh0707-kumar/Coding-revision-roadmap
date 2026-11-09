@@ -7,18 +7,18 @@ Implement addition, subtraction, multiplication, and division in separate functi
 #include<iostream>
 
 void addition(int a, int b){
-    long long sum = a + b;
+    long long sum = static_cast<long long>(a) + b;
     std::cout << "Sum of : " << a << " + " << b << " is " << sum << std::endl;
 }
 
 void subtraction(int a, int b){
-    int sub = a - b;
+    long long sub = static_cast<long long>(a) - b;
     std::cout << "Sub of : " << a << " - " << b << " is " << sub << std::endl;
 }
 
 void multiplication(int a, int b){
 
-    long long mul = a * b;
+    long long mul = static_cast<long long>(a) * b;
 
     std::cout << "Multiply of : " << a << " X " << b << " is " << mul << std::endl;
 }
@@ -30,9 +30,9 @@ void division(int a, int b){
         return;
     }
 
-    float div = (float)(a) / b;
+    double result = static_cast<double>(a) / b;
 
-    std::cout << "Division of : " << a << " / " << b << " is " << div << std::endl;
+    std::cout << "Division of : " << a << " / " << b << " is " << result << std::endl;
 }
 
 int main(){
