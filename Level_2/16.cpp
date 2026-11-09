@@ -13,11 +13,15 @@ bool isAnagrams(std::string &s1, std::string &s2){
         return false;
     }
 
-    int charCount[256] = {0};
+    int charCount[256] = {};
 
-    for (int i = 0; i < s1.length(); i++){
-        charCount[s1[i]]++;
-        charCount[s2[i]]--;
+    for (size_t i = 0; i < s1.length(); i++){
+
+        unsigned char c1 = static_cast<unsigned char>(s1[i]);
+        unsigned char c2 = static_cast<unsigned char>(s2[i]);
+
+        charCount[c1]++;
+        charCount[c2]--;
     }
 
     for (int i = 0; i < 256; i++){
