@@ -4,31 +4,45 @@
 Calculate the factorial of a non-negative integer recursively.
 */
 
-#include<iostream>
 
-unsigned long long factorial(int n){
-    if(n <=1 )
+#include <iostream>
+#include <limits>
+
+unsigned long long factorial(int n)
+{
+    if (n <= 1)
         return 1;
 
-    return n * factorial(n - 1);
+    return static_cast<unsigned long long>(n) * factorial(n - 1);
 }
 
-int main(){
+int main()
+{
     int num;
+
     std::cout << "Enter the number: ";
-    std::cin >> num;
 
-
-    if(num < 0){
-        std::cout << "Factorial is not define for negative number";
-    }
-    else if (num > 20)
+    if (!(std::cin >> num))
     {
-        std::cout << "Overflow error: Factorial of " << num
-                  << " exceeds the maximum capacity of 64-bit integers (max n = 20).\n";
+        std::cerr << "Invalid input.\n";
+        return 1;
     }
-    else{
-        std::cout << "Factorial of " << num << " is " << factorial(num) << std::endl;
+
+    constexpr int MAX_FACTORIAL = 20;
+
+    if (num < 0)
+    {
+        std::cout << "Factorial is not defined for negative numbers.\n";
+    }
+    else if (num > MAX_FACTORIAL)
+    {
+        std::cout << "Overflow error: factorial exceeds "
+        "unsigned long long capacity.\n";
+    }
+    else
+    {
+        std::cout << "Factorial of " << num
+                  << " is " << factorial(num) << '\n';
     }
 
     return 0;
