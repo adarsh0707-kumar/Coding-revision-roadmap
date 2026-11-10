@@ -3,33 +3,48 @@
 
 Allocate an array dynamically using new[], initialize it, print its values, and release the memory correctly.
 */
+#include <iostream>
+#include <new>
 
-#include<iostream>
-
-int main(){
-
+int main()
+{
     int arrSize;
-    std::cout << "Enter the size of an Array: ";
-    std::cin >> arrSize;
 
-    int *arr = new int[arrSize];
+    std::cout << "Enter array size: ";
 
-    std::cout << "Enter the element of an Array: ";
+    if (!(std::cin >> arrSize) || arrSize <= 0)
+    {
+        std::cout << "Invalid array size.\n";
+        return 1;
+    }
+
+    int *arr = nullptr;
+
+    try
+    {
+        arr = new int[arrSize];
+    }
+    catch (const std::bad_alloc &)
+    {
+        std::cout << "Memory allocation failed.\n";
+        return 1;
+    }
+
     for (int i = 0; i < arrSize; ++i)
     {
-        std::cin >> *(arr + i);
+        if (!(std::cin >> arr[i]))
+        {
+            delete[] arr;
+            return 1;
+        }
     }
 
-    std::cout << std::endl;
-    std::cout << "Element of an Array: ";
-    for (int i = 0; i < arrSize; i++)
-    {
-        std::cout << *(arr + i) << " ";
-    }
-    std::cout << std::endl;
+    for (int i = 0; i < arrSize; ++i)
+        std::cout << arr[i] << " ";
+
+    std::cout << '\n';
 
     delete[] arr;
-
     arr = nullptr;
 
     return 0;
