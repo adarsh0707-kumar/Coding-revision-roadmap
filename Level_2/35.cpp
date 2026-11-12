@@ -4,31 +4,45 @@
 Calculate \(a^b\) recursively for a non-negative exponent.
 */
 
-#include<iostream>
+#include <iostream>
 
-double powerFast(double x, long long n){
-    // Base case
-    if(n==0)
+double powerFast(double x, unsigned long long n)
+{
+    if (n == 0)
         return 1.0;
-
-    if(n < 0)
-        return 1.0 / powerFast(x, -n);
 
     double half = powerFast(x, n / 2);
 
-    if(n%2 ==0){
+    if (n % 2 == 0)
         return half * half;
-    }else{
-        return x * half * half;
-    }
+
+    return x * half * half;
 }
 
-int main(){
-    double base, pow;
-    std::cout << "Enter the number base and pow(x^n): ";
-    std::cin >> base >> pow;
+int main()
+{
+    double base;
+    long long exponent;
 
-    std::cout << "Power of " << base << "^" << pow << " : " << powerFast(base, pow) << std::endl;
+    std::cout << "Enter base and non-negative exponent: ";
+
+    if (!(std::cin >> base >> exponent))
+    {
+        std::cerr << "Invalid input.\n";
+        return 1;
+    }
+
+    if (exponent < 0)
+    {
+        std::cerr << "Negative exponent is not allowed.\n";
+        return 1;
+    }
+
+    std::cout << base << "^" << exponent
+              << " = "
+              << powerFast(base,
+                           static_cast<unsigned long long>(exponent))
+              << '\n';
 
     return 0;
 }

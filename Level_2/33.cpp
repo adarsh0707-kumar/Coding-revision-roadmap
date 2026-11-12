@@ -6,10 +6,8 @@ Calculate the sum of an integer's digits recursively.
 
 #include<iostream>
 
-unsigned long long sumOfDigit(int n){
-    if(n < 0)
-        n = -n;
-
+unsigned long long sumOfDigit(unsigned int n){
+    
     if(n == 0)
         return 0;
 
@@ -25,7 +23,12 @@ int main(){
         return 1;
     }
 
-    std::cout << "Sum of digit " << num << " is " << sumOfDigit(num) << std::endl;
+    unsigned int magnitude =
+        num < 0
+            ? 0u - static_cast<unsigned int>(num)
+            : static_cast<unsigned int>(num);
+
+    std::cout << "Sum of digit " << num << " is " << sumOfDigit(magnitude) << std::endl;
 
     return 0;
 }
