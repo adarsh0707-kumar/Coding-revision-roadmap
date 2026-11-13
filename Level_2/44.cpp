@@ -46,33 +46,70 @@ COMMON PIVOT SELECTION STRATEGIES
 +--------------------+------------------------------+--------------------------+
 */
 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
 
-#include<iostream>
-#include<vector>
-#include<algorithm>
+using Index = std::vector<int>::difference_type;
 
-int partition(std::vector<int>& arr, int low, int high){
+Index partition(std::vector<int> &arr,
+                Index low,
+                Index high)
+{
+    static std::mt19937 rng(std::random_device{}());
+
+    std::uniform_int_distribution<Index> dist(low, high);
+
+    Index pivotIndex = dist(rng);
+
+    std::swap(arr[pivotIndex], arr[high]);
+
     int pivot = arr[high];
-    int i = low - 1;
 
-    for (int j = low; j < high; j++){
-        if(arr[j] <= pivot){
-            i++;
+    Index i = low - 1;
+
+    for (Index j = low; j < high; ++j)
+    {
+        if (arr[j] <= pivot)
+        {
+            ++i;
             std::swap(arr[i], arr[j]);
         }
     }
 
     std::swap(arr[i + 1], arr[high]);
+
     return i + 1;
 }
 
-void quickSort(std::vector<int>& arr, int low, int high){
-    if(low <high){
-        int pi = partition(arr, low, high);
+void quickSort(std::vector<int> &arr,
+               Index low,
+               Index high)
+{
+    while (low < high)
+    {
+        Index pi = partition(arr, low, high);
 
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+        if (pi - low < high - pi)
+        {
+            quickSort(arr, low, pi - 1);
+            low = pi + 1;
+        }
+        else
+        {
+            quickSort(arr, pi + 1, high);
+            high = pi - 1;
+        }
     }
+}
+
+void quickSort(std::vector<int> &arr)
+{
+    if (arr.empty())
+        return;
+
+    quickSort(arr, 0, static_cast<Index>(arr.size()) - 1);
 }
 
 int main(){
@@ -83,7 +120,7 @@ int main(){
     }
     std::cout << "\n";
 
-    quickSort(arr, 0, arr.size() - 1);
+    quickSort(arr);
 
     std::cout << "Sorted Array : ";
     for (int num : arr)
