@@ -3,108 +3,143 @@
 
 Add two compatible matrices and calculate the transpose of a matrix.
 */
-#include<iostream>
-#include<vector>
 
-void createMatrix(std::vector<std::vector<int>>& matrix,
-    int rows, 
-    int cols,
-    int k
-)
-    {
-    matrix.assign(rows, std::vector<int>(cols, 0));
+#include <iostream>
+#include <vector>
+#include <stdexcept>
+#include <cstddef>
 
-    for (int i = 0; i < rows; i++)
+using Matrix = std::vector<std::vector<int>>;
+
+Matrix createMatrix(int rows, int cols, int start)
+{
+    if (rows < 0 || cols < 0)
+        throw std::invalid_argument("Dimensions cannot be negative.");
+
+    Matrix matrix(
+        static_cast<std::size_t>(rows),
+        std::vector<int>(static_cast<std::size_t>(cols)));
+
+    int value = start;
+
+    for (std::size_t i = 0; i < matrix.size(); ++i)
     {
-        for (int j = 0; j < cols; j++)
+        for (std::size_t j = 0; j < matrix[i].size(); ++j)
         {
-            matrix[i][j] = k;
-            k++;
+            matrix[i][j] = value++;
         }
+    }
+
+    return matrix;
+}
+
+void printMatrix(const Matrix &matrix)
+{
+    for (const auto &row : matrix)
+    {
+        for (int value : row)
+            std::cout << value << " ";
+
+        std::cout << '\n';
     }
 }
 
-void printMatrix(const std::vector<std::vector<int>> &matrix,
-    int rows,
-    int cols
-)
+bool isRectangular(const Matrix &matrix)
 {
+    if (matrix.empty())
+        return true;
 
-    for (int i = 0; i < rows; i++)
+    const std::size_t cols = matrix.front().size();
+
+    for (const auto &row : matrix)
     {
-        for (int j = 0; j < cols; j++)
+        if (row.size() != cols)
+            return false;
+    }
+
+    return true;
+}
+
+std::vector<std::vector<long long>> addMatrix(
+    const Matrix &matrixA,
+    const Matrix &matrixB)
+{
+    if (!isRectangular(matrixA) ||
+        !isRectangular(matrixB) ||
+        matrixA.size() != matrixB.size())
+    {
+        throw std::invalid_argument("Incompatible matrices.");
+    }
+
+    std::vector<std::vector<long long>> result(
+        matrixA.size());
+
+    for (std::size_t i = 0; i < matrixA.size(); ++i)
+    {
+        if (matrixA[i].size() != matrixB[i].size())
+            throw std::invalid_argument("Incompatible matrices.");
+
+        for (std::size_t j = 0; j < matrixA[i].size(); ++j)
         {
-            std::cout << matrix[i][j] << " ";
-        }
-        std::cout << "\n";
-    }
-}
-
-void addMatrix(
-    const std::vector<std::vector<int>> &matrixA,
-    const std::vector<std::vector<int>> &matrixB,
-    int rows,
-    int cols
-)
-{
-
-    std::vector<std::vector<int>> newMatrix(rows, std::vector<int>(cols, 0));
-
-    for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){
-            newMatrix[i][j] = matrixA[i][j] + matrixB[i][j];
+            result[i].push_back(
+                static_cast<long long>(matrixA[i][j]) +
+                matrixB[i][j]);
         }
     }
 
-    printMatrix(newMatrix, rows, cols);
+    return result;
 }
 
-void transposeOfMatrix(
-    const std::vector<std::vector<int>> &matrix,
-    int rows,
-    int cols
-)
-
+Matrix transposeOfMatrix(const Matrix &matrix)
 {
-    // Note the dimensions are flipped: cols rows
-    std::vector<std::vector<int>> transposed(cols, std::vector<int>(rows, 0));
+    if (!isRectangular(matrix))
+        throw std::invalid_argument("Matrix must be rectangular.");
 
-    for (int i = 0; i < rows; i++)
+    if (matrix.empty())
+        return {};
+
+    const std::size_t rows = matrix.size();
+    const std::size_t cols = matrix[0].size();
+
+    Matrix transposed(cols, std::vector<int>(rows));
+
+    for (std::size_t i = 0; i < rows; ++i)
     {
-        for (int j = 0; j < cols; j++)
+        for (std::size_t j = 0; j < cols; ++j)
         {
             transposed[j][i] = matrix[i][j];
         }
     }
 
-    // Print the newly created transposed matrix, passing cols as rows and rows as cols
-    printMatrix(transposed, cols, rows);
+    return transposed;
 }
 
 int main()
 {
+    Matrix matrixA = createMatrix(3, 3, 1);
+    Matrix matrixB = createMatrix(3, 3, -5);
 
-    int rows = 3;
-    int cols = 3;
+    std::cout << "Matrix A:\n";
+    printMatrix(matrixA);
 
-    std::vector<std::vector<int>> matrixA;
-    std::vector<std::vector<int>> matrixB;
+    std::cout << "\nMatrix B:\n";
+    printMatrix(matrixB);
 
-    createMatrix(matrixA, rows, cols, 1);
+    std::cout << "\nAddition:\n";
 
-    createMatrix(matrixB, rows, cols, -5);
+    auto sum = addMatrix(matrixA, matrixB);
 
-    std::cout << "Matrix A : \n";
-    printMatrix(matrixA, rows, cols);
+    for (const auto &row : sum)
+    {
+        for (long long value : row)
+            std::cout << value << " ";
 
-    std::cout << "Matrix B : \n";
-    printMatrix(matrixB, rows, cols);
+        std::cout << '\n';
+    }
 
-    std::cout << "Addition of matrix A and B : \n";
-    addMatrix(matrixA, matrixB, rows, cols);
-
-    std::cout << "The transpose of a matrix. : \n";
-    transposeOfMatrix(matrixA, rows, cols);
+    std::cout << "\nTranspose of Matrix A:\n";
+    Matrix transposed = transposeOfMatrix(matrixA);
+    printMatrix(transposed);
 
     return 0;
 }
