@@ -1,16 +1,157 @@
-# C++ Level 2 — Interview-Ready Handbook
+# C++ Level 2 — Interview Handbook
 
-> Reviewed solutions with deep explanations · C++17
-> Every program is compiled with `g++ -std=c++17 -Wall -Wextra -Wpedantic` and tested.
-> **Status:** all 50 questions reviewed (Modules 1–7).
+> **50 problems · 7 modules · C++17**
+> Arrays, strings, functions, pointers, recursion, searching and sorting, matrices and the STL, each explained from first principles, solved with clean code, and traced step by step.
 
-**Template for each question:** Review of your solution → Problem → Concepts → How to think → Solution → Dry run → Edge cases → Complexity → Pitfalls → Follow-ups.
+`C++17` &nbsp;·&nbsp; `Every program compiled with -Wall -Wextra -Wpedantic` &nbsp;·&nbsp; `Tested with AddressSanitizer + UBSan` &nbsp;·&nbsp; `Complexity analysed for every solution`
 
 ---
 
-# PART 0 — ARRAY CONCEPTS (read once)
+## Contents
 
-## A1. What an array is
+- [At a glance](#at-a-glance)
+- [How to use this handbook](#how-to-use-this-handbook)
+- [Conventions](#conventions)
+- **[📦 Module 1 — Arrays](#module-1--arrays)** · Q1–Q10
+  - [Q1. Find the Largest Element](#q1-find-the-largest-element)
+  - [Q2. Find the Smallest Element](#q2-find-the-smallest-element)
+  - [Q3. Calculate Array Sum and Average](#q3-calculate-array-sum-and-average)
+  - [Q4. Reverse an Array](#q4-reverse-an-array)
+  - [Q5. Find the Second-Largest Element](#q5-find-the-second-largest-element)
+  - [Q6. Count Even and Odd Elements](#q6-count-even-and-odd-elements)
+  - [Q7. Linear Search](#q7-linear-search)
+  - [Q8. Remove Duplicates from a Sorted Array](#q8-remove-duplicates-from-a-sorted-array)
+  - [Q9. Rotate an Array](#q9-rotate-an-array)
+  - [Q10. Move All Zeros to the End](#q10-move-all-zeros-to-the-end)
+- **[🔤 Module 2 — Strings](#module-2--strings)** · Q11–Q18
+  - [Q11. Reverse a String](#q11-reverse-a-string)
+  - [Q12. Check a String Palindrome](#q12-check-a-string-palindrome)
+  - [Q13. Count Vowels and Consonants](#q13-count-vowels-and-consonants)
+  - [Q14. Count Words in a Sentence](#q14-count-words-in-a-sentence)
+  - [Q15. Character Frequency](#q15-character-frequency)
+  - [Q16. Check Anagrams](#q16-check-anagrams)
+  - [Q17. Remove Duplicate Characters](#q17-remove-duplicate-characters)
+  - [Q18. First Non-Repeating Character](#q18-first-non-repeating-character)
+- **[🧱 Module 3 — Functions and Modular Programming](#module-3--functions-and-modular-programming)** · Q19–Q24
+  - [Q19. Build a Calculator Using Functions](#q19-build-a-calculator-using-functions)
+  - [Q20. GCD and LCM Functions](#q20-gcd-and-lcm-functions)
+  - [Q21. Prime Numbers Using Functions](#q21-prime-numbers-using-functions)
+  - [Q22. Pass by Value vs. Pass by Reference](#q22-pass-by-value-vs-pass-by-reference)
+  - [Q23. Swap Using References](#q23-swap-using-references)
+  - [Q24. Function Overloading](#q24-function-overloading)
+- **[🧭 Module 4 — Pointers and Memory](#module-4--pointers-and-memory)** · Q25–Q30
+  - [Q25. Pointer Basics](#q25-pointer-basics)
+  - [Q26. Modify a Variable Through a Pointer](#q26-modify-a-variable-through-a-pointer)
+  - [Q27. Traverse an Array Using Pointers](#q27-traverse-an-array-using-pointers)
+  - [Q28. Find the Largest Element Using Pointers](#q28-find-the-largest-element-using-pointers)
+  - [Q29. Dynamic Memory Allocation](#q29-dynamic-memory-allocation)
+  - [Q30. Pointer Safety](#q30-pointer-safety)
+- **[🔁 Module 5 — Recursion](#module-5--recursion)** · Q31–Q37
+  - [Q31. Factorial Using Recursion](#q31-factorial-using-recursion)
+  - [Q32. Fibonacci Using Recursion](#q32-fibonacci-using-recursion)
+  - [Q33. Sum of Digits Using Recursion](#q33-sum-of-digits-using-recursion)
+  - [Q34. Reverse a String Recursively](#q34-reverse-a-string-recursively)
+  - [Q35. Calculate Power Recursively](#q35-calculate-power-recursively)
+  - [Q36. Binary Search Recursively](#q36-binary-search-recursively)
+  - [Q37. Tower of Hanoi](#q37-tower-of-hanoi)
+- **[🔎 Module 6 — Searching and Sorting](#module-6--searching-and-sorting)** · Q38–Q44
+  - [Q38. Binary Search Iteratively](#q38-binary-search-iteratively)
+  - [Q39. Bubble Sort](#q39-bubble-sort)
+  - [Q40. Selection Sort](#q40-selection-sort)
+  - [Q41. Insertion Sort](#q41-insertion-sort)
+  - [Q42. Merge Two Sorted Arrays](#q42-merge-two-sorted-arrays)
+  - [Q43. Merge Sort](#q43-merge-sort)
+  - [Q44. Quick Sort](#q44-quick-sort)
+- **[🧮 Module 7 — Matrices, STL, and Problem-Solving](#module-7--matrices-stl-and-problem-solving)** · Q45–Q50
+  - [Q45. Matrix Addition and Transposition](#q45-matrix-addition-and-transposition)
+  - [Q46. Matrix Multiplication](#q46-matrix-multiplication)
+  - [Q47. Frequency Counter Using std::unordered_map](#q47-frequency-counter-using-stdunordered_map)
+  - [Q48. Remove Duplicates Using std::set](#q48-remove-duplicates-using-stdset)
+  - [Q49. Balanced Parentheses](#q49-balanced-parentheses)
+  - [Q50. Two Sum](#q50-two-sum)
+- [Appendices](#appendices)
+  - [A. Complexity of every problem](#a-complexity-of-every-problem)
+  - [B. Patterns behind the problems](#b-patterns-behind-the-problems)
+  - [C. Common mistakes and how to avoid them](#c-common-mistakes-and-how-to-avoid-them)
+  - [D. Interview checklist](#d-interview-checklist)
+  - [E. Tools: compiling, testing and debugging](#e-tools-compiling-testing-and-debugging)
+  - [F. Glossary](#f-glossary)
+  - [G. Where to go next](#g-where-to-go-next)
+
+---
+
+## At a glance
+
+| Module                                              | Topic                              | Questions | Core ideas                                                                     |
+| --------------------------------------------------- | ---------------------------------- | --------- | ------------------------------------------------------------------------------ |
+| 📦 [1](#module-1--arrays)                            | Arrays                             | Q1–Q10   | running maximum, two pointers, rotation by reversal, in-place filtering        |
+| 🔤 [2](#module-2--strings)                           | Strings                            | Q11–Q18  | two pointers on strings, state flag, count table (256 entries), `optional`   |
+| 🧱 [3](#module-3--functions-and-modular-programming) | Functions and Modular Programming  | Q19–Q24  | return values vs printing, pass by value / reference, overloading, Euclid      |
+| 🧭 [4](#module-4--pointers-and-memory)               | Pointers and Memory                | Q25–Q30  | `&` and `*`, pointer arithmetic, `new[]`/`delete[]`, dangling pointers |
+| 🔁 [5](#module-5--recursion)                         | Recursion                          | Q31–Q37  | base case + smaller problem, memoization, fast power, Hanoi                    |
+| 🔎 [6](#module-6--searching-and-sorting)             | Searching and Sorting              | Q38–Q44  | halving a range, five sorts, stability, pivot choice                           |
+| 🧮 [7](#module-7--matrices-stl-and-problem-solving)  | Matrices, STL, and Problem-Solving | Q45–Q50  | 2D vectors, hash maps, `set`, `stack`, complement lookup                   |
+
+## How to use this handbook
+
+1. **Read the module's concepts first.** Each module opens with a short *Concepts* section: the few ideas that every problem in the module uses.
+2. **Attempt the problem yourself before reading the solution.** Set a 20-minute timer, write the code, compile it with warnings enabled.
+3. **Compare with *How to think*.** The reasoning goes from brute force to the final idea, the way you should present it in an interview.
+4. **Test the edge cases.** Every question lists the inputs that break naive solutions (empty, one element, negative, maximum, duplicates).
+5. **Explain it aloud** using the *Dry run* and the *Follow-ups*; if you can answer the follow-ups, you know the topic.
+
+### Layout of every question
+
+| Section                                       | What it gives you                                          |
+| --------------------------------------------- | ---------------------------------------------------------- |
+| **Problem** and 🏷️ **Concepts** | the task and the ideas it tests                            |
+| 💡 **How to think**                     | the reasoning, from brute force to the optimized idea      |
+| 🧩 **Solution**                         | complete, compilable C++17                                 |
+| 🔍 **Dry run**                          | a step-by-step trace on a small input                      |
+| 🧪 **Sample runs and edge cases**       | exact input and output, including the tricky inputs        |
+| ⏱️ **Complexity**                     | time and space (and stability, where relevant)             |
+| ⚠️ **Pitfalls**                       | the mistakes that cost points in interviews                |
+| 🎤 **Follow-ups**                       | the questions an interviewer asks next, with short answers |
+
+### Suggested 10-day study plan
+
+| Day | Focus                                           | Questions                  |
+| --- | ----------------------------------------------- | -------------------------- |
+| 1   | Arrays I: scanning and counting                 | Q1–Q5                     |
+| 2   | Arrays II: searching and in-place rearranging   | Q6–Q10                    |
+| 3   | Strings                                         | Q11–Q18                   |
+| 4   | Functions and overloading                       | Q19–Q24                   |
+| 5   | Pointers and dynamic memory                     | Q25–Q30                   |
+| 6   | Recursion                                       | Q31–Q37                   |
+| 7   | Searching and the five sorts                    | Q38–Q44                   |
+| 8   | Matrices and the STL                            | Q45–Q50                   |
+| 9   | Timed re-implementation of the hardest problems | Q5, Q9, Q32, Q37, Q44, Q50 |
+| 10  | Mock interview: explain five solutions aloud    | any five                   |
+
+## Conventions
+
+| Convention               | Meaning                                                                                                                                                                               |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Compile**        | `g++ -std=c++17 -Wall -Wextra -Wpedantic file.cpp -o program`                                                                                                                       |
+| **Debug build**    | add `-g -fsanitize=address,undefined` to catch memory errors and undefined behavior                                                                                                 |
+| **Input / output** | programs read from standard input and write to standard output. Prompts such as `Enter a string:` are for interactive use; remove them when an online judge compares output exactly |
+| **Design rule**    | functions *compute and return*; `main` reads input and prints. This makes every function reusable and testable                                                                    |
+| **Integer types**  | `long long` for sums and products; check overflow *before* it happens (signed overflow is undefined behavior)                                                                     |
+| **Sizes**          | `std::size_t` is unsigned: avoid mixing it with `int` in comparisons and in expressions such as `n - 1`                                                                         |
+| **Style**          | `using namespace std;` is used for brevity; avoid it in headers and large codebases                                                                                                 |
+| **Notation**       | `T(n)` running time, `O(·)` upper bound, UB = undefined behavior, `[low, high)` a half-open range                                                                              |
+
+> 💡 **Tip.** Keep a small list of edge-case inputs for every problem (empty, one element, negative, maximum, duplicates) and re-run *all* of them after every change. A fix for one case often breaks another.
+
+---
+
+## Module 1 — Arrays
+
+> 📦 **Q1–Q10** · Scan, search and rearrange arrays in place. Running maximums, counters, two pointers, rotation by reversal, and the empty-input rules that every array function needs.
+
+### 📘 Concepts
+
+#### A1. What an array is
 
 ```cpp
 int arr[5] = {10, 20, 30, 40, 50};   // 5 ints stored side by side in memory
@@ -19,9 +160,9 @@ int arr[5] = {10, 20, 30, 40, 50};   // 5 ints stored side by side in memory
 
 - Elements are **contiguous**, so `arr[i]` is computed as "start address + i × sizeof(int)". Access is O(1).
 - **No bounds checking.** `arr[5]` or `arr[-1]` is undefined behavior (it may crash, or silently read garbage). *Every* loop bound is your responsibility.
-- The size is fixed at compile time for a plain array. For a size known only at run time, use `std::vector<int>` (see the follow-ups).
+- The size is fixed at compile time for a plain array. For a size known only at run time, use `std::vector<int>`.
 
-## A2. Getting the size, and the "array decay" trap
+#### A2. Getting the size, and the "array decay" trap
 
 ```cpp
 int arr[] = {1, 2, 3, 4};
@@ -39,7 +180,7 @@ void f(int arr[]) {                 // really: void f(int* arr)
 
 Therefore: **always pass the size as a separate parameter**: `void f(const int arr[], int n)`. Use `const` when the function only reads the array; the compiler then stops you from modifying it by accident.
 
-## A3. `int` vs `size_t` (the source of most `-Wsign-compare` warnings)
+#### A3. `int` vs `size_t` (the source of most `-Wsign-compare` warnings)
 
 `sizeof` and `std::size` return `size_t`, an **unsigned** type. Comparing it with a signed `int` loop counter triggers a warning, and mixing them is dangerous:
 
@@ -50,21 +191,21 @@ for (size_t i = 0; i <= n - 1; i++) { }   // n - 1 wraps to 18446744073709551615
 
 Safe habits: convert once (`int n = static_cast<int>(std::size(arr));`) and keep everything `int`, **or** use a range-for loop (`for (int x : arr)`) when you do not need the index.
 
-## A4. Empty-input rules
+#### A4. Empty-input rules
 
 Almost every array algorithm needs a decision for `n == 0`:
 
-| Algorithm | What to do for an empty array |
-|---|---|
-| max / min | there is no answer: return a "found" flag, or report an error |
-| sum | `0` (empty sum) |
-| average | undefined (division by zero): report an error |
-| search | not found |
-| reverse / dedupe | nothing to do |
+| Algorithm        | What to do for an empty array                                 |
+| ---------------- | ------------------------------------------------------------- |
+| max / min        | there is no answer: return a "found" flag, or report an error |
+| sum              | `0` (empty sum)                                             |
+| average          | undefined (division by zero): report an error                 |
+| search           | not found                                                     |
+| reverse / dedupe | nothing to do                                                 |
 
 **Never read `arr[0]` before checking `n > 0`.**
 
-## A5. Sentinel values are fragile
+#### A5. Sentinel values are fragile
 
 Using `INT_MIN` as "not set yet" is a common shortcut, but `INT_MIN` can also be a *real* value in the array. The robust patterns are:
 
@@ -72,126 +213,31 @@ Using `INT_MIN` as "not set yet" is a common shortcut, but `INT_MIN` can also be
 2. Keep a separate **`bool found`** flag, or
 3. Return `std::optional<int>` (C++17).
 
-## A6. Two-pointer technique (appears in Q4, Q8, and many later problems)
+#### A6. Two-pointer technique (appears in Q4, Q8, and many later problems)
 
 Two indices walk the array, usually to work **in place** in O(n) time and O(1) extra memory:
 
 - **Opposite ends** (`left`, `right` moving toward each other): reverse, palindrome check, two-sum on a sorted array.
 - **Reader / writer** (`i` scans, `k` marks where to write): remove duplicates, move zeros, filter.
 
-## A7. Review summary of your first 8 solutions
-
-| Q | Verdict | Main finding |
-|---|---|---|
-| 1 | ✅ correct | Hard-coded array; make it a function and handle `n == 0` |
-| 2 | ✅ correct, 1 warning | `-Wsign-compare` (`int` vs `size_t`) |
-| 3 | ✅ correct | `int` sum can overflow; use `long long` + `double`; guard `n == 0` |
-| 4 | 🐞 works, but unsafe swap | Arithmetic swap overflows (undefined behavior, caught by UBSan) |
-| 5 | 🐞 edge-case bug | `INT_MIN` sentinel fails for `{5, INT_MIN}`; message text wrong; missing `<iterator>` |
-| 6 | ✅ correct | Negative numbers handled correctly; could be a function |
-| 7 | ✅ correct, 1 warning | `-Wsign-compare`; make it a function that returns the index |
-| 8 | 🐞 changes the problem | The question gives a **sorted** array; you sorted an unsorted one with O(n²) bubble sort. Also a sign-compare warning. |
-
-**What you did well:** correct core algorithms; `std::size`, range-for and `static_cast`-style thinking; handling the "all elements equal" case in Q5; the early `break` in Q7; the last-element handling in Q8.
-
-**The pattern to fix:** your programs work for the *one hard-coded array*, but interviews test *functions on many inputs*. Write `solve(arr, n)` and test it with empty, single-element, negative, duplicate and extreme values.
-
-### Round 2 update (you re-sent Q1–Q8 and added Q9–Q11)
-
-| Q | Verdict now | Note |
-|---|---|---|
-| 1, 3, 6 | ✅ unchanged | still correct (Q3: still `int` sum + `float`) |
-| 2, 7 | ✅ unchanged | the `-Wsign-compare` warning is still there |
-| 4 | ✅ fixed | temp-variable swap, no overflow |
-| 5 | 🐞 **regression** | fixed `{5, INT_MIN}` but now `{7,7,7}` and `{3,3}` wrongly print `-2147483648`. See Q5. |
-| 8 | ✅ fixed | now the true O(n) two-pointer solution |
-| 9 | ✅ correct algorithm | three-reversal rotation works for left and right; small output and edge-case issues |
-| 10 | ✅ correct | stable, O(n), O(1) |
-| 11 | ✅ correct | polish: `empty()`, no printing inside the function, UTF-8 note |
-| 12 | ⬜ empty | only the comment was sent |
-
-**The most valuable lesson of round 2:** when you fix a bug, **re-run every earlier test case**, not just the one that failed. Fixing `{5, INT_MIN}` broke `{7,7,7}`. Keep a small list of edge-case inputs per problem and run all of them after every change (this is *regression testing*).
-
-### Round 3 update (Q12–Q30)
-
-| Q | Verdict | Main finding |
-|---|---|---|
-| 12 | ✅ | Empty-string rule inconsistent; decide strict vs relaxed |
-| 13 | ✅ | `isalpha` needs `unsigned char`; sign-compare warning |
-| 14 | 🐞 | Only `' '` counted as whitespace (`hello<TAB>world` → 1 word) |
-| 15 | ✅ | Correct but O(n²); use a count table (O(n)) |
-| 16 | ✅ | Algorithm good; strings were hard-coded, rules unstated |
-| 17 | ✅ | Correct and clean |
-| 18 | ✅ | Correct; hard-coded input |
-| 19 | ✅ | Works, but functions print instead of **returning** results |
-| 20 | 🐞 **does not compile** | Q19 code pasted in, so two `main` functions. The GCD/LCM part is excellent |
-| 21 | ✅ | Correct; move printing into a function |
-| 22 | ✅ | Works; show inner values and addresses to make the demo convincing |
-| 23 | ✅ | Correct |
-| 24 | ✅ | Good tag-dispatch idea; use `enum class` and validate input |
-| 25 | 🐞 | Never prints the variable's own value and `&val`; unused variable |
-| 26 | ✅ | Correct; show the result in `main` |
-| 27 | ✅ | Correct; the idiomatic form is `[first, last)` |
-| 28 | ✅ | Correct; return a pointer to the maximum |
-| 29 | ✅ | Careful code; silent failure on short input |
-| 30 | 🐞 **incomplete** | Missing requirement 2 (pointer to an integer variable) and 5 (dangling pointer demo) |
-
-**What round 3 shows:** your code quality is rising (overflow-safe GCD/LCM, exception handling, `optional`). The remaining misses are about **process**: compile the file before sending it (Q20), and tick off every bullet of the problem statement (Q25, Q30).
-
-### Round 4 update (Q31–Q37, recursion)
-
-| Q | Verdict | Main finding |
-|---|---|---|
-| 31 | ✅ | Correct; put the overflow guard next to the function, not only in `main` |
-| 32 | 🐞 | No overflow guard (`F(94)` silently wraps); huge input → `num + 1` overflow and uncaught `bad_alloc` |
-| 33 | ✅ | Correct; the `INT_MIN`-safe absolute value is excellent |
-| 34 | ✅ | Correct; hide the internal `left` parameter behind a wrapper |
-| 35 | 🐞 | Fast exponentiation is right, but `double` output prints `1.04858e+06`; no integer overflow detection |
-| 36 | ✅ | Excellent: half-open `[low, high)`, no overflow or underflow |
-| 37 | 🐞 | Base case `n == 1` only: `n = 0` recurses until the stack overflows (segfault) |
-
-**What round 4 shows:** your recursion structure is strong (base cases, shrinking arguments, memoization, fast power, Hanoi). The misses are all at the **boundaries of the input**: the value just past the limit (`F(94)`), the empty case (`n = 0`), and the formatting of big results. Before submitting any recursive function, test `0`, `1`, the largest valid value and one past it.
-
-### Round 5 update (Q38–Q50, searching, sorting, matrices, STL)
-
-| Q | Verdict | Main finding |
-|---|---|---|
-| 38 | ✅ | Correct; add the sortedness precondition and a first-occurrence variant |
-| 39 | ✅ | No early exit: 28 comparisons even on sorted input (7 with a `swapped` flag) |
-| 40 | ✅ | Correct; know that it is **not stable** (demonstrated) |
-| 41 | 🐞 | Correct sort, but the required tests on sorted / reversed / random input were not written |
-| 42 | ✅ | Correct merge; the function prints instead of returning the result |
-| 43 | ✅ | Correct; two vectors allocated in every merge, `merge` name vs `std::merge` |
-| 44 | ✅ | Excellent (random pivot, smaller-side recursion); O(n²) when elements are equal: 199,990,000 comparisons for n = 20,000 |
-| 45 | ✅ | Correct; exceptions never caught, so a mismatch aborts (exit 134) |
-| 46 | ✅ | Correct and cache-friendly; ragged input causes a heap-buffer-overflow |
-| 47 | ✅ | Correct; `unordered_map` iteration order is unspecified |
-| 48 | ✅ | Correct and idiomatic; know the `sort` + `unique` alternative |
-| 49 | ✅ | Correct on all 15 cases I tried |
-| 50 | 🐞 | Hash version misses pairs when the array has duplicates (`{3,3,3}`: 2 pairs instead of 3); `int` overflow; no "no pair" message |
-
-**What round 5 shows:** your algorithm knowledge is solid: every sort and search is correct. The remaining issues are the ones that separate a working answer from an interview-ready one: **duplicates** (Q44, Q50), **unhandled failure paths** (Q45, Q46), and **completing every requirement** (Q41).
+### 📝 Problems
 
 ---
 
-# MODULE 1 — ARRAYS
+### Q1. Find the Largest Element
 
----
+> **Problem.** Find the largest element of an integer array without sorting.
 
-## Q1. Find the Largest Element
+🏷️ **Concepts:** running maximum, empty-input handling (A4), array passed with its size (A2).
 
-**Review of your solution:** ✅ Correct and efficient (one pass, no sorting). Starting from `arr[0]` instead of `INT_MIN` is the right choice. To make it interview-ready: wrap it in a function and decide what happens when the array is empty.
+#### 💡 How to think
 
-**Problem:** Find the largest element of an integer array without sorting.
-
-**Concepts:** running maximum, empty-input handling (A4), array passed with its size (A2).
-
-**How to think**
 1. *Brute force:* sort, then take the last element: O(n log n), and it modifies the data.
 2. *Better:* scan once, remembering the biggest value seen so far. Every element is looked at exactly once: O(n).
 3. Initialize with `arr[0]`, **not** `0` (all-negative arrays would break) and not `INT_MIN` (fragile, see A5).
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -222,38 +268,52 @@ int main() {
 }
 ```
 
-**Dry run (`{3, 9, 4}`):** `largest = 3` → `9 > 3` → `largest = 9` → `4 > 9`? no → **9**.
+#### 🔍 Dry run (`{3, 9, 4}`)
 
-| Input | Output |
-|---|---|
-| `{1,3,4,5,9,4,6,4,0,3}` | `9` |
-| `{-8,-3,-20}` | `-3` (a `0` start would wrongly give `0`) |
-| `{42}` | `42` |
-| `{}` | no largest element |
+`largest = 3` → `9 > 3` → `largest = 9` → `4 > 9`? no → **9**.
 
-**Complexity:** O(n) time, O(1) extra space. You must examine every element, so O(n) is optimal.
+#### 🧪 Sample runs and edge cases
 
-**Pitfalls:** `largest = 0` fails for negatives; `for (i = 0; ...)` with `largest = arr[0]` is harmless but does one wasted comparison; reading `arr[0]` before checking `n > 0`.
+| Input                     | Output                                          |
+| ------------------------- | ----------------------------------------------- |
+| `{1,3,4,5,9,4,6,4,0,3}` | `9`                                           |
+| `{-8,-3,-20}`           | `-3` (a `0` start would wrongly give `0`) |
+| `{42}`                  | `42`                                          |
+| `{}`                    | no largest element                              |
 
-**Follow-ups**
+#### ⏱️ Complexity
+
+O(n) time, O(1) extra space. You must examine every element, so O(n) is optimal.
+
+#### ⚠️ Pitfalls
+
+- `largest = 0` fails for negatives
+- `for (i = 0; ...)` with `largest = arr[0]` is harmless but does one wasted comparison
+- Reading `arr[0]` before checking `n > 0`
+
+#### 🎤 Follow-ups
+
 - *Return the index too?* Track `maxIndex` and update it with `largest`.
 - *Standard library?* `*max_element(arr, arr + n)` (`<algorithm>`), same O(n).
 - *Find max and min in one pass?* Keep both; the optimized pairwise version uses about `3n/2` comparisons.
 - *Largest in a sorted array?* The last element: O(1).
 
+<sub></sub>
+
 ---
 
-## Q2. Find the Smallest Element
+### Q2. Find the Smallest Element
 
-**Review of your solution:** ✅ Logic correct. One compiler warning under `-Wall -Wextra`: `i < sizeof(arr)/sizeof(arr[0])` compares a signed `int` with an unsigned `size_t` (see A3). Compute the size once into an `int` (as you did in Q1 and Q3).
+> **Problem.** Find the minimum element of an array.
 
-**Problem:** Find the minimum element of an array.
+🏷️ **Concepts:** mirror of Q1, `size_t` vs `int`.
 
-**Concepts:** mirror of Q1, `size_t` vs `int`.
+#### 💡 How to think
 
-**How to think:** Identical to Q1 with `<` instead of `>`. Start from `arr[0]`; update when a smaller value appears.
+Identical to Q1 with `<` instead of `>`. Start from `arr[0]`; update when a smaller value appears.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -281,36 +341,43 @@ int main() {
 }
 ```
 
-| Input | Output |
-|---|---|
-| `{4,7,9,9,0,7,-2,-1,67,6}` | `-2` |
-| `{5,5,5}` | `5` |
-| `{}` | no smallest element |
+#### 🧪 Sample runs and edge cases
 
-**Why your warning mattered:** with `i < sizeof(...)`, the compiler converts `i` to unsigned. If `i` were ever negative it would become a huge number. That's harmless in this loop, but the habit causes real bugs in `n - 1` expressions (A3).
+| Input                        | Output              |
+| ---------------------------- | ------------------- |
+| `{4,7,9,9,0,7,-2,-1,67,6}` | `-2`              |
+| `{5,5,5}`                  | `5`               |
+| `{}`                       | no smallest element |
 
-**Complexity:** O(n) time, O(1) space.
+**Why the warning matters:** with `i < sizeof(...)`, the compiler converts `i` to unsigned. If `i` were ever negative it would become a huge number. That's harmless in this loop, but the habit causes real bugs in `n - 1` expressions (A3).
 
-**Follow-ups**
+#### ⏱️ Complexity
+
+O(n) time, O(1) space.
+
+#### 🎤 Follow-ups
+
 - *Find both min and max?* One loop updating both; do not run two separate passes if the interviewer asks for efficiency.
 - *Second smallest?* Same technique as Q5.
 
+<sub></sub>
+
 ---
 
-## Q3. Calculate Array Sum and Average
+### Q3. Calculate Array Sum and Average
 
-**Review of your solution:** ✅ Correct (`float(sum) / arrSize` correctly avoids integer division). Improvements: (1) a sum of many `int`s can overflow, so accumulate in `long long`; (2) `double` is more precise than `float` (about 15 vs 7 digits); (3) an empty array makes `sum / 0` undefined.
+> **Problem.** Calculate the sum and average of all elements.
 
-**Problem:** Calculate the sum and average of all elements.
+🏷️ **Concepts:** accumulator (C7), integer division trap, overflow, `double`.
 
-**Concepts:** accumulator (C7), integer division trap, overflow, `double`.
+#### 💡 How to think
 
-**How to think**
 - Sum: start at 0 (the identity for addition) and add each element.
 - Average = `sum / n`. If both operands are integers the division **truncates** (`7 / 2 == 3`), so convert one operand to `double` **before** dividing.
 - The sum of `n` values of up to ~2·10⁹ needs 64 bits.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -344,39 +411,51 @@ int main() {
 }
 ```
 
-**Dry run (`{2, 3, 5}`):** `sum = 0 → 2 → 5 → 10`; `10 / 3.0 = 3.33333`.
+#### 🔍 Dry run (`{2, 3, 5}`)
 
-| Input | Output |
-|---|---|
-| `{1,3,4,5,9,4,6,33,0,3,-4}` | sum `64`, average `5.81818` |
-| `{2e9, 2e9, 2e9}` | sum `6000000000` (an `int` sum overflows: undefined behavior) |
-| `{}` | sum `0`, average undefined |
-| `{1,2}` | average `1.5` (integer division would give `1`) |
+`sum = 0 → 2 → 5 → 10`; `10 / 3.0 = 3.33333`.
 
-**Complexity:** O(n) time, O(1) space.
+#### 🧪 Sample runs and edge cases
 
-**Pitfalls:** `int avg = sum / n;` loses the fraction; casting **after** dividing (`(double)(sum / n)`) is too late; `float` loses precision on large sums.
+| Input                         | Output                                                            |
+| ----------------------------- | ----------------------------------------------------------------- |
+| `{1,3,4,5,9,4,6,33,0,3,-4}` | sum `64`, average `5.81818`                                   |
+| `{2e9, 2e9, 2e9}`           | sum `6000000000` (an `int` sum overflows: undefined behavior) |
+| `{}`                        | sum `0`, average undefined                                      |
+| `{1,2}`                     | average `1.5` (integer division would give `1`)               |
 
-**Follow-ups**
+#### ⏱️ Complexity
+
+O(n) time, O(1) space.
+
+#### ⚠️ Pitfalls
+
+- `int avg = sum / n;` loses the fraction
+- Casting **after** dividing (`(double)(sum / n)`) is too late
+- `float` loses precision on large sums
+
+#### 🎤 Follow-ups
+
 - *Print 2 decimals?* `cout << fixed << setprecision(2) << avg;` (`<iomanip>`).
 - *Standard library?* `accumulate(arr, arr + n, 0LL)` from `<numeric>` (note the `0LL` so the sum is `long long`; plain `0` would accumulate in `int`).
 - *Average without overflow for huge values?* Use `long double` or keep a running mean.
 
+<sub></sub>
+
 ---
 
-## Q4. Reverse an Array
+### Q4. Reverse an Array
 
-**Review of your solution:** 🐞 The reversal logic (two pointers `left`/`right`) is exactly right. The problem is your custom `swap` using `a = a + b; b = a - b; a = a - b;`. If `a + b` exceeds `INT_MAX` it is **signed overflow, which is undefined behavior** (I confirmed it with UBSan: `INT_MAX` and `1` trigger runtime errors). It also hides the standard `std::swap`. Use a temporary variable or `std::swap`. A tiny style point: the output has no final newline.
+> **Problem.** Reverse an array in place, without a second array.
 
-**Review of your revised version (round 2):** ✅ Fixed. You replaced the arithmetic swap with a temporary variable, which is correct and safe for all values. Two tiny notes: naming your own function `swap` hides the idea of `std::swap` (it works because you don't use `using namespace std`; calling it `swapInts` or just using `std::swap` is clearer), and the output has no final newline.
+🏷️ **Concepts:** two pointers from opposite ends (A6), in-place algorithms, safe swapping (Q25 of Level 1).
 
-**Problem:** Reverse an array in place, without a second array.
+#### 💡 How to think
 
-**Concepts:** two pointers from opposite ends (A6), in-place algorithms, safe swapping (Q25 of Level 1).
+The first element swaps with the last, the second with the second-to-last, and so on. Stop when the pointers meet: only **n/2** swaps are needed. Swapping all the way (until `left > right`) would reverse the array twice and undo the work.
 
-**How to think:** The first element swaps with the last, the second with the second-to-last, and so on. Stop when the pointers meet: only **n/2** swaps are needed. Swapping all the way (until `left > right`) would reverse the array twice and undo the work.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -415,63 +494,54 @@ int main() {
 }
 ```
 
-**Dry run (`{1, 2, 3, 4, 5}`):**
+#### 🔍 Dry run (`{1, 2, 3, 4, 5}`)
 
-| step | left | right | action | array |
-|---|---|---|---|---|
-| 1 | 0 | 4 | swap 1 ↔ 5 | `5 2 3 4 1` |
-| 2 | 1 | 3 | swap 2 ↔ 4 | `5 4 3 2 1` |
-| 3 | 2 | 2 | `left < right` false → stop | `5 4 3 2 1` |
+| step | left | right | action                         | array         |
+| ---- | ---- | ----- | ------------------------------ | ------------- |
+| 1    | 0    | 4     | swap 1 ↔ 5                    | `5 2 3 4 1` |
+| 2    | 1    | 3     | swap 2 ↔ 4                    | `5 4 3 2 1` |
+| 3    | 2    | 2     | `left < right` false → stop | `5 4 3 2 1` |
 
-| Input | Output |
-|---|---|
-| `{1,2,3,4,5}` | `5 4 3 2 1` |
-| `{1,2,3,4}` | `4 3 2 1` |
-| `{7}` | `7` |
+#### 🧪 Sample runs and edge cases
+
+| Input               | Output                  |
+| ------------------- | ----------------------- |
+| `{1,2,3,4,5}`     | `5 4 3 2 1`           |
+| `{1,2,3,4}`       | `4 3 2 1`             |
+| `{7}`             | `7`                   |
 | `{2147483647, 1}` | `1 2147483647` (safe) |
-| `{}` | unchanged |
+| `{}`              | unchanged               |
 
-**Complexity:** O(n) time (n/2 swaps), O(1) extra space.
+#### ⏱️ Complexity
+
+O(n) time (n/2 swaps), O(1) extra space.
 
 **Why the arithmetic swap is a bad idea:** it needs `a + b` to fit in `int`; it breaks if both references name the same variable (`a = a + a; b = a - b` → `a` becomes 0); and modern compilers generate *worse* code for it than for a temp-variable swap.
 
-**Pitfalls:** `left <= right` (harmless but pointless: it swaps the middle element with itself); looping to `n` instead of `n/2` (reverses twice); using `sizeof` inside the function (A2).
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- `left <= right` (harmless but pointless: it swaps the middle element with itself)
+- Looping to `n` instead of `n/2` (reverses twice)
+- Using `sizeof` inside the function (A2)
+
+#### 🎤 Follow-ups
+
 - *Standard library?* `reverse(arr, arr + n)` from `<algorithm>`.
 - *Reverse only part of an array (indices `l..r`)?* Same loop with `left = l`, `right = r`. This is the building block of **array rotation** (Q9).
 - *Why not reverse with a second array?* O(n) extra memory; the question demands in place.
 
+<sub></sub>
+
 ---
 
-## Q5. Find the Second-Largest Element
+### Q5. Find the Second-Largest Element
 
-**Review of your solution:** 🐞 The idea (track `largest` and `secondLargest` in one pass, ignore duplicates with `num != largest`) is right, and your "all elements equal" message shows good edge-case thinking. Problems:
+> **Problem.** Find the second-largest **distinct** element without sorting.
 
-1. **`INT_MIN` sentinel bug.** For `{5, INT_MIN}` the real second-largest *is* `INT_MIN`, but your code reports "no second largest". I ran it: it returns `-2147483648` and treats it as "not found". Same for `{INT_MIN, 5}`.
-2. The error message says "must be greater than 2" but the check `arrSize < 2` means "at least 2".
-3. `std::size` lives in `<iterator>`, which you did not include. It compiles here only because `<iostream>` happens to pull it in.
-4. The `arrSize < 2` check can never trigger on a hard-coded array. It belongs inside a function.
+🏷️ **Concepts:** two running maxima, strict comparisons for distinctness, `bool found` instead of a sentinel (A5).
 
-**Review of your revised version (round 2):** 🐞 You fixed the `{5, INT_MIN}` case by adding a `foundSecond` flag, but the new code introduced a **regression**. It now prints a wrong answer when all elements are equal, which your *first* version handled correctly. I ran your exact logic:
+#### 💡 How to think
 
-| Input | Your revised code | Correct |
-|---|---|---|
-| `{5, INT_MIN}` | `-2147483648` ✓ | `INT_MIN` |
-| `{7, 7, 7}` | `Second largest: -2147483648` ✗ | no second largest |
-| `{3, 3}` | `Second largest: -2147483648` ✗ | no second largest |
-| `{9, 9, 5}`, `{-3, -7}`, `{0,3,1,9,5,7,4,6,8,9}` | correct | |
-
-**Why:** `largest` starts as the placeholder `INT_MIN`. The very first element is always `> INT_MIN`, so the first branch runs: it copies the *placeholder* into `secondLargest` and sets `foundSecond = true`. The flag now claims "a second value exists" when only a placeholder was copied. (`{5, INT_MIN}` came out right only by coincidence, because INT_MIN really was the answer.)
-
-**The fix:** remove the placeholder entirely. Start `first` from `arr[0]` and loop from index 1, as in the solution below. A flag is then only set when a *real* element becomes the runner-up.
-
-
-**Problem:** Find the second-largest **distinct** element without sorting.
-
-**Concepts:** two running maxima, strict comparisons for distinctness, `bool found` instead of a sentinel (A5).
-
-**How to think**
 - "Distinct" means `{9, 9, 5}` has second-largest `5`, and `{7, 7}` has none.
 - Keep `first` (largest) and `second` (largest value strictly smaller than `first`).
 - For each element `x`:
@@ -480,7 +550,8 @@ int main() {
   - `x == first` → ignore (not distinct).
 - Use a `hasSecond` flag so no value is "reserved" as a marker.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -536,48 +607,60 @@ int main() {
 }
 ```
 
-**Dry run (`{3, 9, 9, 5}`):**
+#### 🔍 Dry run (`{3, 9, 9, 5}`)
 
-| x | action | first | second |
-|---|---|---|---|
-| 3 (init) | `first = 3` | 3 | none |
-| 9 | `9 > 3`: second = 3, first = 9 | 9 | 3 |
-| 9 | equal to first: ignore | 9 | 3 |
-| 5 | `5 < 9` and `5 > 3`: second = 5 | 9 | 5 |
+| x        | action                              | first | second |
+| -------- | ----------------------------------- | ----- | ------ |
+| 3 (init) | `first = 3`                       | 3     | none   |
+| 9        | `9 > 3`: second = 3, first = 9    | 9     | 3      |
+| 9        | equal to first: ignore              | 9     | 3      |
+| 5        | `5 < 9` and `5 > 3`: second = 5 | 9     | 5      |
 
 Result: **5**.
 
-| Input | Output |
-|---|---|
-| `{0,3,1,9,5,7,4,6,8,9}` | `8` |
-| `{9,9,5}` | `5` |
-| `{7,7,7}` | no second largest |
-| `{5, INT_MIN}` | `INT_MIN` (your sentinel version said "none") |
-| `{-3,-7}` | `-7` |
-| `{1}` | no second largest |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n) time, one pass; O(1) space.
+| Input                     | Output                                                     |
+| ------------------------- | ---------------------------------------------------------- |
+| `{0,3,1,9,5,7,4,6,8,9}` | `8`                                                      |
+| `{9,9,5}`               | `5`                                                      |
+| `{7,7,7}`               | no second largest                                          |
+| `{5, INT_MIN}`          | `INT_MIN` (a sentinel-based version wrongly says "none") |
+| `{-3,-7}`               | `-7`                                                     |
+| `{1}`                   | no second largest                                          |
 
-**Pitfalls:** using `>=` for the second comparison lets a duplicate of the maximum become the second largest; initializing both to `INT_MIN`; forgetting `n < 2`.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, one pass; O(1) space.
+
+#### ⚠️ Pitfalls
+
+- Using `>=` for the second comparison lets a duplicate of the maximum become the second largest
+- Initializing both to `INT_MIN`
+- Forgetting `n < 2`
+
+#### 🎤 Follow-ups
+
 - *k-th largest?* Min-heap of size k (`priority_queue`): O(n log k); or `nth_element` for average O(n).
 - *Why not sort?* O(n log n) and mutates the input; a single pass is O(n).
 - *Using `std::optional<int>` instead of the `bool` + reference?* Cleaner in modern C++: `optional<int> secondLargest(...)`.
 
+<sub></sub>
+
 ---
 
-## Q6. Count Even and Odd Elements
+### Q6. Count Even and Odd Elements
 
-**Review of your solution:** ✅ Correct, including negative numbers. (`-3 % 2` is `-1`, which is `!= 0`, so it lands in your `else` branch: odd.) Only polish: put it in a function and use `'\n'`.
+> **Problem.** Count the even and odd values in an array.
 
-**Problem:** Count the even and odd values in an array.
+🏷️ **Concepts:** counters, parity (Level 1 Q3), range-based `for`.
 
-**Concepts:** counters, parity (Level 1 Q3), range-based `for`.
+#### 💡 How to think
 
-**How to think:** One pass, one `if/else` per element. Because every integer is either even or odd, `countEven + countOdd == n` always: a handy self-check.
+One pass, one `if/else` per element. Because every integer is either even or odd, `countEven + countOdd == n` always: a handy self-check.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -610,35 +693,46 @@ int main() {
 }
 ```
 
-| Input | Even | Odd |
-|---|---|---|
-| `{0,1,2,3,4,5,6,7,8,9,11}` | 5 | 6 |
-| `{-4,-3,0}` | 2 | 1 |
-| `{2,4,6}` | 3 | 0 |
-| `{}` | 0 | 0 |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n) time, O(1) space.
+| Input                        | Even | Odd |
+| ---------------------------- | ---- | --- |
+| `{0,1,2,3,4,5,6,7,8,9,11}` | 5    | 6   |
+| `{-4,-3,0}`                | 2    | 1   |
+| `{2,4,6}`                  | 3    | 0   |
+| `{}`                       | 0    | 0   |
 
-**Pitfalls:** testing odd with `arr[i] % 2 == 1` (fails for negative odds: `-3 % 2 == -1`); forgetting to reset counters to 0 (here the function does it for you).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, O(1) space.
+
+#### ⚠️ Pitfalls
+
+- Testing odd with `arr[i] % 2 == 1` (fails for negative odds: `-3 % 2 == -1`)
+- Forgetting to reset counters to 0 (here the function does it for you)
+
+#### 🎤 Follow-ups
+
 - *Bitwise parity?* `arr[i] & 1` is 1 for odd, including negatives in two's complement.
 - *Standard library?* `count_if(arr, arr + n, [](int x){ return x % 2 == 0; })`.
 - *Count positives, negatives and zeros?* Same pattern with three counters.
 
+<sub></sub>
+
 ---
 
-## Q7. Linear Search
+### Q7. Linear Search
 
-**Review of your solution:** ✅ Correct: first-occurrence semantics, `-1` as the "not found" marker, early `break`. Improvements: (1) `i < std::size(arr)` gives a `-Wsign-compare` warning; (2) a function `int linearSearch(arr, n, target)` is what the question literally asks for ("return its index"); (3) the interactive prompt makes it impossible to test automatically.
+> **Problem.** Find a target element and return its index, or indicate that it is absent.
 
-**Problem:** Find a target element and return its index, or indicate that it is absent.
+🏷️ **Concepts:** sequential search, sentinel return value (`-1` is a safe "not found" because valid indices are ≥ 0), early exit.
 
-**Concepts:** sequential search, sentinel return value (`-1` is a safe "not found" because valid indices are ≥ 0), early exit.
+#### 💡 How to think
 
-**How to think:** Check elements from left to right; the moment one equals the target, return its index. If the loop finishes, nothing matched. Returning *inside* the loop is the cleanest way to stop early.
+Check elements from left to right; the moment one equals the target, return its index. If the loop finishes, nothing matched. Returning *inside* the loop is the cleanest way to stop early.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -670,51 +764,58 @@ int main() {
 }
 ```
 
-**Dry run (target 9 in `{0,1,2,5,4,3,9,...}`):** compare index 0..5 (no match) → index 6 equals 9 → return **6**.
+#### 🔍 Dry run (target 9 in `{0,1,2,5,4,3,9,...}`)
 
-| Input | Output |
-|---|---|
-| target `9` | `6` |
-| target `99` | `-1` (not found) |
-| target `0` (first element) | `0` |
-| target `8` (last element) | `9` |
+compare index 0..5 (no match) → index 6 equals 9 → return **6**.
+
+#### 🧪 Sample runs and edge cases
+
+| Input                                | Output                   |
+| ------------------------------------ | ------------------------ |
+| target `9`                         | `6`                    |
+| target `99`                        | `-1` (not found)       |
+| target `0` (first element)         | `0`                    |
+| target `8` (last element)          | `9`                    |
 | duplicates `{4,2,4}`, target `4` | `0` (first occurrence) |
-| empty array | `-1` |
+| empty array                          | `-1`                   |
 
-**Complexity:** best O(1) (first element), worst and average O(n), O(1) space. It is the only option on **unsorted** data.
+#### ⏱️ Complexity
 
-**Pitfalls:** returning `0` for "not found" (index 0 is valid!); looping `i <= n` (reads one past the end); not breaking after finding (wasted work and returns the *last* index if you keep overwriting).
+best O(1) (first element), worst and average O(n), O(1) space. It is the only option on **unsorted** data.
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Returning `0` for "not found" (index 0 is valid!)
+- Looping `i <= n` (reads one past the end)
+- Not breaking after finding (wasted work and returns the *last* index if you keep overwriting)
+
+#### 🎤 Follow-ups
+
 - *Find all occurrences / the last occurrence?* Keep scanning and record indices (or loop backwards for the last).
 - *Faster on sorted data?* Binary search, O(log n) (Q38).
 - *Many searches on the same data?* Build a `unordered_map` or sort once, then search (Q47, Q50).
 - *Standard library?* `find(arr, arr + n, target)` returns an iterator; `it - arr` gives the index.
 - *Sentinel trick:* place the target at the end to avoid checking `i < n` each iteration (a micro-optimization worth knowing).
 
+<sub></sub>
+
 ---
 
-## Q8. Remove Duplicates from a Sorted Array
+### Q8. Remove Duplicates from a Sorted Array
 
-**Review of your solution:** 🐞 Your deduplication loop is correct. It keeps the last copy of each run and appends the final element. But:
+> **Problem.** Modify a sorted array in place so each distinct value appears once.
 
-1. **You changed the problem.** The question says "a sorted array". You started with an *unsorted* array and sorted it with bubble sort first. Bubble sort is O(n²), so the whole program is O(n²), while the intended solution is **O(n)** because sorted input makes duplicates adjacent.
-2. `i < std::size(arr) - 1` mixes `int` with `size_t` (a warning), and `size() - 1` would wrap around to a huge number for an empty array (A3). It cannot happen with your fixed array, but it would in a function.
-3. The result should be the **new length** returned by a function, as in the classic interview version.
+🏷️ **Concepts:** reader/writer two-pointer technique (A6), in-place modification, returning the new logical length.
 
-**Review of your revised version (round 2):** ✅ Correct, and exactly the intended solution: you now work on a sorted array and use the reader/writer pattern with `arr[j-1]` as the last kept value, in O(n) time and O(1) space. Tested on your array (`0 2 3 4 6 8`). Remaining polish: put it in a function that **returns the new length** (so it can be tested), and avoid the trailing space when printing. The `n == 0` check is correct for a function, but cannot trigger for a C array (arrays cannot have size 0).
+#### 💡 How to think
 
-**Problem:** Modify a sorted array in place so each distinct value appears once.
-
-**Concepts:** reader/writer two-pointer technique (A6), in-place modification, returning the new logical length.
-
-**How to think**
 - In a sorted array equal values are neighbors, so a value is a duplicate exactly when it equals the **last value written**.
 - `k` = number of unique values written so far (also the next write position). Element `arr[0]` is always kept.
 - For each `i` from 1: if `arr[i] != arr[k - 1]`, it is new: write `arr[k++] = arr[i]`.
 - The array is not shrunk (a C array cannot be). Return `k`; only the first `k` elements are meaningful.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -756,63 +857,66 @@ int main() {
 }
 ```
 
-**Dry run (`{1, 1, 2, 2, 3}`):**
+#### 🔍 Dry run (`{1, 1, 2, 2, 3}`)
 
-| i | arr[i] | compare with arr[k-1] | action | k | array (first k) |
-|---|---|---|---|---|---|
-| start | | | arr[0] kept | 1 | `1` |
-| 1 | 1 | 1 == 1 | skip | 1 | `1` |
-| 2 | 2 | 2 != 1 | `arr[1] = 2` | 2 | `1 2` |
-| 3 | 2 | 2 == 2 | skip | 2 | `1 2` |
-| 4 | 3 | 3 != 2 | `arr[2] = 3` | 3 | `1 2 3` |
+| i     | arr[i] | compare with arr[k-1] | action         | k | array (first k) |
+| ----- | ------ | --------------------- | -------------- | - | --------------- |
+| start |        |                       | arr[0] kept    | 1 | `1`           |
+| 1     | 1      | 1 == 1                | skip           | 1 | `1`           |
+| 2     | 2      | 2 != 1                | `arr[1] = 2` | 2 | `1 2`         |
+| 3     | 2      | 2 == 2                | skip           | 2 | `1 2`         |
+| 4     | 3      | 3 != 2                | `arr[2] = 3` | 3 | `1 2 3`       |
 
 New length **3**.
 
-| Input (sorted) | Output |
-|---|---|
-| `{0,0,2,3,3,4,4,6,22,22,33,84,84,204}` | `0 2 3 4 6 22 33 84 204` |
-| `{1,1,1,1}` | `1` |
-| `{1,2,3}` | `1 2 3` (no duplicates) |
-| `{5}` | `5` |
-| `{}` | length `0` |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n) time, O(1) extra space. Your version: O(n²) because of bubble sort.
+| Input (sorted)                           | Output                     |
+| ---------------------------------------- | -------------------------- |
+| `{0,0,2,3,3,4,4,6,22,22,33,84,84,204}` | `0 2 3 4 6 22 33 84 204` |
+| `{1,1,1,1}`                            | `1`                      |
+| `{1,2,3}`                              | `1 2 3` (no duplicates)  |
+| `{5}`                                  | `5`                      |
+| `{}`                                   | length `0`               |
+
+#### ⏱️ Complexity
+
+O(n) time, O(1) extra space. (Sorting first with bubble sort would make the whole program O(n²).)
 
 **If the input is not sorted:** sort first with `std::sort` (O(n log n), `<algorithm>`) and then run the same function. Do not hand-write bubble sort for this. Alternatively use a `std::set` (Q48) or `std::unordered_set`, trading memory for not needing to sort.
 
-**Pitfalls:** running it on unsorted input silently gives wrong results (`{1,2,1}` keeps all three: the second `1` differs from the last kept `2`); comparing `arr[i]` with `arr[i-1]` instead of `arr[k-1]` also works for removal in place only if you are careful about overwriting; forgetting that elements after index `k - 1` are leftovers.
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- Running it on unsorted input silently gives wrong results (`{1,2,1}` keeps all three: the second `1` differs from the last kept `2`)
+- Comparing `arr[i]` with `arr[i-1]` instead of `arr[k-1]` also works for removal in place only if you are careful about overwriting
+- Forgetting that elements after index `k - 1` are leftovers
+
+#### 🎤 Follow-ups
+
 - *Allow each value at most twice (LeetCode 80)?* Compare with `arr[k - 2]` instead of `arr[k - 1]`.
 - *Standard library?* `unique(arr, arr + n) - arr` (returns the new end) after sorting.
 - *Remove a specific value in place?* Same reader/writer pattern with `if (arr[i] != val) arr[k++] = arr[i];`.
 - *Why in place?* Constant extra memory, which interviewers care about.
 
----
+<sub></sub>
 
 ---
 
-## Q9. Rotate an Array
+### Q9. Rotate an Array
 
-**Review of your solution:** ✅ The algorithm is correct and is the classic optimal one: **three reversals**, O(n) time, O(1) space. I verified left and right rotation for `k = 3, 13, 10, 0, 1` on `0..9`. Your comment block explaining the steps is excellent. What to improve:
+> **Problem.** Rotate an array to the right (and left) by `k` positions.
 
-1. **`k % n == 0` prints "No rotation need" but not the array.** After a full rotation the array is unchanged, but the caller still expects to see it. The special case should simply do nothing and let the normal printing happen.
-2. **Negative `k` is silently ignored** (no output at all). A left rotation by `-1` is the same as a right rotation by `1`, so normalize with `((k % n) + n) % n` instead of rejecting it.
-3. **Printing inside the rotate functions** mixes two jobs. Rotation functions should only rotate; printing belongs in `main` (or a helper). This also makes them testable.
-4. **`int arr2[10]` hard-codes the size** while `arr` is sized automatically. If you later add elements to `arr`, the copy loop writes past the end of `arr2`. Derive the size from the data (`const int n = size(base);` then `int b[n];`, as below) or copy into a `std::vector`.
-5. Conventional parameter order is `(arr, n, k)`.
+🏷️ **Concepts:** array reversal (Q4), modular arithmetic for `k ≥ n`, in-place algorithms.
 
-**Problem:** Rotate an array to the right (and left) by `k` positions.
+#### 💡 How to think
 
-**Concepts:** array reversal (Q4), modular arithmetic for `k ≥ n`, in-place algorithms.
-
-**How to think**
 - *Right rotation by 2 of `{1,2,3,4,5}` → `{4,5,1,2,3}`:* the **last k elements move to the front**, keeping their order.
 - *Brute force:* rotate by one position `k` times: O(n·k). *With a copy:* write `arr[i]` to `tmp[(i + k) % n]`: O(n) time but O(n) extra memory.
 - *Three reversals (optimal):* reversing the whole array puts the last `k` elements at the front but **backwards**. Reversing the first `k` and then the remaining `n - k` elements puts each block back in its original order.
 - *Normalize `k` first:* rotating by `n` returns the original array, so only `k mod n` matters.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -885,69 +989,80 @@ int main() {
 }
 ```
 
-**Dry run — right rotation of `{1, 2, 3, 4, 5}` by `k = 2`:**
+#### 🔍 Dry run — right rotation of `{1, 2, 3, 4, 5}` by `k = 2`
 
-| step | action | array |
-|---|---|---|
-| start | | `1 2 3 4 5` |
-| 1 | reverse all | `5 4 3 2 1` |
-| 2 | reverse first 2 | `4 5 3 2 1` |
-| 3 | reverse last 3 | `4 5 1 2 3` ✓ |
+| step  | action          | array            |
+| ----- | --------------- | ---------------- |
+| start |                 | `1 2 3 4 5`    |
+| 1     | reverse all     | `5 4 3 2 1`    |
+| 2     | reverse first 2 | `4 5 3 2 1`    |
+| 3     | reverse last 3  | `4 5 1 2 3` ✓ |
 
-**Dry run — left rotation of `{1, 2, 3, 4, 5}` by `k = 2`:**
+#### 🔍 Dry run — left rotation of `{1, 2, 3, 4, 5}` by `k = 2`
 
-| step | action | array |
-|---|---|---|
-| 1 | reverse first 2 | `2 1 3 4 5` |
-| 2 | reverse last 3 | `2 1 5 4 3` |
-| 3 | reverse all | `3 4 5 1 2` ✓ |
+| step | action          | array            |
+| ---- | --------------- | ---------------- |
+| 1    | reverse first 2 | `2 1 3 4 5`    |
+| 2    | reverse last 3  | `2 1 5 4 3`    |
+| 3    | reverse all     | `3 4 5 1 2` ✓ |
 
-| Input (`0..9`) | Left | Right |
-|---|---|---|
-| `k = 3` | `3 4 5 6 7 8 9 0 1 2` | `7 8 9 0 1 2 3 4 5 6` |
-| `k = 13` (same as 3) | same as `k = 3` | same as `k = 3` |
-| `k = 10` or `0` | unchanged | unchanged |
-| `k = 1` | `1 2 … 9 0` | `9 0 1 … 8` |
-| `k = -1` | `9 0 1 … 8` (a left rotation by -1 is a right rotation by 1) | `1 2 … 9 0` |
-| single element | unchanged | unchanged |
-| empty | unchanged | unchanged |
+#### 🧪 Sample runs and edge cases
+
+| Input (`0..9`)       | Left                                                            | Right                   |
+| ---------------------- | --------------------------------------------------------------- | ----------------------- |
+| `k = 3`              | `3 4 5 6 7 8 9 0 1 2`                                         | `7 8 9 0 1 2 3 4 5 6` |
+| `k = 13` (same as 3) | same as `k = 3`                                               | same as `k = 3`       |
+| `k = 10` or `0`    | unchanged                                                       | unchanged               |
+| `k = 1`              | `1 2 … 9 0`                                                  | `9 0 1 … 8`          |
+| `k = -1`             | `9 0 1 … 8` (a left rotation by -1 is a right rotation by 1) | `1 2 … 9 0`          |
+| single element         | unchanged                                                       | unchanged               |
+| empty                  | unchanged                                                       | unchanged               |
 
 **Why `((k % n) + n) % n`:** in C++ `-1 % 10 == -1`, which is not a valid index offset. Adding `n` makes it positive and the final `% n` brings it back into `[0, n-1]`.
 
-**Complexity:** O(n) time (every element is moved at most twice), O(1) extra space.
+#### ⏱️ Complexity
 
-| Approach | Time | Space |
-|---|---|---|
-| Rotate by 1, `k` times | O(n·k) | O(1) |
-| Temporary array | O(n) | O(n) |
-| **Three reversals** | **O(n)** | **O(1)** |
-| Juggling (cycle) algorithm | O(n) | O(1) |
+O(n) time (every element is moved at most twice), O(1) extra space.
 
-**Pitfalls:** forgetting `k % n` (reading past the end for `k > n`); `k % 0` when `n == 0` (division by zero: guard `n <= 0` first); reversing in the wrong order (left and right use different step orders: your code had them right).
+| Approach                   | Time           | Space          |
+| -------------------------- | -------------- | -------------- |
+| Rotate by 1, `k` times   | O(n·k)        | O(1)           |
+| Temporary array            | O(n)           | O(n)           |
+| **Three reversals**  | **O(n)** | **O(1)** |
+| Juggling (cycle) algorithm | O(n)           | O(1)           |
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Forgetting `k % n` (reading past the end for `k > n`)
+- `k % 0` when `n == 0` (division by zero: guard `n <= 0` first)
+- Reversing in the wrong order (left and right rotations use different step orders)
+
+#### 🎤 Follow-ups
+
 - *Standard library?* `rotate(arr, arr + k, arr + n)` rotates **left** by `k` (`<algorithm>`); for a right rotation by `k` use `rotate(arr, arr + n - k, arr + n)`.
 - *Why do three reversals work?* Write the array as two blocks `AB`. Then `(AB)ᴿ = BᴿAᴿ`, and reversing each block gives `BA`. That is exactly a rotation.
 - *Check if one array is a rotation of another?* Search for it inside the doubled array `A + A`.
 - *Rotate a matrix?* Transpose and reverse each row (Module 7).
 
+<sub></sub>
+
 ---
 
-## Q10. Move All Zeros to the End
+### Q10. Move All Zeros to the End
 
-**Review of your solution:** ✅ Correct, and it is the standard optimal answer: one pass, in place, **stable** (nonzero elements keep their relative order). I tested `{0,0,0}`, `{1,2,3}`, `{0,1}`, `{4}` and `{0,0,1,0,2,0,0,3}`. Minor polish: when `i == insertPos` your code swaps an element with itself (harmless, but it is a wasted write; it happens for every nonzero element before the first zero). Use `std::swap` and skip the self-swap.
+> **Problem.** Move all zeros to the end while keeping the order of the nonzero elements.
 
-**Problem:** Move all zeros to the end while keeping the order of the nonzero elements.
+🏷️ **Concepts:** reader/writer two pointers (A6), stability, in-place partitioning.
 
-**Concepts:** reader/writer two pointers (A6), stability, in-place partitioning.
+#### 💡 How to think
 
-**How to think**
 - Maintain `insertPos`, the position where the next nonzero value belongs. Everything before it is already final: nonzeros in their original order.
 - Scan with `i`. Whenever `arr[i]` is nonzero, swap it to `insertPos` and advance `insertPos`. Zeros are never touched explicitly: the swaps push them to the right.
 - *Why stable?* Nonzero elements are placed in the order they are encountered.
 - *Alternative (two passes):* copy the nonzeros forward, then fill the rest with zeros. Fewer writes, but two loops.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <utility>
@@ -989,39 +1104,54 @@ int main() {
 }
 ```
 
-**Dry run (`{0, 1, 0, 3}`):**
+#### 🔍 Dry run (`{0, 1, 0, 3}`)
 
-| i | arr[i] | action | insertPos | array |
-|---|---|---|---|---|
-| 0 | 0 | zero: skip | 0 | `0 1 0 3` |
-| 1 | 1 | swap with index 0 | 1 | `1 0 0 3` |
-| 2 | 0 | zero: skip | 1 | `1 0 0 3` |
-| 3 | 3 | swap with index 1 | 2 | `1 3 0 0` ✓ |
+| i | arr[i] | action            | insertPos | array          |
+| - | ------ | ----------------- | --------- | -------------- |
+| 0 | 0      | zero: skip        | 0         | `0 1 0 3`    |
+| 1 | 1      | swap with index 0 | 1         | `1 0 0 3`    |
+| 2 | 0      | zero: skip        | 1         | `1 0 0 3`    |
+| 3 | 3      | swap with index 1 | 2         | `1 3 0 0` ✓ |
 
-| Input | Output |
-|---|---|
-| `{0,1,0,3,13,0,8,9}` | `1 3 13 8 9 0 0 0` |
-| `{0,0,0}` | `0 0 0` |
-| `{1,2,3}` | `1 2 3` (no swaps at all) |
-| `{0,1}` | `1 0` |
-| `{4}` | `4` |
-| `{}` | unchanged |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n) time, O(1) space, at most `n` swaps.
+| Input                  | Output                      |
+| ---------------------- | --------------------------- |
+| `{0,1,0,3,13,0,8,9}` | `1 3 13 8 9 0 0 0`        |
+| `{0,0,0}`            | `0 0 0`                   |
+| `{1,2,3}`            | `1 2 3` (no swaps at all) |
+| `{0,1}`              | `1 0`                     |
+| `{4}`                | `4`                       |
+| `{}`                 | unchanged                   |
 
-**Pitfalls:** using `arr[i] == 0` as the trigger and swapping with the "last nonzero" (breaks stability); sorting (O(n log n) and may reorder nonzeros); building a second array when the question says in place.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, O(1) space, at most `n` swaps.
+
+#### ⚠️ Pitfalls
+
+- Using `arr[i] == 0` as the trigger and swapping with the "last nonzero" (breaks stability)
+- Sorting (O(n log n) and may reorder nonzeros)
+- Building a second array when the question says in place
+
+#### 🎤 Follow-ups
+
 - *Move zeros to the front instead?* Run the same idea from right to left.
 - *Move all negative numbers first, keeping order?* Replace `!= 0` with `< 0`. In general this is a **stable partition**: `stable_partition(arr, arr + n, [](int x){ return x != 0; })`.
 - *Relation to sorting?* This is exactly the *partition* step of quicksort (Q44), except quicksort does not need stability.
 - *Remove all zeros (shrink the array)?* Same loop, but return `insertPos` as the new length (compare Q8).
 
+<sub></sub>
+
 ---
 
-# PART 0 (continued) — STRING CONCEPTS (read once)
+## Module 2 — Strings
 
-## S1. `std::string` basics
+> 🔤 **Q11–Q18** · Work with `std::string` and characters: two-pointer reversal and palindromes, state flags for word counting, and count-table tricks for frequency, anagrams and uniqueness.
+
+### 📘 Concepts
+
+#### S1. `std::string` basics
 
 ```cpp
 #include <string>
@@ -1036,13 +1166,13 @@ s += "!";        // append
 - `s[i]` for `i >= s.size()` is undefined behavior (except `s[s.size()]`, which is `'\0'`).
 - To avoid copies, pass big strings as `const string &s` (read only) or `string &s` (modify).
 
-## S2. `char` is a small integer
+#### S2. `char` is a small integer
 
 - `'a' == 97`, `'A' == 65`, `'0' == 48`. Letters are consecutive, so `'d' - 'a' == 3`.
 - Digit character → number: `c - '0'`. Number → digit: `char('0' + d)`.
 - Use `<cctype>`: `isalpha`, `isdigit`, `isspace`, `tolower`, `toupper`. Cast to `unsigned char` first for safe use with arbitrary data: `isalpha(static_cast<unsigned char>(c))`.
 
-## S3. Reading strings
+#### S3. Reading strings
 
 ```cpp
 string w;  cin >> w;            // reads ONE word (stops at whitespace)
@@ -1051,37 +1181,30 @@ string line;  getline(cin, line);   // reads the WHOLE line, spaces included
 
 If you mix `cin >> x` and `getline`, the leftover newline makes `getline` return an empty string; call `cin.ignore()` in between.
 
-## S4. The `size_t` loop trap (again)
+#### S4. The `size_t` loop trap, revisited
 
 `s.size() - 1` on an **empty** string is `18446744073709551615`. Safe habits: use `i < n / 2` style loops, check `empty()` first, or cast to `int` once.
 
-## S5. Bytes vs characters
+#### S5. Bytes vs characters
 
 `std::string` stores **bytes**. For plain ASCII text one byte = one character. In UTF-8 text (accents, emoji, Devanagari, ...) a character can take 2 to 4 bytes, so byte-by-byte algorithms (reverse, count, index) can break the text. Interview problems assume ASCII unless stated otherwise.
 
----
-
-# MODULE 2 — STRINGS
+### 📝 Problems
 
 ---
 
-## Q11. Reverse a String
+### Q11. Reverse a String
 
-**Review of your solution:** ✅ Correct (`"Mahakal"` → `"lakahaM"`; empty, one-character, even, odd and spaces all work). Polish:
+> **Problem.** Reverse a string without a built-in reverse function.
 
-1. `s.length() <= 0` is a roundabout way to say `s.empty()`; `length()` is unsigned, so "less than 0" can never be true.
-2. **Printing inside the function** ("String is Empty.") mixes work and output. An empty string is a perfectly valid input whose reverse is the empty string: just return.
-3. `int end = s.length() - 1;` converts an unsigned value to `int`. It is safe here only because you checked for empty first. Looping `i < n / 2` avoids the subtraction entirely.
-4. The string is hard-coded. Read it from the user with `getline` so spaces work (done below).
-5. **Byte reversal breaks non-ASCII text** (see S5): `"café"` reversed byte-wise produces invalid UTF-8. I tested this. Mention it in an interview as a known limitation.
+🏷️ **Concepts:** two pointers (A6) on a string, `size_t` care (S4), in place.
 
-**Problem:** Reverse a string without a built-in reverse function.
+#### 💡 How to think
 
-**Concepts:** two pointers (A6) on a string, `size_t` care (S4), in place.
+Identical to reversing an array (Q4): swap the first character with the last, the second with the second-to-last, and so on, stopping at the middle. With `n = s.size()`, character `i` swaps with character `n - 1 - i`, for `i` from `0` to `n/2 - 1`. The middle character of an odd-length string stays in place.
 
-**How to think:** Identical to reversing an array (Q4): swap the first character with the last, the second with the second-to-last, and so on, stopping at the middle. With `n = s.size()`, character `i` swaps with character `n - 1 - i`, for `i` from `0` to `n/2 - 1`. The middle character of an odd-length string stays in place.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <string>
@@ -1112,65 +1235,70 @@ int main() {
 
 **Reading the input as a string (used from now on in the strings module):** `getline(cin, s)` reads the **whole line**, spaces included. `cin >> s` would stop at the first space.
 
-| Reading method | Input line `Hello World` | `s` becomes |
-|---|---|---|
-| `cin >> s` | `Hello World` | `Hello` (stops at the space; the rest stays in the buffer) |
-| `getline(cin, s)` | `Hello World` | `Hello World` |
+| Reading method      | Input line `Hello World` | `s` becomes                                                |
+| ------------------- | -------------------------- | ------------------------------------------------------------ |
+| `cin >> s`        | `Hello World`            | `Hello` (stops at the space; the rest stays in the buffer) |
+| `getline(cin, s)` | `Hello World`            | `Hello World`                                              |
 
 If the program has already read a number with `cin >> n`, a newline is still waiting in the buffer, and the next `getline` would return an empty string. Call `cin.ignore(numeric_limits<streamsize>::max(), '\n');` (needs `<limits>`) in between. For an online judge, remove the `"Enter a string: "` prompt, because judges compare the output exactly.
 
 **Sample runs** (everything after `Enter a string: ` is what you type):
 
-| You type | Output |
-|---|---|
-| `Mahakal` | `Reversed: lakahaM` |
-| `Hello World` | `Reversed: dlroW olleH` |
-| `racecar` | `Reversed: racecar` |
-| `a` | `Reversed: a` |
-| *(just Enter, an empty line)* | `Reversed: ` |
-| `  hi  ` (leading and trailing spaces) | `Reversed:   ih  ` (spaces are characters too and are kept) |
-| *(Ctrl+D / end of input)* | `No input` |
+#### 🧪 Sample runs and edge cases
 
-**Dry run (`"abcd"`, n = 4, loop `i = 0..1`):**
+| You type                               | Output                                                        |
+| -------------------------------------- | ------------------------------------------------------------- |
+| `Mahakal`                            | `Reversed: lakahaM`                                         |
+| `Hello World`                        | `Reversed: dlroW olleH`                                     |
+| `racecar`                            | `Reversed: racecar`                                         |
+| `a`                                  | `Reversed: a`                                               |
+| *(just Enter, an empty line)*        | `Reversed: `                                                |
+| ` hi ` (leading and trailing spaces) | `Reversed:   ih  ` (spaces are characters too and are kept) |
+| *(Ctrl+D / end of input)*            | `No input`                                                  |
 
-| i | swap | string |
-|---|---|---|
-| 0 | `s[0] ↔ s[3]` | `dbca` |
+#### 🔍 Dry run (`"abcd"`, n = 4, loop `i = 0..1`)
+
+| i | swap             | string      |
+| - | ---------------- | ----------- |
+| 0 | `s[0] ↔ s[3]` | `dbca`    |
 | 1 | `s[1] ↔ s[2]` | `dcba` ✓ |
 
-**Complexity:** O(n) time (n/2 swaps), O(1) extra space. Building a new string by appending from the back is also O(n) but uses O(n) extra memory.
+#### ⏱️ Complexity
 
-**Pitfalls:** `for (int i = 0; i < s.size() ...)` sign-compare warning; looping to `n` instead of `n/2` reverses twice; using `s.size() - 1` on an empty string.
+O(n) time (n/2 swaps), O(1) extra space. Building a new string by appending from the back is also O(n) but uses O(n) extra memory.
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- `for (int i = 0; i < s.size() ...)` sign-compare warning
+- Looping to `n` instead of `n/2` reverses twice
+- Using `s.size() - 1` on an empty string
+
+#### 🎤 Follow-ups
+
 - *Standard library?* `reverse(s.begin(), s.end());` from `<algorithm>`, or `string(s.rbegin(), s.rend())`.
 - *Reverse the order of the words but not the letters?* Reverse the whole string, then reverse each word.
 - *Reverse each word in place?* Find word boundaries with `' '` and reverse each range.
 - *Recursive version?* See Q34 (swap the ends, recurse on the middle).
 - *Why is a palindrome check (Q12) almost the same loop?* Compare `s[i]` with `s[n-1-i]` instead of swapping.
 
+<sub></sub>
+
 ---
 
-## Q12. Check a String Palindrome
+### Q12. Check a String Palindrome
 
-**Review of your solution:** ✅ The two-pointer logic is correct (`racecar`, `abba`, `a`, `ab` all verified) and you read the line with `getline`. Things to tighten:
+> **Problem.** Decide whether a string reads the same forwards and backwards.
 
-1. **Inconsistent empty-string rule.** `isPalindrome("")` returns `true`, but `main` prints "String is empty." and never calls it. Pick one rule. By convention the empty string **is** a palindrome.
-2. The parameter should be `const std::string &s` (the function only reads it).
-3. `int end = s.length() - 1;` converts an unsigned value to `int`. The `i < n / 2` loop form avoids the subtraction (S4).
-4. **State your decisions.** Your version is case-sensitive and counts spaces/punctuation, so `Racecar` and `A man, a plan, a canal: Panama` are "not palindromes" (I tested both). That is a valid reading, but say it out loud, and know the relaxed version (below).
-5. The output ends with a trailing space (`" is Palindrome "`).
+🏷️ **Concepts:** two pointers (A6), `<cctype>` (S2), deciding the rules before coding.
 
-**Problem:** Decide whether a string reads the same forwards and backwards.
+#### 💡 How to think
 
-**Concepts:** two pointers (A6), `<cctype>` (S2), deciding the rules before coding.
-
-**How to think**
 - Compare the first and last characters, then the second and second-to-last, and so on. One mismatch → not a palindrome. Stop at the middle: `n / 2` comparisons.
 - **Strict version:** every character counts, case-sensitive.
 - **Relaxed version (the famous interview variant):** ignore case and skip everything that is not a letter or digit. Move `left` forward and `right` backward past non-alphanumerics, then compare lower-cased characters.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <cctype>
 #include <iostream>
@@ -1214,46 +1342,55 @@ int main() {
 }
 ```
 
-**Dry run (`"abca"`):** `i = 0`: `a` vs `a` ✓; `i = 1`: `b` vs `c` ✗ → **not a palindrome**.
+#### 🔍 Dry run (`"abca"`)
 
-| You type | Strict | Relaxed |
-|---|---|---|
-| `racecar` | palindrome | palindrome |
-| `Racecar` | not | palindrome |
-| `A man, a plan, a canal: Panama` | not | palindrome |
-| `ab` | not | not |
-| `a` | palindrome | palindrome |
-| *(empty line)* | palindrome | palindrome |
-| `!!` | palindrome | palindrome (nothing alphanumeric is left, so nothing can mismatch) |
+`i = 0`: `a` vs `a` ✓; `i = 1`: `b` vs `c` ✗ → **not a palindrome**.
 
-**Complexity:** O(n) time, O(1) space.
+#### 🧪 Sample runs and edge cases
 
-**Pitfalls:** comparing `s[i]` with `s[n - i]` (off by one); using `s.size() - 1` on an empty string; `isalnum(s[i])` with a negative `char` (undefined behavior: cast to `unsigned char`).
+| You type                           | Strict     | Relaxed                                                            |
+| ---------------------------------- | ---------- | ------------------------------------------------------------------ |
+| `racecar`                        | palindrome | palindrome                                                         |
+| `Racecar`                        | not        | palindrome                                                         |
+| `A man, a plan, a canal: Panama` | not        | palindrome                                                         |
+| `ab`                             | not        | not                                                                |
+| `a`                              | palindrome | palindrome                                                         |
+| *(empty line)*                   | palindrome | palindrome                                                         |
+| `!!`                             | palindrome | palindrome (nothing alphanumeric is left, so nothing can mismatch) |
 
-**Follow-ups**
+#### ⏱️ Complexity
+
+O(n) time, O(1) space.
+
+#### ⚠️ Pitfalls
+
+- Comparing `s[i]` with `s[n - i]` (off by one)
+- Using `s.size() - 1` on an empty string
+- `isalnum(s[i])` with a negative `char` (undefined behavior: cast to `unsigned char`)
+
+#### 🎤 Follow-ups
+
 - *Without writing a loop?* `equal(s.begin(), s.begin() + s.size() / 2, s.rbegin())` or `s == string(s.rbegin(), s.rend())` (this one copies).
 - *Palindrome number?* Level 1, Q17.
 - *Longest palindromic substring?* Expand around each center: O(n²).
 - *Valid palindrome after deleting at most one character?* Two pointers; on a mismatch try skipping either side.
 
+<sub></sub>
+
 ---
 
-## Q13. Count Vowels and Consonants
+### Q13. Count Vowels and Consonants
 
-**Review of your solution:** ✅ Correct: only letters are counted (digits, spaces and punctuation are ignored: `"123 !!"` → 0 and 0), both cases are handled. Improvements:
+> **Problem.** Count vowels and consonants, handling upper and lower case.
 
-1. `i < str.length()` compares `int` with `size_t` (compiler warning).
-2. `isalpha(str[i])` with a plain `char`: a negative value (any non-ASCII byte) is **undefined behavior**; cast to `unsigned char` (S2).
-3. The ten-way `||` chain is hard to read and easy to mistype. Lower-case the character once and test five letters, or put the test in a helper `isVowel`.
-4. For an empty string you print a message. The natural answer is simply "Vowels: 0, Consonants: 0": no special case needed.
+🏷️ **Concepts:** `<cctype>` (`isalpha`, `tolower`), helper functions, definitions (a *consonant* is a letter that is not a vowel).
 
-**Problem:** Count vowels and consonants, handling upper and lower case.
+#### 💡 How to think
 
-**Concepts:** `<cctype>` (`isalpha`, `tolower`), helper functions, definitions (a *consonant* is a letter that is not a vowel).
+For every character: is it a letter? If not, skip it. If yes, convert to lower case and check `a e i o u`. Everything else among letters is a consonant. Note that `y` counts as a consonant here (state this assumption).
 
-**How to think:** For every character: is it a letter? If not, skip it. If yes, convert to lower case and check `a e i o u`. Everything else among letters is a consonant. Note that `y` counts as a consonant here (state this assumption).
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <cctype>
 #include <iostream>
@@ -1291,39 +1428,47 @@ int main() {
 }
 ```
 
-| You type | Vowels | Consonants |
-|---|---|---|
-| `Hello World` | 3 | 7 |
-| `AEIOU` | 5 | 0 |
-| `123 !!` | 0 | 0 |
-| `Rhythm` | 0 | 6 |
-| *(empty line)* | 0 | 0 |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n) time, O(1) space.
+| You type         | Vowels | Consonants |
+| ---------------- | ------ | ---------- |
+| `Hello World`  | 3      | 7          |
+| `AEIOU`        | 5      | 0          |
+| `123 !!`       | 0      | 0          |
+| `Rhythm`       | 0      | 6          |
+| *(empty line)* | 0      | 0          |
 
-**Pitfalls:** counting spaces or digits as consonants (`!vowel` is **not** the same as consonant); forgetting uppercase vowels; assuming only ASCII letters exist.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, O(1) space.
+
+#### ⚠️ Pitfalls
+
+- Counting spaces or digits as consonants (`!vowel` is **not** the same as consonant)
+- Forgetting uppercase vowels
+- Assuming only ASCII letters exist
+
+#### 🎤 Follow-ups
+
 - *Count digits, spaces and special characters too?* Add `isdigit`, `isspace`, and an `else` branch.
 - *A vowel test with a lookup?* `string("aeiou").find(lower) != string::npos`, or a `switch` with fall-through cases.
 
+<sub></sub>
+
 ---
 
-## Q14. Count Words in a Sentence
+### Q14. Count Words in a Sentence
 
-**Review of your solution:** ✅ The `inWord` state flag is exactly the right technique, and it correctly handles repeated spaces and leading/trailing spaces (`"  hello   world  "` → 2, `"   "` → 0). Bugs and polish:
+> **Problem.** Count words, handling repeated spaces and leading or trailing whitespace.
 
-1. 🐞 **Only `' '` counts as a separator.** A tab or newline between words is treated as part of a word: `"hello<TAB>world"` gives **1** (I tested this). Use `isspace`, which covers space, tab, newline, carriage return and so on.
-2. The empty string prints "String is empty." instead of the correct answer, `0` words.
-3. The output sentence is hard to read (`'...' :2`).
+🏷️ **Concepts:** state machine (`inWord`), `isspace`, `istringstream`.
 
-**Problem:** Count words, handling repeated spaces and leading or trailing whitespace.
+#### 💡 How to think
 
-**Concepts:** state machine (`inWord`), `isspace`, `istringstream`.
+A word **starts** where a non-space character follows a space (or the start of the string). So count the *transitions* from "outside a word" to "inside a word". One pass, one flag.
 
-**How to think:** A word **starts** where a non-space character follows a space (or the start of the string). So count the *transitions* from "outside a word" to "inside a word". One pass, one flag.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <cctype>
 #include <iostream>
@@ -1368,53 +1513,60 @@ int main() {
 }
 ```
 
-**Dry run (`"  hi  you"`):**
+#### 🔍 Dry run (`"  hi  you"`)
 
-| char | action | inWord | count |
-|---|---|---|---|
-| space, space | whitespace | false | 0 |
-| `h` | new word | true | 1 |
-| `i` | still in word | true | 1 |
-| space, space | whitespace | false | 1 |
-| `y` | new word | true | 2 |
-| `o`, `u` | in word | true | 2 |
+| char         | action        | inWord | count |
+| ------------ | ------------- | ------ | ----- |
+| space, space | whitespace    | false  | 0     |
+| `h`        | new word      | true   | 1     |
+| `i`        | still in word | true   | 1     |
+| space, space | whitespace    | false  | 1     |
+| `y`        | new word      | true   | 2     |
+| `o`, `u` | in word       | true   | 2     |
 
-| You type | Words |
-|---|---|
-| `  hello   world  ` | 2 |
-| `one` | 1 |
-| `   ` (only spaces) | 0 |
-| *(empty line)* | 0 |
-| `hello<TAB>world` | 2 (your version: 1) |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n) time, O(1) space.
+| You type            | Words                                                         |
+| ------------------- | ------------------------------------------------------------- |
+| ` hello   world ` | 2                                                             |
+| `one`             | 1                                                             |
+|  (only spaces)      | 0                                                             |
+| *(empty line)*    | 0                                                             |
+| `hello<TAB>world` | 2 (a version that only treats `' '` as a separator gives 1) |
 
-**Pitfalls:** counting spaces and adding 1 (`"a  b"` and `" a"` break it); treating only `' '` as whitespace; hyphenated words or punctuation (decide what a "word" is, e.g. `don't`, `well-known`).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, O(1) space.
+
+#### ⚠️ Pitfalls
+
+- Counting spaces and adding 1 (`"a  b"` and `" a"` break it)
+- Treating only `' '` as whitespace
+- Hyphenated words or punctuation (decide what a "word" is, e.g. `don't`, `well-known`)
+
+#### 🎤 Follow-ups
+
 - *Print each word?* Use the `istringstream` loop and print `word`.
 - *Longest word? Reverse the word order?* Same loop with extra state.
 - *Count words separated by commas?* Replace `isspace` with a custom delimiter test.
 
+<sub></sub>
+
 ---
 
-## Q15. Character Frequency
+### Q15. Character Frequency
 
-**Review of your solution:** ✅ Correct output in first-occurrence order (`hello world` → `h 1, e 1, l 3, o 2, ...`). But:
+> **Problem.** Count how many times each character occurs.
 
-1. 🐞 **O(n²)**: for each character you scan before it (`seen`) and after it (count). Counting every character in one pass with a table is O(n).
-2. The output ends with a dangling `", "`, and a space character prints as a blank (`"  1"`), which is confusing.
-3. `std::string &s` should be `const std::string &s`; `int strSize = s.size()` is an unsigned-to-int conversion.
+🏷️ **Concepts:** counting with a lookup table indexed by character code (`unsigned char` → 0..255), preserving first-occurrence order, `std::map` alternative.
 
-**Problem:** Count how many times each character occurs.
+#### 💡 How to think
 
-**Concepts:** counting with a lookup table indexed by character code (`unsigned char` → 0..255), preserving first-occurrence order, `std::map` alternative.
-
-**How to think**
-1. **Brute force (yours):** for each position, check if the character was seen, count the rest: O(n²).
+1. **Brute force:** for each position, check if the character was seen, count the rest: O(n²).
 2. **Table:** `int count[256]`; for each character do `count[c]++`. Reading the table afterwards gives sorted-by-character order; to get **first-occurrence order**, walk the string again and print each character the first time you meet it, then zero its count so it is not printed twice.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <string>
@@ -1454,47 +1606,55 @@ int main() {
 }
 ```
 
-**Dry run (`"aba"`):** table after pass 1: `a = 2`, `b = 1`. Pass 2: `a` → print `a: 2`, zero it; `b` → print `b: 1`; `a` → count 0, skip. Output `a: 2, b: 1`.
+#### 🔍 Dry run (`"aba"`)
 
-| You type | Output |
-|---|---|
-| `hello world` | `h: 1, e: 1, l: 3, o: 2, ' ': 1, w: 1, r: 1, d: 1` |
-| `aAa` | `a: 2, A: 1` (case-sensitive) |
-| `mississippi` | `m: 1, i: 4, s: 4, p: 2` |
-| *(empty line)* | *(empty line)* |
+table after pass 1: `a = 2`, `b = 1`. Pass 2: `a` → print `a: 2`, zero it; `b` → print `b: 1`; `a` → count 0, skip. Output `a: 2, b: 1`.
 
-**Complexity:** O(n) time, O(1) space (a fixed 256-entry table, independent of `n`).
+#### 🧪 Sample runs and edge cases
+
+| You type         | Output                                               |
+| ---------------- | ---------------------------------------------------- |
+| `hello world`  | `h: 1, e: 1, l: 3, o: 2, ' ': 1, w: 1, r: 1, d: 1` |
+| `aAa`          | `a: 2, A: 1` (case-sensitive)                      |
+| `mississippi`  | `m: 1, i: 4, s: 4, p: 2`                           |
+| *(empty line)* | *(empty line)*                                     |
+
+#### ⏱️ Complexity
+
+O(n) time, O(1) space (a fixed 256-entry table, independent of `n`).
 
 **Alphabetical order or any Unicode text?** Use `std::map<char,int>` (sorted by key, O(n log k)) or `unordered_map` (Q47). For lower-case-only input a table of 26 (`c - 'a'`) is enough.
 
-**Pitfalls:** indexing the table with a plain `char` (negative index for non-ASCII bytes → out-of-bounds); forgetting that `'A'` and `'a'` are different; not initializing the table (`= {}` zeroes it).
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- Indexing the table with a plain `char` (negative index for non-ASCII bytes → out-of-bounds)
+- Forgetting that `'A'` and `'a'` are different
+- Not initializing the table (`= {}` zeroes it)
+
+#### 🎤 Follow-ups
+
 - *Most frequent character?* Track the maximum while scanning the table.
 - *Frequency ignoring case?* `tolower` before indexing.
 - *This "count with a table" idea powers anagrams (Q16), first unique character (Q18) and the frequency counter (Q47).*
 
+<sub></sub>
+
 ---
 
-## Q16. Check Anagrams
+### Q16. Check Anagrams
 
-**Review of your solution:** ✅ The algorithm is correct and well written: length check first, then **increment for one string and decrement for the other**, then verify every counter is zero. Using `unsigned char` for the index is exactly right. Improvements:
+> **Problem.** Decide whether two strings contain the same characters with the same frequencies.
 
-1. 🐞 **The strings are hard-coded** (`"asdf09876"`, `"67890fdas"`). Read both with `getline` so you can test it (as you said you wanted: input as string).
-2. Parameters should be `const std::string &`.
-3. **Decide the rules:** your version is case-sensitive and counts spaces, so `Listen` / `Silent` is **not** an anagram pair. The classic interview version ignores case and spaces (`"Dormitory"` / `"dirty room"`); a relaxed function is below.
-4. Output formatting: `" Anagrams. "` / `" Not Anagrams."` have inconsistent spaces.
+🏷️ **Concepts:** frequency table (Q15), early exit on different lengths, normalization.
 
-**Problem:** Decide whether two strings contain the same characters with the same frequencies.
+#### 💡 How to think
 
-**Concepts:** frequency table (Q15), early exit on different lengths, normalization.
-
-**How to think**
 1. **Sort both strings and compare:** O(n log n), easy to write.
-2. **Counting (yours):** one table, `+1` for each character of `a`, `-1` for each of `b`. If they are anagrams, every entry returns to zero: O(n), O(1) space.
+2. **Counting:** one table, `+1` for each character of `a`, `-1` for each of `b`. If they are anagrams, every entry returns to zero: O(n), O(1) space.
 3. If the lengths differ they cannot be anagrams (strict version): return immediately.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <cctype>
 #include <iostream>
@@ -1545,44 +1705,52 @@ int main() {
 }
 ```
 
-**Dry run (`"cab"` vs `"abc"`):** `c+1, a-1` → `a+1, b-1` → `b+1, c-1`... every counter ends at 0 → anagrams.
+#### 🔍 Dry run (`"cab"` vs `"abc"`)
 
-| First | Second | Strict | Relaxed |
-|---|---|---|---|
-| `asdf09876` | `67890fdas` | anagrams | anagrams |
-| `listen` | `silent` | anagrams | anagrams |
-| `Listen` | `Silent` | not | anagrams |
-| `dormitory` | `dirty room` | not (lengths differ) | anagrams |
-| `abc` | `abd` | not | not |
-| `a` | `aa` | not | not |
-| *(both empty)* | | anagrams | anagrams |
+`c+1, a-1` → `a+1, b-1` → `b+1, c-1`... every counter ends at 0 → anagrams.
 
-**Complexity:** O(n) time, O(1) space (fixed table).
+| First            | Second         | Strict               | Relaxed  |
+| ---------------- | -------------- | -------------------- | -------- |
+| `asdf09876`    | `67890fdas`  | anagrams             | anagrams |
+| `listen`       | `silent`     | anagrams             | anagrams |
+| `Listen`       | `Silent`     | not                  | anagrams |
+| `dormitory`    | `dirty room` | not (lengths differ) | anagrams |
+| `abc`          | `abd`        | not                  | not      |
+| `a`            | `aa`         | not                  | not      |
+| *(both empty)* |                | anagrams             | anagrams |
 
-**Pitfalls:** comparing only the sorted-ness of lengths; using a 26-entry table when the input has digits or capitals (out-of-bounds); forgetting the early length check.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, O(1) space (fixed table).
+
+#### ⚠️ Pitfalls
+
+- Comparing only the sorted-ness of lengths
+- Using a 26-entry table when the input has digits or capitals (out-of-bounds)
+- Forgetting the early length check
+
+#### 🎤 Follow-ups
+
 - *Sorting version?* `sort(a.begin(), a.end()); sort(b.begin(), b.end()); return a == b;` (O(n log n), modifies copies).
 - *Group a list of words by anagram class?* Use the sorted word as a map key.
 - *Unicode?* Counting bytes is wrong for multi-byte characters (S5).
 
+<sub></sub>
+
 ---
 
-## Q17. Remove Duplicate Characters
+### Q17. Remove Duplicate Characters
 
-**Review of your solution:** ✅ Correct and clean: a `seen` table, the `unsigned char` cast with an explanatory comment, and a new string built in first-occurrence order (`programming` → `progamin`, `aabbcc` → `abc`, empty → empty). Notes:
+> **Problem.** Remove repeated characters, keeping the first occurrence of each.
 
-1. Case-sensitive: `AaA` → `Aa`. State it, or `tolower` for the check only.
-2. `vector<bool>` works; a plain `bool seen[256] = {}` is simpler and faster for a fixed table.
-3. `std::string newString = "";` can simply be `std::string newString;`.
+🏷️ **Concepts:** "seen" table, building a result string, O(n) vs O(n²).
 
-**Problem:** Remove repeated characters, keeping the first occurrence of each.
+#### 💡 How to think
 
-**Concepts:** "seen" table, building a result string, O(n) vs O(n²).
+Walk the string once. If a character was not seen, append it and mark it. Otherwise skip it. The result is naturally in first-occurrence order.
 
-**How to think:** Walk the string once. If a character was not seen, append it and mark it. Otherwise skip it. The result is naturally in first-occurrence order.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <string>
@@ -1613,41 +1781,48 @@ int main() {
 }
 ```
 
-| You type | Output |
-|---|---|
-| `programming` | `progamin` |
-| `aabbcc` | `abc` |
-| `AaA` | `Aa` |
-| `hello world` | `helo wrd` |
+#### 🧪 Sample runs and edge cases
+
+| You type         | Output           |
+| ---------------- | ---------------- |
+| `programming`  | `progamin`     |
+| `aabbcc`       | `abc`          |
+| `AaA`          | `Aa`           |
+| `hello world`  | `helo wrd`     |
 | *(empty line)* | *(empty line)* |
 
-**Complexity:** O(n) time, O(1) space for the table plus O(n) for the result.
+#### ⏱️ Complexity
+
+O(n) time, O(1) space for the table plus O(n) for the result.
 
 **Without an extra table or a second string?** In place with the reader/writer pattern: `k` marks the write position and, for each `s[i]`, a loop over `s[0..k-1]` checks "seen": O(n²) time, O(1) space.
 
-**Pitfalls:** removing *all* occurrences of repeated characters instead of keeping the first (`aab` → `b` is a different problem); sorting first (loses the original order).
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- Removing *all* occurrences of repeated characters instead of keeping the first (`aab` → `b` is a different problem)
+- Sorting first (loses the original order)
+
+#### 🎤 Follow-ups
+
 - *Remove only adjacent duplicates (`aabbca` → `abca`)?* Compare with the last appended character.
 - *Standard library?* A `set<char>` for the "seen" test.
 
+<sub></sub>
+
 ---
 
-## Q18. First Non-Repeating Character
+### Q18. First Non-Repeating Character
 
-**Review of your solution:** ✅ Correct (checked: `afdaeaasfed3` → `s`, the first character that appears exactly once). The two-pass design (count, then scan in original order) is the standard answer, and returning `std::optional<char>` is a good modern way to say "maybe nothing". Improvements:
+> **Problem.** Find the first character that appears exactly once.
 
-1. **Hard-coded string**: read it with `getline`.
-2. For characters, `int freq[256]` is simpler and faster than `unordered_map<char,int>` (no hashing, no heap allocation, same O(n)).
-3. Be careful with `map[key]`: `operator[]` **inserts** a missing key. It is safe in your loop because every key exists, but use `find`/`at` for pure lookups.
+🏷️ **Concepts:** two-pass counting, `std::optional`, order matters (so you must scan the **string**, not the table).
 
-**Problem:** Find the first character that appears exactly once.
+#### 💡 How to think
 
-**Concepts:** two-pass counting, `std::optional`, order matters (so you must scan the **string**, not the table).
+First pass: count all characters. Second pass: walk the string from the left and return the first character whose count is 1. A table alone cannot answer "first" (it has no order), which is why the second pass reads the string.
 
-**How to think:** First pass: count all characters. Second pass: walk the string from the left and return the first character whose count is 1. A table alone cannot answer "first" (it has no order), which is why the second pass reads the string.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <optional>
@@ -1683,31 +1858,48 @@ int main() {
 }
 ```
 
-**Dry run (`"swiss"`):** counts `s: 3, w: 1, i: 1`. Scan: `s` (3) skip → `w` (1) **found**.
+#### 🔍 Dry run (`"swiss"`)
 
-| You type | Output |
-|---|---|
-| `swiss` | `w` |
-| `afdaeaasfed3` | `s` |
-| `aabb` | no non-repeating character |
-| `a` | `a` |
+counts `s: 3, w: 1, i: 1`. Scan: `s` (3) skip → `w` (1) **found**.
+
+#### 🧪 Sample runs and edge cases
+
+| You type         | Output                     |
+| ---------------- | -------------------------- |
+| `swiss`        | `w`                      |
+| `afdaeaasfed3` | `s`                      |
+| `aabb`         | no non-repeating character |
+| `a`            | `a`                      |
 | *(empty line)* | no non-repeating character |
-| `abcabcd` | `d` |
+| `abcabcd`      | `d`                      |
 
-**Complexity:** O(n) time, O(1) space (fixed table).
+#### ⏱️ Complexity
 
-**Pitfalls:** returning the character with the *smallest count* or the first in the table (wrong order); using a sentinel like `'\0'` for "none" (a string may contain it); a single pass cannot decide "first unique" until the whole string has been read.
+O(n) time, O(1) space (fixed table).
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Returning the character with the *smallest count* or the first in the table (wrong order)
+- Using a sentinel like `'\0'` for "none" (a string may contain it)
+- A single pass cannot decide "first unique" until the whole string has been read
+
+#### 🎤 Follow-ups
+
 - *Streaming input (characters arrive one by one)?* Keep a queue of candidates and pop repeated ones from the front.
 - *Return the index instead of the character?* Same loop, return `i`.
 - *First repeating character?* Mark characters as seen in one pass and return the first already seen.
 
+<sub></sub>
+
 ---
 
-# PART 0 (continued) — FUNCTION CONCEPTS (read once)
+## Module 3 — Functions and Modular Programming
 
-## F1. Declaration, definition, and prototypes
+> 🧱 **Q19–Q24** · Split programs into functions that compute and return; pass by value, reference and const reference; overload functions; build on GCD, primes and swapping.
+
+### 📘 Concepts
+
+#### F1. Declaration, definition, and prototypes
 
 ```cpp
 int add(int a, int b);            // declaration (prototype): tells the compiler the signature
@@ -1718,30 +1910,30 @@ int add(int a, int b) {           // definition: the actual body
 
 A function must be **declared before it is used**. For small programs, define helpers above `main`; for bigger ones put prototypes at the top.
 
-## F2. Compute in functions, print in `main`
+#### F2. Compute in functions, print in `main`
 
 A function that both calculates and prints cannot be reused or tested. The professional split:
 
-| Function | Responsibility |
-|---|---|
-| `long long add(int a, int b)` | **return** a result |
+| Function                                   | Responsibility                                              |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| `long long add(int a, int b)`            | **return** a result                                   |
 | `bool divide(int a, int b, double &out)` | return success/failure, give the result through a reference |
-| `main` | read input, call functions, print |
+| `main`                                   | read input, call functions, print                           |
 
 Functions that return values compose (`add(add(1, 2), 3)`), can be unit-tested, and can be reused with a different front end.
 
-## F3. How arguments are passed
+#### F3. How arguments are passed
 
-| Style | Syntax | Effect | Use for |
-|---|---|---|---|
-| By value | `void f(int x)` | `x` is a **copy**; the caller's variable is unchanged | small types you only read |
-| By reference | `void f(int &x)` | `x` **is** the caller's variable | functions that must modify the argument |
-| By const reference | `void f(const string &s)` | no copy, read-only | big objects (strings, vectors) you only read |
-| By pointer | `void f(int *p)` | `p` holds the caller's **address**; may be `nullptr` | optional arguments, arrays, C-style APIs |
+| Style              | Syntax                      | Effect                                                         | Use for                                      |
+| ------------------ | --------------------------- | -------------------------------------------------------------- | -------------------------------------------- |
+| By value           | `void f(int x)`           | `x` is a **copy**; the caller's variable is unchanged  | small types you only read                    |
+| By reference       | `void f(int &x)`          | `x` **is** the caller's variable                       | functions that must modify the argument      |
+| By const reference | `void f(const string &s)` | no copy, read-only                                             | big objects (strings, vectors) you only read |
+| By pointer         | `void f(int *p)`          | `p` holds the caller's **address**; may be `nullptr` | optional arguments, arrays, C-style APIs     |
 
 A reference **cannot be null and cannot be re-seated**; a pointer can be both. Prefer references when "no object" is not a valid input.
 
-## F4. Function overloading
+#### F4. Function overloading
 
 Several functions may share a name if their **parameter lists differ** (number or types):
 
@@ -1754,32 +1946,27 @@ double area(double length, double breadth);    // 2 parameters
 - Resolution order: exact match → promotion (`char` → `int`) → conversion (`int` → `double`) → ambiguous (compile error).
 - Two overloads with the *same* parameter types (circle radius vs square side, both `double`) are impossible, so you need a tag type or different names (see Q24).
 
-## F5. Return-value conventions
+#### F5. Return-value conventions
 
 - **Return `bool` + out-parameter** (or `std::optional<T>`) when the operation can fail, as for division by zero.
 - **Do not return references or pointers to local variables**: they die when the function returns (dangling, see Q30).
 
----
-
-# MODULE 3 — FUNCTIONS AND MODULAR PROGRAMMING
+### 📝 Problems
 
 ---
 
-## Q19. Build a Calculator Using Functions
+### Q19. Build a Calculator Using Functions
 
-**Review of your solution:** ✅ Works (checked `+ - * /`, division by zero, an invalid operator, and the 64-bit widening so `2000000000 * 2000000000` is exact). The design issue is the one this question is really testing:
+> **Problem.** Implement `+ - * /` in separate functions and use them.
 
-1. 🐞 **Your functions print instead of returning.** "Implement addition, subtraction, multiplication and division in separate functions" means each function should compute and **return** a value. Printing belongs in `main`. As written, you cannot reuse `addition` to add three numbers or test it without reading the console.
-2. The prompts are confusing: `"Enter the number for calculation(+,-,*,/) : "` mentions operators while asking for numbers. Reading `a op b` in one line (`3 + 4`) is the natural format.
-3. Check that input reading succeeded (`cin >> a >> op >> b`).
+🏷️ **Concepts:** functions that return values (F2), `switch`, error signalling (`bool` + reference), widening to avoid overflow.
 
-**Problem:** Implement `+ - * /` in separate functions and use them.
+#### 💡 How to think
 
-**Concepts:** functions that return values (F2), `switch`, error signalling (`bool` + reference), widening to avoid overflow.
+One tiny function per operation. Operations that cannot fail return the result. Division can fail (`b == 0`) and may produce a fraction, so it returns a `bool` and writes the result through a reference parameter. `main` parses the input and chooses the function.
 
-**How to think:** One tiny function per operation. Operations that cannot fail return the result. Division can fail (`b == 0`) and may produce a fraction, so it returns a `bool` and writes the result through a reference parameter. `main` parses the input and chooses the function.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 using namespace std;
@@ -1821,43 +2008,50 @@ int main() {
 }
 ```
 
-| You type | Output |
-|---|---|
-| `3 + 4` | `3 + 4 = 7` |
-| `3 - 10` | `3 - 10 = -7` |
+#### 🧪 Sample runs and edge cases
+
+| You type                    | Output                                            |
+| --------------------------- | ------------------------------------------------- |
+| `3 + 4`                   | `3 + 4 = 7`                                     |
+| `3 - 10`                  | `3 - 10 = -7`                                   |
 | `2000000000 * 2000000000` | `2000000000 * 2000000000 = 4000000000000000000` |
-| `7 / 2` | `7 / 2 = 3.5` |
-| `5 / 0` | `Error: division by zero` |
-| `1 % 2` | `Error: invalid operator '%'` |
+| `7 / 2`                   | `7 / 2 = 3.5`                                   |
+| `5 / 0`                   | `Error: division by zero`                       |
+| `1 % 2`                   | `Error: invalid operator '%'`                   |
 
-**Complexity:** O(1).
+#### ⏱️ Complexity
 
-**Pitfalls:** integer division (`7 / 2 == 3`) when you expected `3.5`; printing inside the operation functions; forgetting `break` in the `switch`; declaring a variable inside a `case` without braces (the `{ }` around `case '/'` above are required).
+O(1).
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Integer division (`7 / 2 == 3`) when you expected `3.5`
+- Printing inside the operation functions
+- Forgetting `break` in the `switch`
+- Declaring a variable inside a `case` without braces (the `{ }` around `case '/'` above are required)
+
+#### 🎤 Follow-ups
+
 - *Make it a loop until the user quits?* Wrap the body in `while (true)`.
 - *Use `double` operands?* Change the parameter and return types to `double`.
 - *Table of function pointers instead of `switch`?* `double (*ops[])(double, double)`: a nice extension in the pointers module.
 
+<sub></sub>
+
 ---
 
-## Q20. GCD and LCM Functions
+### Q20. GCD and LCM Functions
 
-**Review of your solution:** 🐞 **The file does not compile.** It contains the entire Q19 calculator program (including its own `main`) pasted in the middle, followed by your GCD/LCM code with a second `main`: `error: redefinition of 'int main()'`. The GCD/LCM part itself is **excellent**, and I tested it separately:
+> **Problem.** Implement separate GCD and LCM functions for two integers.
 
-- `magnitude()` converts to unsigned without overflow, even for `LLONG_MIN` (`-(n + 1)` first, then `+ 1`). That is a corner most people miss.
-- `gcdValue` on unsigned types, `lcmValue` returning `std::optional` to signal overflow, and the overflow test `reduced > maxValue / y` are all correct.
-- Results: `12 18` → GCD 6, LCM 36; `-4 6` → 2, 12; `0 5` → 5, 0; `0 0` → 0, 0; `7 13` → 1, 91; a pair near 9·10¹⁸ → "LCM exceeds the long long range"; `LLONG_MIN 0` → GCD `9223372036854775808`.
+🏷️ **Concepts:** Euclid (Level 1, Q18–Q19), `unsigned long long`, `std::optional`, overflow-safe LCM.
 
-Lesson: **one file, one problem, one `main`.** Copy/paste mistakes like this are caught instantly by compiling before submitting. Also remove the unused `<cstdint>`.
+#### 💡 How to think
 
-**Problem:** Implement separate GCD and LCM functions for two integers.
+`gcd(a, b) = gcd(b, a % b)` until `b == 0`. `lcm(a, b) = a / gcd(a, b) * b`, dividing **first** to keep the intermediate value small, and checking that the product fits. Work with magnitudes so negative inputs behave (`gcd` and `lcm` are defined as non-negative).
 
-**Concepts:** Euclid (Level 1, Q18–Q19), `unsigned long long`, `std::optional`, overflow-safe LCM.
+#### 🧩 Solution
 
-**How to think:** `gcd(a, b) = gcd(b, a % b)` until `b == 0`. `lcm(a, b) = a / gcd(a, b) * b`, dividing **first** to keep the intermediate value small, and checking that the product fits. Work with magnitudes so negative inputs behave (`gcd` and `lcm` are defined as non-negative).
-
-**Solution (your design, cleaned up)**
 ```cpp
 #include <iostream>
 #include <limits>
@@ -1912,49 +2106,60 @@ int main() {
 }
 ```
 
-**Dry run (12, 18):** `gcd`: `(12, 18) → (18, 12) → (12, 6) → (6, 0)` = **6**. `lcm`: `reduced = 12 / 6 = 2`, `2 * 18 = 36`.
+#### 🔍 Dry run (12, 18)
 
-| You type | Output |
-|---|---|
-| `12 18` | GCD 6, LCM 36 |
-| `-4 6` | GCD 2, LCM 12 |
-| `0 5` | GCD 5, LCM 0 |
-| `0 0` | GCD 0, LCM 0 |
-| `7 13` | GCD 1, LCM 91 |
+`gcd`: `(12, 18) → (18, 12) → (12, 6) → (6, 0)` = **6**. `lcm`: `reduced = 12 / 6 = 2`, `2 * 18 = 36`.
+
+#### 🧪 Sample runs and edge cases
+
+| You type                                    | Output                                 |
+| ------------------------------------------- | -------------------------------------- |
+| `12 18`                                   | GCD 6, LCM 36                          |
+| `-4 6`                                    | GCD 2, LCM 12                          |
+| `0 5`                                     | GCD 5, LCM 0                           |
+| `0 0`                                     | GCD 0, LCM 0                           |
+| `7 13`                                    | GCD 1, LCM 91                          |
 | `9000000000000000000 8999999999999999999` | GCD 1, LCM exceeds the long long range |
 
 **Simpler version for an interview whiteboard** (non-negative `int`s):
+
 ```cpp
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 long long lcm(int a, int b) { return a == 0 || b == 0 ? 0 : static_cast<long long>(a / gcd(a, b)) * b; }
 ```
 
-**Complexity:** O(log min(a, b)) time, O(1) space.
+#### ⏱️ Complexity
 
-**Pitfalls:** `a * b / gcd` (overflows before dividing); `lcm(a, 0)` dividing by a zero gcd; naming your function `gcd` while also writing `using namespace std;` and including `<numeric>` (ambiguous with `std::gcd`).
+O(log min(a, b)) time, O(1) space.
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- `a * b / gcd` (overflows before dividing)
+- `lcm(a, 0)` dividing by a zero gcd
+- Naming a function `gcd` while also writing `using namespace std;` and including `<numeric>` (ambiguous with `std::gcd`)
+
+#### 🎤 Follow-ups
+
 - *GCD of an array?* Fold with `g = gcd(g, x)`.
 - *Standard library?* `std::gcd` and `std::lcm` in `<numeric>` (C++17).
 - *Reduce a fraction?* Divide numerator and denominator by their GCD.
 
+<sub></sub>
+
 ---
 
-## Q21. Prime Numbers Using Functions
+### Q21. Prime Numbers Using Functions
 
-**Review of your solution:** ✅ Correct and well structured: `isPrime` is a separate function (6k ± 1, `i <= n / i`), input errors and `start > end` are reported, and the loop `for (n = start;; ++n) { ...; if (n == end) break; }` correctly avoids overflow when `end == INT_MAX`. I verified `10 30`, `1 10`, `2147483600 2147483647`, `30 10` and non-numeric input. Small improvements:
+> **Problem.** Write a primality function and use it to print primes in a range.
 
-1. Move the range printing into a function too (`printPrimes(start, end)`), as the question suggests using the function "to print primes in a range".
-2. The output has a trailing space.
-3. `<limits>` is unused.
+🏷️ **Concepts:** modular programming (F2), √n primality (Level 1, Q12/Q26), safe loop bounds near `INT_MAX`.
 
-**Problem:** Write a primality function and use it to print primes in a range.
+#### 💡 How to think
 
-**Concepts:** modular programming (F2), √n primality (Level 1, Q12/Q26), safe loop bounds near `INT_MAX`.
+The primality test is the reusable piece. The range function loops through the numbers and calls it. For large ranges prefer the sieve (follow-ups).
 
-**How to think:** The primality test is the reusable piece. The range function loops through the numbers and calls it. For large ranges prefer the sieve (follow-ups).
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 using namespace std;
@@ -2000,41 +2205,49 @@ int main() {
 }
 ```
 
-| You type | Output |
-|---|---|
-| `10 30` | `11 13 17 19 23 29` |
-| `1 10` | `2 3 5 7` |
-| `24 28` | *(empty line, no primes)* |
-| `2147483600 2147483647` | `2147483629 2147483647` |
-| `30 10` | error: start cannot exceed end |
-| `abc` | error: invalid input |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O((end − start) · √end) time, O(1) space.
+| You type                  | Output                         |
+| ------------------------- | ------------------------------ |
+| `10 30`                 | `11 13 17 19 23 29`          |
+| `1 10`                  | `2 3 5 7`                    |
+| `24 28`                 | *(empty line, no primes)*    |
+| `2147483600 2147483647` | `2147483629 2147483647`      |
+| `30 10`                 | error: start cannot exceed end |
+| `abc`                   | error: invalid input           |
 
-**Pitfalls:** `for (n = start; n <= end; n++)` loops forever when `end == INT_MAX`; testing `n % i` up to `n - 1` (too slow); printing primes below 2.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O((end − start) · √end) time, O(1) space.
+
+#### ⚠️ Pitfalls
+
+- `for (n = start; n <= end; n++)` loops forever when `end == INT_MAX`
+- Testing `n % i` up to `n - 1` (too slow)
+- Printing primes below 2
+
+#### 🎤 Follow-ups
+
 - *Many primes quickly?* Sieve of Eratosthenes (Level 2 handbook Q27, Level 1 handbook).
 - *Count primes instead of printing them?* Return a counter.
 - *Twin primes in the range?* Compare consecutive primes with a difference of 2.
 
+<sub></sub>
+
 ---
 
-## Q22. Pass by Value vs. Pass by Reference
+### Q22. Pass by Value vs. Pass by Reference
 
-**Review of your solution:** ✅ Correct, and the demonstration works: after `swapByValue(x, y)` the values in `main` are unchanged, after `swapByReference(x, y)` they are swapped (checked with `3 7`). To make the demonstration **convincing** in an interview:
+> **Problem.** Demonstrate the difference between passing arguments by value and by reference.
 
-1. Print the values **inside** the by-value function too: the local copies *were* swapped there, but the effect disappears when the function returns. Otherwise it looks like the function did nothing.
-2. Print the **addresses**: the by-value parameter has a *different* address than `x`; the by-reference parameter has the *same* address.
-3. Add a second, simpler example (`increment`) and a `const` reference example for the "big object" case.
+🏷️ **Concepts:** copy vs alias (F3), address-of (`&`), `const &`.
 
-**Problem:** Demonstrate the difference between passing arguments by value and by reference.
+#### 💡 How to think
 
-**Concepts:** copy vs alias (F3), address-of (`&`), `const &`.
+By value → the function receives its own copy; by reference → the parameter is another name for the caller's variable. Printing both the values and `&` addresses makes this visible.
 
-**How to think:** By value → the function receives its own copy; by reference → the parameter is another name for the caller's variable. Printing both the values and `&` addresses makes this visible.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <string>
@@ -2095,7 +2308,7 @@ int main() {
 }
 ```
 
-**Output for `3 7`** (addresses will differ on your machine; the pattern is what matters):
+**Output for `3 7`** (addresses differ on every machine; the pattern is what matters):
 
 ```
 --- increment ---
@@ -2113,34 +2326,44 @@ main after swapByValue:     x = 4, y = 7  (unchanged)
 main after swapByReference: x = 7, y = 4  (swapped)
 ```
 
-| Style | Copy made? | Caller's variable changes? | Typical use |
-|---|---|---|---|
-| value | yes | no | small read-only values |
-| reference | no | **yes** | functions that must modify |
-| const reference | no | no (compiler enforces) | large objects, read-only |
+| Style           | Copy made? | Caller's variable changes? | Typical use                |
+| --------------- | ---------- | -------------------------- | -------------------------- |
+| value           | yes        | no                         | small read-only values     |
+| reference       | no         | **yes**              | functions that must modify |
+| const reference | no         | no (compiler enforces)     | large objects, read-only   |
 
-**Complexity:** O(1).
+#### ⏱️ Complexity
 
-**Pitfalls:** forgetting `&` and wondering why nothing changes; passing a huge `vector` by value (an O(n) copy per call); returning a reference to a local variable.
+O(1).
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Forgetting `&` and wondering why nothing changes
+- Passing a huge `vector` by value (an O(n) copy per call)
+- Returning a reference to a local variable
+
+#### 🎤 Follow-ups
+
 - *What about pointers?* Passing the address also lets a function modify the original (Q26): the pointer itself is passed *by value*.
 - *Arrays?* They always "decay" to pointers, so the callee works on the original elements (A2).
 - *Why can't I pass a temporary (`f(5)`) to `int &`?* A non-const reference needs an lvalue; `const int &` accepts temporaries.
 
+<sub></sub>
+
 ---
 
-## Q23. Swap Using References
+### Q23. Swap Using References
 
-**Review of your solution:** ✅ Correct and safe: the temporary-variable swap with reference parameters (tested `3 7` → `7 3`). Because it uses a temp, it is also correct if both references name the *same* variable (`swapByReference(x, x)` leaves `x` unchanged), unlike the XOR trick. Extras worth showing in an interview: swapping array elements, and `std::swap`.
+> **Problem.** Write a function that swaps two integers using reference parameters.
 
-**Problem:** Write a function that swaps two integers using reference parameters.
+🏷️ **Concepts:** reference parameters (F3), temp swap, `std::swap`.
 
-**Concepts:** reference parameters (F3), temp swap, `std::swap`.
+#### 💡 How to think
 
-**How to think:** You need to change the caller's variables, so use references. Three assignments with one temporary: save `a`, copy `b` into `a`, copy the saved value into `b`.
+You need to change the caller's variables, so use references. Three assignments with one temporary: save `a`, copy `b` into `a`, copy the saved value into `b`.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <utility>
@@ -2178,6 +2401,7 @@ int main() {
 ```
 
 **Output for `3 7`:**
+
 ```
 Before: x = 3, y = 7
 After:  x = 7, y = 3
@@ -2186,34 +2410,41 @@ After swapInts(x, x): x = 7
 After std::swap: x = 3, y = 7
 ```
 
-**Dry run (`a = 3`, `b = 7`):** `temp = 3` → `a = 7` → `b = 3`.
+#### 🔍 Dry run (`a = 3`, `b = 7`)
 
-**Complexity:** O(1).
+`temp = 3` → `a = 7` → `b = 3`.
 
-**Pitfalls:** parameters by value (no effect); `swapInts(5, 6)` does not compile (a literal is not an lvalue: that is the compiler protecting you).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(1).
+
+#### ⚠️ Pitfalls
+
+- Parameters by value (no effect)
+- `swapInts(5, 6)` does not compile (a literal is not an lvalue: that is the compiler protecting you)
+
+#### 🎤 Follow-ups
+
 - *Swap without a temp?* Arithmetic/XOR tricks (Level 1, Q25), with their overflow and aliasing problems.
 - *Swap two strings or vectors?* Make it a template: `template <class T> void mySwap(T &a, T &b)`.
 - *Pointer version?* `void swapPtr(int *a, int *b)`.
 
+<sub></sub>
+
 ---
 
-## Q24. Function Overloading
+### Q24. Function Overloading
 
-**Review of your solution:** ✅ Correct, and you spotted the real difficulty: the circle (`double radius`) and the square (`double side`) would have the **same signature** `area(double)`, which C++ does not allow. Your fix, a tag parameter (`Shape`), is a recognized technique (*tag dispatch*), and overload resolution picks the right function (`area(r)`, `area(side, SQUARE)`, `area(length, breadth)` gave `12.5664`, `9`, `20`). Improvements:
+> **Problem.** Create overloaded functions that compute the area of a circle, a rectangle and a square.
 
-1. **Use `enum class`** (`Shape::Square`). An unscoped `enum` leaks the name `SQUARE` into the global namespace and converts implicitly to numbers.
-2. **Validate input:** a negative radius or side makes no geometric sense (`-2` radius still printed `12.5664`).
-3. `<cmath>` is unused. (`M_PI` is not standard C++; your explicit `PI` constant is the portable choice.)
+🏷️ **Concepts:** overloading rules (F4), tag dispatch, `enum class`, input validation.
 
-**Problem:** Create overloaded functions that compute the area of a circle, a rectangle and a square.
+#### 💡 How to think
 
-**Concepts:** overloading rules (F4), tag dispatch, `enum class`, input validation.
+Rectangle has two `double` parameters, so it is naturally distinct. Circle and square both take a single `double`: you must make one of them different. Options: (a) a tag parameter, (b) different parameter *types* (e.g. `int side` vs `double radius`: fragile, because `area(5)` and `area(5.0)` silently mean different shapes), or (c) distinct struct types (`Circle`, `Square`). The tag is simple and explicit.
 
-**How to think:** Rectangle has two `double` parameters, so it is naturally distinct. Circle and square both take a single `double`: you must make one of them different. Options: (a) a tag parameter, (b) different parameter *types* (e.g. `int side` vs `double radius`: fragile, because `area(5)` and `area(5.0)` silently mean different shapes), or (c) distinct struct types (`Circle`, `Square`). The tag is simple and explicit.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 using namespace std;
@@ -2258,21 +2489,26 @@ int main() {
 
 **Overload resolution in this program:**
 
-| Call | Candidates | Chosen |
-|---|---|---|
-| `area(r)` | `area(double)` | circle |
-| `area(length, breadth)` | `area(double, double)` | rectangle |
-| `area(side, Shape::Square)` | `area(double, Shape)` | square (`Shape` does not convert to `double`) |
+| Call                          | Candidates               | Chosen                                            |
+| ----------------------------- | ------------------------ | ------------------------------------------------- |
+| `area(r)`                   | `area(double)`         | circle                                            |
+| `area(length, breadth)`     | `area(double, double)` | rectangle                                         |
+| `area(side, Shape::Square)` | `area(double, Shape)`  | square (`Shape` does not convert to `double`) |
 
-| You type | Output |
-|---|---|
+#### 🧪 Sample runs and edge cases
+
+| You type                          | Output                                             |
+| --------------------------------- | -------------------------------------------------- |
 | radius `2`, side `3`, `4 5` | circle `12.5664`, square `9`, rectangle `20` |
-| radius `0`, side `0`, `0 0` | all `0` |
-| any negative number | error message |
+| radius `0`, side `0`, `0 0` | all `0`                                          |
+| any negative number               | error message                                      |
 
-**Complexity:** O(1).
+#### ⏱️ Complexity
+
+O(1).
 
 **Alternative: distinct types (strongest and easiest to read)**
+
 ```cpp
 struct Circle    { double radius; };
 struct Rectangle { double length, breadth; };
@@ -2284,18 +2520,29 @@ double area(Square s)    { return s.side * s.side; }
 // usage: area(Circle{2.0}), area(Square{3.0})
 ```
 
-**Pitfalls:** two overloads differing only in return type (compile error); ambiguous calls such as `f(5)` with overloads `f(long)` and `f(double)`; relying on `int` vs `double` to select a shape.
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- Two overloads differing only in return type (compile error)
+- Ambiguous calls such as `f(5)` with overloads `f(long)` and `f(double)`
+- Relying on `int` vs `double` to select a shape
+
+#### 🎤 Follow-ups
+
 - *Is overloading resolved at compile time or run time?* Compile time (static polymorphism); virtual functions are run-time.
 - *Default arguments vs overloads?* `area(double l, double b = 1)` is shorter but different semantics.
 - *Name mangling:* the compiler encodes parameter types into the symbol name, which is how overloads coexist.
 
+<sub></sub>
+
 ---
 
-# PART 0 (continued) — POINTER AND MEMORY CONCEPTS (read once)
+## Module 4 — Pointers and Memory
 
-## P1. What a pointer is
+> 🧭 **Q25–Q30** · Addresses, dereferencing, pointer arithmetic, `new[]`/`delete[]`, and the four classic memory bugs (leak, dangling pointer, double delete, null dereference).
+
+### 📘 Concepts
+
+#### P1. What a pointer is
 
 A pointer is a **variable that stores a memory address**.
 
@@ -2307,29 +2554,29 @@ int *ptr = &val;       // ptr holds the ADDRESS of val
 //   ptr:  [0x1000]    at address 0x2000   (the pointer is itself a variable with its own address)
 ```
 
-| Expression | Meaning |
-|---|---|
-| `&val` | **address of** `val` (`0x1000`) |
-| `ptr` | the address stored in the pointer (`0x1000`) |
-| `*ptr` | **dereference**: the value at that address (`100`); assigning `*ptr = 5` changes `val` |
-| `&ptr` | the address of the pointer variable itself (`0x2000`) |
+| Expression | Meaning                                                                                            |
+| ---------- | -------------------------------------------------------------------------------------------------- |
+| `&val`   | **address of** `val` (`0x1000`)                                                          |
+| `ptr`    | the address stored in the pointer (`0x1000`)                                                     |
+| `*ptr`   | **dereference**: the value at that address (`100`); assigning `*ptr = 5` changes `val` |
+| `&ptr`   | the address of the pointer variable itself (`0x2000`)                                            |
 
 The `*` in a declaration (`int *ptr`) means "pointer to int". In an expression (`*ptr`) it means "go to the address". Same symbol, two roles.
 
-## P2. `nullptr` and always-initialized pointers
+#### P2. `nullptr` and always-initialized pointers
 
 - A pointer that points nowhere must hold **`nullptr`** (C++11), not `NULL` or `0`.
 - An **uninitialized** pointer holds garbage (a *wild* pointer): dereferencing it is undefined behavior. Always write `int *p = nullptr;` or initialize with a valid address.
 - Dereferencing `nullptr` is undefined behavior (usually a crash), so check `if (p != nullptr)` before using a pointer you did not create yourself.
 
-## P3. Arrays and pointer arithmetic
+#### P3. Arrays and pointer arithmetic
 
 - The name of an array decays to a pointer to its first element: `arr == &arr[0]`.
 - **`arr[i]` is defined as `*(arr + i)`.** Adding `i` to a pointer moves it by `i * sizeof(element)` bytes, not by `i` bytes.
 - Pointers into the same array can be compared and subtracted: `p - arr` is the index.
 - The idiomatic traversal is a half-open range `[first, last)`: `for (const int *p = first; p != last; ++p)`. `last` may point **one past** the end but must never be dereferenced.
 
-## P4. `const` and pointers
+#### P4. `const` and pointers
 
 ```cpp
 const int *p;        // pointer to const int : cannot change *p, can re-point p
@@ -2339,14 +2586,14 @@ const int *const p;  // neither
 
 Read the declaration right-to-left. Use `const int *` for parameters that only read.
 
-## P5. Stack vs heap
+#### P5. Stack vs heap
 
-| | Stack (automatic) | Heap (dynamic) |
-|---|---|---|
-| Created by | ordinary declarations (`int x;`) | `new`, `new[]` |
-| Lifetime | until the enclosing `{ }` ends | until you `delete` it |
-| Size | small, fixed at compile time | large, chosen at run time |
-| Cleanup | automatic | **your job** |
+|            | Stack (automatic)                  | Heap (dynamic)            |
+| ---------- | ---------------------------------- | ------------------------- |
+| Created by | ordinary declarations (`int x;`) | `new`, `new[]`        |
+| Lifetime   | until the enclosing `{ }` ends   | until you `delete` it   |
+| Size       | small, fixed at compile time       | large, chosen at run time |
+| Cleanup    | automatic                          | **your job**        |
 
 ```cpp
 int *p  = new int(5);        // one int, initialised to 5      -> delete p;
@@ -2356,16 +2603,16 @@ int *z  = new int[10]();     // 10 ints, all zero
 
 **Rule: `new` ↔ `delete`, `new[]` ↔ `delete[]`.** Mixing them is undefined behavior.
 
-## P6. The four classic pointer bugs
+#### P6. The four classic pointer bugs
 
-| Bug | What happens | Prevention |
-|---|---|---|
-| **Memory leak** | `new` without `delete`: memory is never returned | pair every `new` with a `delete`; prefer RAII |
-| **Dangling pointer** | pointer to memory that was freed or went out of scope | set to `nullptr` after `delete`; never return the address of a local |
-| **Double delete** | `delete` twice on the same address | set to `nullptr` after the first `delete` (`delete nullptr` is safe) |
-| **Wild / null dereference** | `*p` with an uninitialised or null pointer | initialise pointers; check for `nullptr` |
+| Bug                               | What happens                                          | Prevention                                                                 |
+| --------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------- |
+| **Memory leak**             | `new` without `delete`: memory is never returned  | pair every `new` with a `delete`; prefer RAII                          |
+| **Dangling pointer**        | pointer to memory that was freed or went out of scope | set to `nullptr` after `delete`; never return the address of a local   |
+| **Double delete**           | `delete` twice on the same address                  | set to `nullptr` after the first `delete` (`delete nullptr` is safe) |
+| **Wild / null dereference** | `*p` with an uninitialised or null pointer          | initialise pointers; check for `nullptr`                                 |
 
-## P7. Modern C++: let objects clean up after themselves (RAII)
+#### P7. Modern C++: let objects clean up after themselves (RAII)
 
 ```cpp
 #include <memory>
@@ -2376,34 +2623,29 @@ vector<int> v(10);                      // even simpler: a resizable array that 
 
 Raw `new`/`delete` is still asked in interviews (and in this module), but in real code prefer `unique_ptr`, `shared_ptr` or containers.
 
-## P8. Tools that find memory bugs
+#### P8. Tools that find memory bugs
 
 ```bash
 g++ -std=c++17 -g -fsanitize=address,undefined file.cpp -o program   # AddressSanitizer + UBSan
 valgrind ./program                                                    # leak and invalid-access checker (Linux)
 ```
 
----
-
-# MODULE 4 — POINTERS AND MEMORY
+### 📝 Problems
 
 ---
 
-## Q25. Pointer Basics
+### Q25. Pointer Basics
 
-**Review of your solution:** ✅ The core is right (pointer to `val`, dereference, modification through the pointer). Against the question's wording, **something is missing**: it asks to print *the value, the address, and the dereferenced value*. Your program prints the address (through `ptr`), `*ptr`, and the updated `val`, but never prints the original `val` itself or `&val`, so it does not show that `ptr` and `&val` are the same address. Also:
+> **Problem.** Declare an integer and a pointer to it. Print the value, address, and dereferenced value.
 
-1. 🐞 `empty_ptr` is declared and never used (compiler warning: `unused variable`).
-2. The comment "Always reset unused raw pointers to nullptr" is misleading: the rule is **initialize** a pointer to `nullptr` when you have no valid target yet, and **reset** it after you free what it points to.
-3. The hard-coded address in the comment (`0x7ff7bfe0`) will differ on every run: fine as an illustration, but say so.
+🏷️ **Concepts:** `&`, `*`, pointer declaration (P1), `nullptr` (P2).
 
-**Problem:** Declare an integer and a pointer to it. Print the value, address, and dereferenced value.
+#### 💡 How to think
 
-**Concepts:** `&`, `*`, pointer declaration (P1), `nullptr` (P2).
+Print all four relevant things side by side so the relationship is obvious: the variable's value, its address (`&val`), the address stored in the pointer (`ptr`), and `*ptr`. The first two address lines must match. Then write through the pointer and show the variable changed.
 
-**How to think:** Print all four relevant things side by side so the relationship is obvious: the variable's value, its address (`&val`), the address stored in the pointer (`ptr`), and `*ptr`. The first two address lines must match. Then write through the pointer and show the variable changed.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 using namespace std;
@@ -2431,6 +2673,7 @@ int main() {
 ```
 
 **Output** (addresses differ on every run; what matters is that lines 2 and 3 are equal):
+
 ```
 Value of val                : 100
 Address of val (&val)       : 0x7ffd5c1e3a44
@@ -2445,6 +2688,7 @@ so it must not be dereferenced
 ```
 
 **Memory picture:**
+
 ```
  address  0x...a44          0x...a48
          +-------+         +------------+
@@ -2452,32 +2696,38 @@ so it must not be dereferenced
          +-------+         +------------+
 ```
 
-**Complexity:** O(1).
+#### ⏱️ Complexity
 
-**Pitfalls:** `int *p = 5;` (an integer is not an address: compile error); `int *a, b;` declares `a` as a pointer but `b` as a plain `int`; printing a `char *` with `cout` prints the **string** it points to, not the address (cast to `const void *` to see the address).
+O(1).
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- `int *p = 5;` (an integer is not an address: compile error)
+- `int *a, b;` declares `a` as a pointer but `b` as a plain `int`
+- Printing a `char *` with `cout` prints the **string** it points to, not the address (cast to `const void *` to see the address)
+
+#### 🎤 Follow-ups
+
 - *Pointer size?* 8 bytes on a 64-bit system regardless of the pointed-to type.
 - *What is a `void *`?* A pointer to unknown type: cannot be dereferenced without a cast.
 - *Pointer to pointer?* `int **pp = &ptr;` and `**pp` is the original value.
 
+<sub></sub>
+
 ---
 
-## Q26. Modify a Variable Through a Pointer
+### Q26. Modify a Variable Through a Pointer
 
-**Review of your solution:** ✅ Correct: the pointer is checked for `nullptr` before dereferencing, and the caller's variable really changes. Improvements:
+> **Problem.** Write a function that changes a variable's value using a pointer parameter.
 
-1. `main` never prints `value` after the call: show it, because "the caller's variable changed" is the whole point.
-2. Demonstrate the null check by actually calling the function with `nullptr`.
-3. Name the new value clearly (`230043` is a magic number; use a parameter `newValue`).
+🏷️ **Concepts:** passing an address, dereferencing, null checks (P2), pointer vs reference (F3).
 
-**Problem:** Write a function that changes a variable's value using a pointer parameter.
+#### 💡 How to think
 
-**Concepts:** passing an address, dereferencing, null checks (P2), pointer vs reference (F3).
+The function receives the **address** of the variable. By writing through it (`*ptr = ...`) it changes the caller's original. The pointer itself is a copy, but both copies hold the same address.
 
-**How to think:** The function receives the **address** of the variable. By writing through it (`*ptr = ...`) it changes the caller's original. The pointer itself is a copy, but both copies hold the same address.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 using namespace std;
@@ -2503,40 +2753,49 @@ int main() {
 ```
 
 **Output:**
+
 ```
 Before: value = 100
 After:  value = 230043
 Null pointer rejected, nothing modified
 ```
 
-**Dry run:** `&value` is copied into `ptr` → `*ptr = 230043` writes into `value`'s memory → `main` sees the new value.
+#### 🔍 Dry run
 
-**Complexity:** O(1).
+`&value` is copied into `ptr` → `*ptr = 230043` writes into `value`'s memory → `main` sees the new value.
 
-**Pitfalls:** assigning `ptr = &other` inside the function changes only the local copy of the pointer, not the caller's variable; forgetting the `nullptr` check; calling with an uninitialized pointer.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(1).
+
+#### ⚠️ Pitfalls
+
+- Assigning `ptr = &other` inside the function changes only the local copy of the pointer, not the caller's variable
+- Forgetting the `nullptr` check
+- Calling with an uninitialized pointer
+
+#### 🎤 Follow-ups
+
 - *Pointer vs reference version?* `void setValue(int &x, int v) { x = v; }`: shorter, cannot be null.
 - *Change the pointer itself from a function?* Pass a pointer to a pointer (`int **`) or a reference to a pointer (`int *&`).
 - *Use `const int *` when?* When the function only reads the value.
 
+<sub></sub>
+
 ---
 
-## Q27. Traverse an Array Using Pointers
+### Q27. Traverse an Array Using Pointers
 
-**Review of your solution:** ✅ Correct (`*(ptr + i)` prints all elements). It is a legitimate use of pointer arithmetic: `arr[i]` is defined as `*(arr + i)`. To show the more idiomatic forms:
+> **Problem.** Print all elements using pointer arithmetic instead of array indexing.
 
-1. Move the pointer itself (`++p`) up to an **end pointer** (`arr + n`) instead of indexing with `i`: that is how C++ iterators work.
-2. Put the loop in a function taking `(first, last)`, which also matches the standard library convention.
-3. Print without a trailing space.
+🏷️ **Concepts:** pointer arithmetic (P3), half-open ranges `[first, last)`, `const int *`.
 
-**Problem:** Print all elements using pointer arithmetic instead of array indexing.
+#### 💡 How to think
 
-**Concepts:** pointer arithmetic (P3), half-open ranges `[first, last)`, `const int *`.
+Start a pointer at the first element. While it has not reached "one past the last element", print `*p` and advance with `++p`. Advancing by 1 moves `sizeof(int)` bytes.
 
-**How to think:** Start a pointer at the first element. While it has not reached "one past the last element", print `*p` and advance with `++p`. Advancing by 1 moves `sizeof(int)` bytes.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -2556,7 +2815,7 @@ int main() {
 
     printWithPointers(arr, arr + n);                 // idiomatic: pointer to pointer range
 
-    for (int i = 0; i < n; i++)                      // your version: base + offset
+    for (int i = 0; i < n; i++)                      // base + offset form
         cout << *(arr + i) << ' ';
     cout << '\n';
 
@@ -2573,6 +2832,7 @@ int main() {
 ```
 
 **Output:**
+
 ```
 0 2 1 3 5 4 6 9 8 7
 0 2 1 3 5 4 6 9 8 7 
@@ -2581,33 +2841,42 @@ Index of the element holding 9: 7
 (empty line)
 ```
 
-**Dry run:** `p = arr` → prints `0`; `++p` moves 4 bytes (for `int`) to `arr[1]` → prints `2`; ... stops when `p == arr + 10`.
+#### 🔍 Dry run
 
-**Complexity:** O(n) time, O(1) space.
+`p = arr` → prints `0`; `++p` moves 4 bytes (for `int`) to `arr[1]` → prints `2`; ... stops when `p == arr + 10`.
 
-**Pitfalls:** dereferencing `arr + n` (one past the end may be *compared* but never *read*); looping backwards with `for (p = last; p >= arr; --p)`, which forms the pointer `arr - 1`, **before** the array (not allowed): step first and read afterwards as above, or use `reverse_iterator`; mixing pointer types in arithmetic (`int *` moves 4 bytes per step, `char *` moves 1).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, O(1) space.
+
+#### ⚠️ Pitfalls
+
+- Dereferencing `arr + n` (one past the end may be *compared* but never *read*)
+- Looping backwards with `for (p = last; p >= arr; --p)`, which forms the pointer `arr - 1`, **before** the array (not allowed): step first and read afterwards as above, or use `reverse_iterator`
+- Mixing pointer types in arithmetic (`int *` moves 4 bytes per step, `char *` moves 1)
+
+#### 🎤 Follow-ups
+
 - *Why does `p + 1` move 4 bytes?* The compiler scales by `sizeof(*p)`.
 - *Relationship to iterators?* `vector::begin()` / `end()` are pointer-like objects with the same `[begin, end)` contract.
 - *`arr[i]` vs `i[arr]`?* Both are `*(arr + i)` and `*(i + arr)`: legal (and silly).
 
+<sub></sub>
+
 ---
 
-## Q28. Find the Largest Element Using Pointers
+### Q28. Find the Largest Element Using Pointers
 
-**Review of your solution:** ✅ Correct (`44` for your array). You start from `arr[0]` (good: not `0` or `INT_MIN`) and read through `*(ptr + i)`. Improvements:
+> **Problem.** Find the maximum array element using pointers.
 
-1. The loop starts at `i = 0`, comparing `arr[0]` with itself (harmless, one wasted comparison). Start at `first + 1`.
-2. Return a **pointer to the maximum** (or `nullptr` for an empty range) instead of printing: then the caller gets both the value (`*p`) and the position (`p - arr`), and the function handles the empty case.
+🏷️ **Concepts:** pointer arithmetic, returning a pointer, `[first, last)` ranges, `nullptr` as "not found".
 
-**Problem:** Find the maximum array element using pointers.
+#### 💡 How to think
 
-**Concepts:** pointer arithmetic, returning a pointer, `[first, last)` ranges, `nullptr` as "not found".
+Same running-maximum idea as Level 2 Q1, but the running "best" is a **pointer to the best element**. If the range is empty there is no maximum: return `nullptr`.
 
-**How to think:** Same running-maximum idea as Level 2 Q1, but the running "best" is a **pointer to the best element**. If the range is empty there is no maximum: return `nullptr`.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <iterator>
@@ -2642,40 +2911,49 @@ int main() {
 ```
 
 **Output:**
+
 ```
 Largest: 44 at index 9
 Largest of negatives: -3
 Empty range: no maximum
 ```
 
-**Dry run (`{3, 9, 4}`):** `best → 3`; `p → 9`: `9 > 3` → `best → 9`; `p → 4`: `4 > 9`? no → `*best = 9`.
+#### 🔍 Dry run (`{3, 9, 4}`)
 
-**Complexity:** O(n) time, O(1) space.
+`best → 3`; `p → 9`: `9 > 3` → `best → 9`; `p → 4`: `4 > 9`? no → `*best = 9`.
 
-**Pitfalls:** dereferencing the returned pointer without checking for `nullptr` (empty input); returning a pointer to a **local** variable (dangling); `int *` returned from a `const int *` input (const-correctness: the return type must be `const int *`).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, O(1) space.
+
+#### ⚠️ Pitfalls
+
+- Dereferencing the returned pointer without checking for `nullptr` (empty input)
+- Returning a pointer to a **local** variable (dangling)
+- `int *` returned from a `const int *` input (const-correctness: the return type must be `const int *`)
+
+#### 🎤 Follow-ups
+
 - *Standard library?* `max_element(arr, arr + n)` returns exactly this kind of pointer/iterator.
 - *Pointer to the minimum? Both min and max in one pass?* Same pattern.
 - *Why return a pointer rather than a value?* It carries the position and can represent "not found" (`nullptr`).
 
+<sub></sub>
+
 ---
 
-## Q29. Dynamic Memory Allocation
+### Q29. Dynamic Memory Allocation
 
-**Review of your solution:** ✅ Good, careful code: validates the size, catches `std::bad_alloc` (also covers huge sizes that throw `bad_array_new_length`), checks every `cin >> arr[i]`, frees with `delete[]` on the failure path, and resets the pointer to `nullptr`. I tested `5 1 2 3 4 5` (prints the values) and sizes `0`, `-3`, `abc` (rejected). Small improvements:
+> **Problem.** Allocate an array with `new[]`, initialize it, print it, and release it correctly.
 
-1. 🐞 **Silent failure:** with too few values (`3 1 2`) the program exits with code 1 and **prints nothing**. Tell the user what went wrong.
-2. The array is never *initialized* before use. Allocate with `new int[n]()` (zero-initialized) or fill it explicitly, then show both stages.
-3. Mention the modern alternatives (`vector`, `unique_ptr<int[]>`) and test with AddressSanitizer.
+🏷️ **Concepts:** heap allocation (P5), `new[]`/`delete[]` pairing, exceptions from `new`, `nothrow`, RAII (P7).
 
-**Problem:** Allocate an array with `new[]`, initialize it, print it, and release it correctly.
+#### 💡 How to think
 
-**Concepts:** heap allocation (P5), `new[]`/`delete[]` pairing, exceptions from `new`, `nothrow`, RAII (P7).
+`new int[n]` returns the address of `n` contiguous ints on the heap. Its elements are **indeterminate** unless you initialize them (`new int[n]()` zeroes them). Every successful `new[]` needs exactly one `delete[]` on **every** path out of the function (including error returns).
 
-**How to think:** `new int[n]` returns the address of `n` contiguous ints on the heap. Its elements are **indeterminate** unless you initialize them (`new int[n]()` zeroes them). Every successful `new[]` needs exactly one `delete[]` on **every** path out of the function (including error returns).
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <new>
@@ -2720,25 +2998,33 @@ int main() {
 }
 ```
 
-| You type | Output |
-|---|---|
-| `5` then `1 2 3 4 5` | zeros, then `Values: 1 2 3 4 5` |
-| `0` or `-3` or `abc` | `Invalid array size` |
+#### 🧪 Sample runs and edge cases
+
+| You type                     | Output                                                 |
+| ---------------------------- | ------------------------------------------------------ |
+| `5` then `1 2 3 4 5`     | zeros, then `Values: 1 2 3 4 5`                      |
+| `0` or `-3` or `abc`   | `Invalid array size`                                 |
 | `3` then `1 2` (too few) | `Invalid or missing input` (and the memory is freed) |
 
-**Dry run (n = 3):** `new int[3]()` → heap block `[0][0][0]` → user fills `[7][8][9]` → print → `delete[]` returns the block → `arr = nullptr`.
+#### 🔍 Dry run (n = 3)
 
-**Complexity:** O(n) time and O(n) heap memory.
+`new int[3]()` → heap block `[0][0][0]` → user fills `[7][8][9]` → print → `delete[]` returns the block → `arr = nullptr`.
+
+#### ⏱️ Complexity
+
+O(n) time and O(n) heap memory.
 
 **Mistakes to avoid**
-| Mistake | Result |
-|---|---|
-| `delete arr;` for memory from `new[]` | undefined behavior (use `delete[]`) |
-| forgetting `delete[]` on an early `return` | memory leak |
-| using `arr[i]` after `delete[]` | use-after-free (dangling pointer) |
-| reading `arr[i]` of `new int[n]` before writing | garbage values |
+
+| Mistake                                             | Result                                |
+| --------------------------------------------------- | ------------------------------------- |
+| `delete arr;` for memory from `new[]`           | undefined behavior (use `delete[]`) |
+| forgetting `delete[]` on an early `return`      | memory leak                           |
+| using `arr[i]` after `delete[]`                 | use-after-free (dangling pointer)     |
+| reading `arr[i]` of `new int[n]` before writing | garbage values                        |
 
 **Modern equivalents (preferred in real code)**
+
 ```cpp
 #include <memory>
 #include <vector>
@@ -2748,35 +3034,28 @@ vector<int> v(n);                  // freed automatically, can also grow
 
 **Check for leaks:** `g++ -g -fsanitize=address file.cpp && ./a.out`: AddressSanitizer reports leaks and invalid accesses.
 
-**Follow-ups**
+#### 🎤 Follow-ups
+
 - *`new` vs `malloc`?* `new` calls constructors and throws on failure; `malloc` returns `nullptr` and knows nothing about objects. Never mix `new` with `free`.
 - *2D dynamic arrays?* An array of row pointers, each from its own `new[]`, or one flat block indexed `a[i * cols + j]`.
 - *What does `new (nothrow) int[n]` do?* Returns `nullptr` instead of throwing.
 
+<sub></sub>
+
 ---
 
-## Q30. Pointer Safety
+### Q30. Pointer Safety
 
-**Review of your solution:** 🐞 The code you wrote is correct and safe: a `safePrint` helper that checks for `nullptr`, allocation with `new`, `delete`, and reset to `nullptr`. But it **does not cover the whole problem statement**. Compared with the six required parts:
+> **Problem.** Demonstrate null pointers, pointer validation, dynamic memory, deallocation, and dangling pointers, safely.
 
-| Requirement | Your code |
-|---|---|
-| 1. Null pointer + check before access | ✅ |
-| 2. Pointer to an **integer variable** (its address), validated and printed | ❌ missing (you only used heap memory) |
-| 3. `new`, assign, print | ✅ |
-| 4. `delete` and reset to `nullptr` | ✅ |
-| 5. **Demonstrate and explain a dangling pointer** (without dereferencing it) | ❌ missing: resetting one pointer does not show what a dangling pointer is |
-| 6. Never dereference null/dangling | ✅ |
+🏷️ **Concepts:** `nullptr`, validation (P2), heap lifetime (P5), the four pointer bugs (P6), RAII (P7).
 
-In an interview, answering a question with only some of the listed items is the most common way to lose points, so tick every bullet before submitting.
+#### 💡 How to think
 
-**Problem:** Demonstrate null pointers, pointer validation, dynamic memory, deallocation, and dangling pointers, safely.
+A **dangling pointer** is a pointer that still holds an address whose memory has been freed. The classic way to *create* one is to have **two** pointers to the same heap block and free through one of them: the other becomes dangling. Resetting the pointer you freed through does not fix the other one. We create the situation, explain it, **never dereference it**, and then cure it by resetting that pointer as well. We do not even print the dangling pointer's value: reading an invalid pointer value is implementation-defined.
 
-**Concepts:** `nullptr`, validation (P2), heap lifetime (P5), the four pointer bugs (P6), RAII (P7).
+#### 🧩 Solution
 
-**How to think:** A **dangling pointer** is a pointer that still holds an address whose memory has been freed. The classic way to *create* one is to have **two** pointers to the same heap block and free through one of them: the other becomes dangling. Resetting the pointer you freed through does not fix the other one. We create the situation, explain it, **never dereference it**, and then cure it by resetting that pointer as well. We do not even print the dangling pointer's value: reading an invalid pointer value is implementation-defined.
-
-**Solution**
 ```cpp
 #include <iostream>
 using namespace std;
@@ -2826,6 +3105,7 @@ int main() {
 ```
 
 **Output:**
+
 ```
 1. null pointer: pointer is null, NOT dereferencing
 2. pointer to a local variable: value = 42
@@ -2840,16 +3120,17 @@ int main() {
 
 **Pointer problems at a glance (all avoided above):**
 
-| Problem | Example | How this program avoids it |
-|---|---|---|
-| Null dereference | `*nullPtr` | `safePrint` checks first |
-| Wild pointer | `int *p; *p = 1;` | every pointer is initialised |
-| Dangling pointer | use `alias` after `delete heapPtr` | `alias` is never used, then reset |
-| Double delete | `delete heapPtr; delete heapPtr;` | `heapPtr = nullptr` (and `delete nullptr` is harmless) |
-| Leak | missing `delete` | exactly one `delete` for the one `new` |
-| Dangling from a local | `return &local;` | never returns addresses of locals |
+| Problem               | Example                                | How this program avoids it                                 |
+| --------------------- | -------------------------------------- | ---------------------------------------------------------- |
+| Null dereference      | `*nullPtr`                           | `safePrint` checks first                                 |
+| Wild pointer          | `int *p; *p = 1;`                    | every pointer is initialised                               |
+| Dangling pointer      | use `alias` after `delete heapPtr` | `alias` is never used, then reset                        |
+| Double delete         | `delete heapPtr; delete heapPtr;`    | `heapPtr = nullptr` (and `delete nullptr` is harmless) |
+| Leak                  | missing `delete`                     | exactly one `delete` for the one `new`                 |
+| Dangling from a local | `return &local;`                     | never returns addresses of locals                          |
 
 **Another classic dangling pointer (do not run): returning the address of a local**
+
 ```cpp
 int *bad() {
     int x = 5;
@@ -2858,6 +3139,7 @@ int *bad() {
 ```
 
 **The modern fix: smart pointers**
+
 ```cpp
 #include <memory>
 auto p = make_unique<int>(100);   // single owner, deleted automatically, cannot dangle by mistake
@@ -2866,21 +3148,28 @@ shared_ptr<int> a = make_shared<int>(7);
 shared_ptr<int> b = a;            // shared ownership: freed when the LAST owner goes away
 ```
 
-**Complexity:** O(1).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(1).
+
+#### 🎤 Follow-ups
+
 - *What is the difference between a null, a wild and a dangling pointer?* Null = points to nothing on purpose. Wild = never initialized. Dangling = was valid, now points to freed memory.
 - *Does `delete ptr;` change `ptr`?* No. It frees the memory but leaves the pointer value alone: that is why you assign `nullptr` yourself.
 - *Is `delete nullptr;` safe?* Yes, it does nothing.
 - *How do you catch these bugs automatically?* AddressSanitizer (`-fsanitize=address`) reports use-after-free and double free; Valgrind reports leaks.
 
----
+<sub></sub>
 
 ---
 
-# PART 0 (continued) — RECURSION CONCEPTS (read once)
+## Module 5 — Recursion
 
-## R1. What recursion is
+> 🔁 **Q31–Q37** · Base case, smaller subproblem and the call stack: factorial, Fibonacci with memoization, digit sums, fast power, recursive binary search and the Tower of Hanoi.
+
+### 📘 Concepts
+
+#### R1. What recursion is
 
 A function is **recursive** if it calls itself. Every correct recursive solution has three parts:
 
@@ -2895,7 +3184,7 @@ unsigned long long factorial(int n) {
 }
 ```
 
-## R2. The call stack
+#### R2. The call stack
 
 Every call gets its own **stack frame** holding its parameters and local variables. Calls pile up on the way down and return on the way back up:
 
@@ -2910,12 +3199,12 @@ factorial(3)
 
 The stack is limited (typically about 1 MB on Windows and 8 MB on Linux, enough for roughly 10,000 to 100,000 frames). **Too many nested calls = stack overflow = crash** (a segmentation fault). That is what happens with a missing base case or with very deep recursion (for example, recursing once per character of a 10-million-character string).
 
-## R3. Recursion vs iteration
+#### R3. Recursion vs iteration
 
-| | Recursion | Iteration (loop) |
-|---|---|---|
-| Memory | O(depth) stack space | usually O(1) |
-| Speed | function-call overhead | faster |
+|          | Recursion                                                                | Iteration (loop)             |
+| -------- | ------------------------------------------------------------------------ | ---------------------------- |
+| Memory   | O(depth) stack space                                                     | usually O(1)                 |
+| Speed    | function-call overhead                                                   | faster                       |
 | Best for | trees, divide and conquer, backtracking, naturally recursive definitions | simple counting and scanning |
 
 A call is a **tail call** when it is the very last thing the function does (nothing left to compute afterwards). Compilers *may* turn tail calls into loops, but C++ does not guarantee it, so never rely on it to avoid deep stacks.
@@ -2927,25 +3216,25 @@ unsigned long long factorialAcc(int n, unsigned long long acc = 1) {   // accumu
 }
 ```
 
-## R4. Complexity of recursive functions (recurrences)
+#### R4. Complexity of recursive functions (recurrences)
 
-| Problem | Recurrence | Time | Stack depth |
-|---|---|---|---|
-| factorial, sum of digits | `T(n) = T(n−1) + O(1)` | O(n) (digits: O(log n)) | O(n) |
-| reverse string (ends) | `T(n) = T(n−2) + O(1)` | O(n) | O(n) |
-| **naive** Fibonacci | `T(n) = T(n−1) + T(n−2)` | **O(2ⁿ)** | O(n) |
-| memoized Fibonacci | each `F(i)` computed once | O(n) | O(n) |
-| fast power | `T(n) = T(n/2) + O(1)` | O(log n) | O(log n) |
-| binary search | `T(n) = T(n/2) + O(1)` | O(log n) | O(log n) |
-| Tower of Hanoi | `T(n) = 2T(n−1) + 1` | **O(2ⁿ)** (exactly 2ⁿ − 1 moves) | O(n) |
+| Problem                   | Recurrence                   | Time                                      | Stack depth |
+| ------------------------- | ---------------------------- | ----------------------------------------- | ----------- |
+| factorial, sum of digits  | `T(n) = T(n−1) + O(1)`    | O(n) (digits: O(log n))                   | O(n)        |
+| reverse string (ends)     | `T(n) = T(n−2) + O(1)`    | O(n)                                      | O(n)        |
+| **naive** Fibonacci | `T(n) = T(n−1) + T(n−2)` | **O(2ⁿ)**                          | O(n)        |
+| memoized Fibonacci        | each `F(i)` computed once  | O(n)                                      | O(n)        |
+| fast power                | `T(n) = T(n/2) + O(1)`     | O(log n)                                  | O(log n)    |
+| binary search             | `T(n) = T(n/2) + O(1)`     | O(log n)                                  | O(log n)    |
+| Tower of Hanoi            | `T(n) = 2T(n−1) + 1`      | **O(2ⁿ)** (exactly 2ⁿ − 1 moves) | O(n)        |
 
 Rule of thumb: **one recursive call** per step gives a linear (or logarithmic) chain; **two calls on nearly the same size** gives an exponential tree.
 
-## R5. Memoization
+#### R5. Memoization
 
 If the same sub-problem is solved again and again, **store its answer** the first time and reuse it. This turns exponential time into polynomial time (top-down dynamic programming). See Q32: 2,692,537 calls become 59.
 
-## R6. How to write and debug a recursive function
+#### R6. How to write and debug a recursive function
 
 1. Write the **base case first**. Ask: what are the smallest inputs (0, 1, empty)? What if the caller passes something even smaller (negative, `nullptr`, empty string)?
 2. Check that every recursive call moves **toward** the base case (`n - 1`, `left + 1`), never away or sideways.
@@ -2953,27 +3242,22 @@ If the same sub-problem is solved again and again, **store its answer** the firs
 4. Watch for overflow in the return values (factorials, Fibonacci, powers).
 5. If the function has an "internal" parameter (an index, an accumulator), hide it behind a public wrapper so callers cannot misuse it.
 
----
-
-# MODULE 5 — RECURSION
+### 📝 Problems
 
 ---
 
-## Q31. Factorial Using Recursion
+### Q31. Factorial Using Recursion
 
-**Review of your solution:** ✅ Correct. `n <= 1` is the right base case (it covers both `0! = 1` and `1! = 1`), the multiplication is done in `unsigned long long`, and `main` rejects negatives and anything above 20 before calling. I verified `0, 1, 5, 20` (`2432902008176640000`), `21` (overflow message), `-3` and non-numeric input. Improvements:
+> **Problem.** Calculate the factorial of a non-negative integer recursively.
 
-1. **The overflow guard lives in `main`**, so the function itself is unsafe if called with 21 or more (it silently wraps). Put the validation next to the function (a wrapper), so any caller is protected.
-2. `<limits>` is included but unused.
-3. Know the accumulator (tail-recursive) form and the iterative form: interviewers often ask for them as a follow-up (see R3).
+🏷️ **Concepts:** base case, recursive case, call stack (R1, R2), overflow (Level 1, Q13).
 
-**Problem:** Calculate the factorial of a non-negative integer recursively.
+#### 💡 How to think
 
-**Concepts:** base case, recursive case, call stack (R1, R2), overflow (Level 1, Q13).
+`n! = n × (n − 1)!`, and `0! = 1! = 1`. Each call asks for the factorial of a number one smaller, until it reaches 1. The answer is then built on the way **back up** by multiplying.
 
-**How to think:** `n! = n × (n − 1)!`, and `0! = 1! = 1`. Each call asks for the factorial of a number one smaller, until it reaches 1. The answer is then built on the way **back up** by multiplying.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 using namespace std;
@@ -3010,56 +3294,62 @@ int main() {
 }
 ```
 
-**Dry run (`factorialRec(4)`):**
+#### 🔍 Dry run (`factorialRec(4)`)
 
-| call | goes down | comes back up |
-|---|---|---|
+| call                | goes down                 | comes back up  |
+| ------------------- | ------------------------- | -------------- |
 | `factorialRec(4)` | needs `factorialRec(3)` | `4 * 6 = 24` |
-| `factorialRec(3)` | needs `factorialRec(2)` | `3 * 2 = 6` |
-| `factorialRec(2)` | needs `factorialRec(1)` | `2 * 1 = 2` |
-| `factorialRec(1)` | **base case** | `1` |
+| `factorialRec(3)` | needs `factorialRec(2)` | `3 * 2 = 6`  |
+| `factorialRec(2)` | needs `factorialRec(1)` | `2 * 1 = 2`  |
+| `factorialRec(1)` | **base case**       | `1`          |
 
-| You type | Output |
-|---|---|
-| `0` | `0! = 1` |
-| `1` | `1! = 1` |
-| `5` | `5! = 120` |
-| `20` | `20! = 2432902008176640000` |
-| `21` | overflow message |
-| `-3` | not defined for negative numbers |
-| `abc` | `Invalid input` |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n) time, O(n) stack space (n frames). With the limit of 20, the depth is tiny.
+| You type | Output                           |
+| -------- | -------------------------------- |
+| `0`    | `0! = 1`                       |
+| `1`    | `1! = 1`                       |
+| `5`    | `5! = 120`                     |
+| `20`   | `20! = 2432902008176640000`    |
+| `21`   | overflow message                 |
+| `-3`   | not defined for negative numbers |
+| `abc`  | `Invalid input`                |
 
-**Pitfalls:** a base case of `n == 0` only (then `factorial(1)` still works, but a negative `n` recurses forever); `int` for the result (overflows at 13!); forgetting the cast so the multiplication happens in `int` before widening.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time, O(n) stack space (n frames). With the limit of 20, the depth is tiny.
+
+#### ⚠️ Pitfalls
+
+- A base case of `n == 0` only (then `factorial(1)` still works, but a negative `n` recurses forever)
+- `int` for the result (overflows at 13!)
+- Forgetting the cast so the multiplication happens in `int` before widening
+
+#### 🎤 Follow-ups
+
 - *Iterative version?* A loop with `result *= i`: O(n) time, O(1) space (Level 1, Q13).
 - *Tail-recursive version?* `factorialAcc(n - 1, acc * n)` from R3.
 - *Factorial of 100?* Needs big-integer arithmetic (an array of digits) or modular arithmetic.
 - *What happens with `factorial(1000000)`?* Stack overflow long before the multiplication matters.
 
+<sub></sub>
+
 ---
 
-## Q32. Fibonacci Using Recursion
+### Q32. Fibonacci Using Recursion
 
-**Review of your solution:** ✅ Memoization is correct and fast: `fibonacci(i, memo)` is O(n) and each `F(i)` is computed once. The check `memo[n] != 0` works as a "not computed yet" marker because `F(n)` is never zero for `n ≥ 2` (a neat subtlety worth saying out loud). Problems I found by testing:
+> **Problem.** Generate Fibonacci numbers with a recursive function.
 
-1. 🐞 **No overflow guard.** `F(93) = 12200160415121876738` is the last Fibonacci number that fits in `unsigned long long`. For `n = 94` your program prints `1293530146158671551`, which is the true value **mod 2⁶⁴**, with no warning. Anything from 94 upward is silently wrong.
-2. 🐞 **Huge input crashes.** `std::vector<unsigned long long> memo(num + 1, 0)` computes `num + 1` in `int`, which overflows (undefined behavior) when `num == INT_MAX`; and a large `num` asks for gigabytes: `2147483647` requests about 16 GB and throws an uncaught `std::bad_alloc`. Validating `0 ≤ n ≤ 93` fixes both.
-3. The question asks to *generate Fibonacci numbers using a recursive function*. You went straight to the optimized version. In an interview, write the **plain recursive** definition first and show *why* it is slow, then memoize (below).
-4. Small things: a trailing space in the output and the message "not define" (typo).
+🏷️ **Concepts:** two recursive calls (exponential tree), memoization (R5), overflow limits.
 
-**Problem:** Generate Fibonacci numbers with a recursive function.
+#### 💡 How to think
 
-**Concepts:** two recursive calls (exponential tree), memoization (R5), overflow limits.
-
-**How to think**
 - Definition: `F(0) = 0`, `F(1) = 1`, `F(n) = F(n − 1) + F(n − 2)`. That is already a recursive function.
 - *Plain version:* `fib(n)` calls `fib(n−1)` and `fib(n−2)`, and both of those recompute the same values again and again. The number of calls is `2·F(n+1) − 1`: exponential.
 - *Memoized version:* remember each `F(i)` in a table. Every value is computed once, so about `2n − 1` calls in total.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <vector>
@@ -3114,6 +3404,7 @@ int main() {
 ```
 
 **Call tree of plain `fib(4)`** (the repeated work is visible):
+
 ```
 fib(4)
 ├── fib(3)
@@ -3126,39 +3417,51 @@ fib(4)
     └── fib(0)
 ```
 
-| You type | Output |
-|---|---|
-| `0` | `F(0)..F(0): 0`, calls: plain 1, memoized 1 |
-| `1` | `0 1` |
-| `10` | `0 1 1 2 3 5 8 13 21 34 55`, calls: plain **177**, memoized **19** |
-| `30` | ends in `832040`, calls: plain **2,692,537**, memoized **59** |
-| `35` | calls: plain **29,860,703**, memoized **69** |
-| `93` | works (the last value is `12200160415121876738`) |
-| `94` or `-1` | `Invalid input: n must be between 0 and 93` |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** plain O(2ⁿ) time; memoized O(n) time and O(n) space (table plus recursion depth).
+| You type         | Output                                                                           |
+| ---------------- | -------------------------------------------------------------------------------- |
+| `0`            | `F(0)..F(0): 0`, calls: plain 1, memoized 1                                    |
+| `1`            | `0 1`                                                                          |
+| `10`           | `0 1 1 2 3 5 8 13 21 34 55`, calls: plain **177**, memoized **19** |
+| `30`           | ends in `832040`, calls: plain **2,692,537**, memoized **59**      |
+| `35`           | calls: plain **29,860,703**, memoized **69**                         |
+| `93`           | works (the last value is `12200160415121876738`)                               |
+| `94` or `-1` | `Invalid input: n must be between 0 and 93`                                    |
 
-**Pitfalls:** unguarded overflow; using `memo[n] == 0` as the marker when `0` can be a real answer (it is only safe here because `F(0)` and `F(1)` are handled before the lookup); sizing the table with `n + 1` in `int` without a range check.
+#### ⏱️ Complexity
 
-**Follow-ups**
+plain O(2ⁿ) time; memoized O(n) time and O(n) space (table plus recursion depth).
+
+#### ⚠️ Pitfalls
+
+- Unguarded overflow
+- Using `memo[n] == 0` as the marker when `0` can be a real answer (it is only safe here because `F(0)` and `F(1)` are handled before the lookup)
+- Sizing the table with `n + 1` in `int` without a range check
+
+#### 🎤 Follow-ups
+
 - *Iterative version?* Two variables, O(n) time, O(1) space (Level 1, Q14).
 - *Faster than O(n)?* Matrix exponentiation or the fast-doubling method gives O(log n).
 - *Why is the plain version exponential?* `T(n) = T(n−1) + T(n−2) + 1`, which grows like the golden ratio to the power `n` (about `1.618ⁿ`).
 - *Bottom-up vs top-down?* Filling the table in a loop from 0 upwards (bottom-up) avoids recursion entirely.
 
+<sub></sub>
+
 ---
 
-## Q33. Sum of Digits Using Recursion
+### Q33. Sum of Digits Using Recursion
 
-**Review of your solution:** ✅ Correct, and the sign handling is excellent. `0u - static_cast<unsigned int>(num)` computes the absolute value in **unsigned arithmetic**, which is well defined (it wraps modulo 2³²) and, unlike `-num`, also works for `INT_MIN`. I verified `0` → 0, `583` → 16, `-123` → 6, `2147483647` → 46 and `-2147483648` → 47. Small notes: the output wording ("Sum of digit"), and the return type `unsigned long long` is more than needed (the maximum sum for 10 digits is 90): `int` would do.
+> **Problem.** Calculate the sum of an integer's digits recursively.
 
-**Problem:** Calculate the sum of an integer's digits recursively.
+🏷️ **Concepts:** `n % 10` and `n / 10` (Level 1 digit toolkit), base case `n == 0`, absolute value without overflow.
 
-**Concepts:** `n % 10` and `n / 10` (Level 1 digit toolkit), base case `n == 0`, absolute value without overflow.
+#### 💡 How to think
 
-**How to think:** The sum of the digits of `n` is *the last digit* plus *the sum of the digits of everything before it*: `sum(583) = 3 + sum(58) = 3 + 8 + sum(5) = 3 + 8 + 5 + sum(0)`, and `sum(0) = 0` is the base case.
+The sum of the digits of `n` is *the last digit* plus *the sum of the digits of everything before it*: `sum(583) = 3 + sum(58) = 3 + 8 + sum(5) = 3 + 8 + 5 + sum(0)`, and `sum(0) = 0` is the base case.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 using namespace std;
@@ -3185,51 +3488,59 @@ int main() {
 }
 ```
 
-**Dry run (`583`):**
+#### 🔍 Dry run (`583`)
 
-| call | n % 10 | returns |
-|---|---|---|
-| `sumOfDigits(583)` | 3 | `3 + sumOfDigits(58)` |
-| `sumOfDigits(58)` | 8 | `8 + sumOfDigits(5)` |
-| `sumOfDigits(5)` | 5 | `5 + sumOfDigits(0)` |
-| `sumOfDigits(0)` | | **0** (base case) |
+| call                 | n % 10 | returns                 |
+| -------------------- | ------ | ----------------------- |
+| `sumOfDigits(583)` | 3      | `3 + sumOfDigits(58)` |
+| `sumOfDigits(58)`  | 8      | `8 + sumOfDigits(5)`  |
+| `sumOfDigits(5)`   | 5      | `5 + sumOfDigits(0)`  |
+| `sumOfDigits(0)`   |        | **0** (base case) |
 
 Unwinding: `5 + 0 = 5` → `8 + 5 = 13` → `3 + 13 = 16`.
 
-| You type | Output |
-|---|---|
-| `583` | `16` |
-| `0` | `0` |
-| `-123` | `6` |
-| `2147483647` | `46` |
+#### 🧪 Sample runs and edge cases
+
+| You type        | Output                        |
+| --------------- | ----------------------------- |
+| `583`         | `16`                        |
+| `0`           | `0`                         |
+| `-123`        | `6`                         |
+| `2147483647`  | `46`                        |
 | `-2147483648` | `47` (the `INT_MIN` case) |
 
-**Complexity:** O(log₁₀ n) time and stack depth (one call per digit, at most 10).
+#### ⏱️ Complexity
 
-**Pitfalls:** `-num` for `INT_MIN` (overflow, undefined behavior); using base case `n < 10` and forgetting that `n = 0` must still give `0`; negative `%` results (`-123 % 10 == -3`) if you skip the absolute value.
+O(log₁₀ n) time and stack depth (one call per digit, at most 10).
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- `-num` for `INT_MIN` (overflow, undefined behavior)
+- Using base case `n < 10` and forgetting that `n = 0` must still give `0`
+- Negative `%` results (`-123 % 10 == -3`) if you skip the absolute value
+
+#### 🎤 Follow-ups
+
 - *Digital root recursively?* `while`/recursion: `digitalRoot(n) = n < 10 ? n : digitalRoot(sumOfDigits(n))`.
 - *Count the digits, reverse a number, or check a palindrome recursively?* Same `% 10` / `/ 10` pattern.
 - *Iterative version?* Level 1, Q15.
 
+<sub></sub>
+
 ---
 
-## Q34. Reverse a String Recursively
+### Q34. Reverse a String Recursively
 
-**Review of your solution:** ✅ Correct: swap the character at `left` with its mirror and recurse on `left + 1`; the base case `left >= size / 2` stops exactly at the middle (tested: empty, one character, even, odd, spaces). Using `std::swap` is fine, since the question only forbids a built-in *reverse*. Improvements:
+> **Problem.** Reverse a string using recursion, without a built-in reverse function.
 
-1. The default argument `left = 0` exposes an **internal bookkeeping parameter** to every caller (`reverseString(text, 5)` compiles and gives nonsense). Hide it behind a wrapper (R6).
-2. The recursion depth is `n / 2`. For a very long string (millions of characters) this overflows the stack, while a loop would not. Mention the trade-off.
-3. Prefer explicit `left` and `right` indices: the base case `left >= right` is easier to read than `left >= size / 2`.
+🏷️ **Concepts:** recursion on indices, shrinking the problem from both ends, helper + wrapper pattern.
 
-**Problem:** Reverse a string using recursion, without a built-in reverse function.
+#### 💡 How to think
 
-**Concepts:** recursion on indices, shrinking the problem from both ends, helper + wrapper pattern.
+To reverse a string, swap its first and last characters, then reverse **what is in between**, a shorter string of the same kind. The problem is solved when the two indices meet or cross (0 or 1 characters left).
 
-**How to think:** To reverse a string, swap its first and last characters, then reverse **what is in between**, a shorter string of the same kind. The problem is solved when the two indices meet or cross (0 or 1 characters left).
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <string>
@@ -3261,60 +3572,70 @@ int main() {
 }
 ```
 
-**Dry run (`"abcd"`):**
+#### 🔍 Dry run (`"abcd"`)
 
-| call | left, right | action | string |
-|---|---|---|---|
-| 1 | 0, 3 | swap `a` ↔ `d` | `dbca` |
-| 2 | 1, 2 | swap `b` ↔ `c` | `dcba` |
-| 3 | 2, 1 | `left >= right`: **base case** | `dcba` |
+| call | left, right | action                                 | string   |
+| ---- | ----------- | -------------------------------------- | -------- |
+| 1    | 0, 3        | swap `a` ↔ `d`                    | `dbca` |
+| 2    | 1, 2        | swap `b` ↔ `c`                    | `dcba` |
+| 3    | 2, 1        | `left >= right`: **base case** | `dcba` |
 
-| You type | Output |
-|---|---|
-| `hello` | `olleh` |
-| `Hello World` | `dlroW olleH` |
-| `a` | `a` |
-| `ab` | `ba` |
+#### 🧪 Sample runs and edge cases
+
+| You type         | Output                                                          |
+| ---------------- | --------------------------------------------------------------- |
+| `hello`        | `olleh`                                                       |
+| `Hello World`  | `dlroW olleH`                                                 |
+| `a`            | `a`                                                           |
+| `ab`           | `ba`                                                          |
 | *(empty line)* | *(empty)* (`right = -1`, so the base case triggers at once) |
 
-**Complexity:** O(n) time (n/2 swaps), O(n) stack space (n/2 frames).
+#### ⏱️ Complexity
+
+O(n) time (n/2 swaps), O(n) stack space (n/2 frames).
 
 **Another way of thinking (elegant, but O(n²))**
+
 ```cpp
 string reverseCopy(const string &s) {
     if (s.size() <= 1) return s;
     return reverseCopy(s.substr(1)) + s[0];     // reverse(rest) followed by the first character
 }
 ```
+
 It is easy to explain, but every `substr` and `+` copies the string, so it costs O(n²) time. Know it, then prefer the in-place version.
 
-**Pitfalls:** a base case of `left == right` only (even-length strings skip past each other and recurse forever); using `size() - 1` with unsigned values on an empty string; deep recursion on huge strings.
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- A base case of `left == right` only (even-length strings skip past each other and recurse forever)
+- Using `size() - 1` with unsigned values on an empty string
+- Deep recursion on huge strings
+
+#### 🎤 Follow-ups
+
 - *Iterative version?* Level 2, Q11 (two pointers, O(1) space, no stack risk).
 - *Palindrome check recursively?* Compare `s[left]` and `s[right]`, then recurse inward.
 - *Reverse the words of a sentence?* Reverse the whole string, then each word.
 
+<sub></sub>
+
 ---
 
-## Q35. Calculate Power Recursively
+### Q35. Calculate Power Recursively
 
-**Review of your solution:** ✅ The algorithm is excellent: **fast exponentiation** (`x^n = (x^(n/2))²`, times `x` when `n` is odd) gives O(log n) calls instead of O(n), the base case returns `1.0` (so `0^0 = 1`, the standard convention) and the exponent is validated. One problem, which I tested:
+> **Problem.** Calculate `a^b` recursively for a non-negative exponent.
 
-1. 🐞 **The output format hides the answer.** `cout` prints a `double` with 6 significant digits, so `2^20` prints as `1.04858e+06` and `2^62` as `4.61169e+18` instead of `1048576` and `4611686018427387904`. It is the same trap as Level 1, Q22. Either print with `setprecision` or, for integer bases, compute in `long long` and **detect overflow** (the first version below).
-2. With integers, a result that does not fit should be reported, not rounded.
+🏷️ **Concepts:** divide and conquer (R4), fast exponentiation, overflow-checked multiplication, `0^0`.
 
-**Problem:** Calculate `a^b` recursively for a non-negative exponent.
+#### 💡 How to think
 
-**Concepts:** divide and conquer (R4), fast exponentiation, overflow-checked multiplication, `0^0`.
-
-**How to think**
 - *Simple recursion:* `a^b = a × a^(b−1)`, base case `a^0 = 1`. It works but needs `b` calls: with `b = 10⁹` the stack overflows.
 - *Halving:* `a^b = (a^(b/2))²` for even `b`, and `a × (a^(b/2))²` for odd `b`. The exponent halves each time, so there are only about `log₂ b` calls.
 - Compute the half **once** and reuse it (do not call the recursive function twice, or you lose the speed-up).
 - For integers, each multiplication needs an overflow check.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <climits>
 #include <iomanip>
@@ -3353,7 +3674,7 @@ bool powerInt(long long base, unsigned long long exp, long long &result) {
     return safeMultiply(square, base, result);           // odd exponent: one extra factor
 }
 
-// Real-number version (your original idea).
+// Real-number version.
 double powerDouble(double x, unsigned long long n) {
     if (n == 0) return 1.0;
     double half = powerDouble(x, n / 2);
@@ -3385,57 +3706,64 @@ int main() {
 }
 ```
 
-**Dry run (`power(3, 5)`):**
+#### 🔍 Dry run (`power(3, 5)`)
 
-| call | exp | half | computed |
-|---|---|---|---|
-| `power(3, 5)` | 5 (odd) | `power(3, 2)` = 9 | `3 * 9 * 9 = 243` |
-| `power(3, 2)` | 2 (even) | `power(3, 1)` = 3 | `3 * 3 = 9` |
-| `power(3, 1)` | 1 (odd) | `power(3, 0)` = 1 | `3 * 1 * 1 = 3` |
-| `power(3, 0)` | 0 | | **1** (base case) |
+| call            | exp      | half                | computed                |
+| --------------- | -------- | ------------------- | ----------------------- |
+| `power(3, 5)` | 5 (odd)  | `power(3, 2)` = 9 | `3 * 9 * 9 = 243`     |
+| `power(3, 2)` | 2 (even) | `power(3, 1)` = 3 | `3 * 3 = 9`           |
+| `power(3, 1)` | 1 (odd)  | `power(3, 0)` = 1 | `3 * 1 * 1 = 3`       |
+| `power(3, 0)` | 0        |                     | **1** (base case) |
 
 Only 4 calls for `exp = 5` (exponents 5, 2, 1, 0); in general `⌊log₂ exp⌋ + 2`.
 
-| You type (base exponent) | Output |
-|---|---|
-| `2 10` | `2^10 = 1024` |
-| `2 20` | `2^20 = 1048576` (your `double` version printed `1.04858e+06`) |
-| `2 62` | `2^62 = 4611686018427387904` |
-| `2 63` | overflow message |
-| `-2 3` | `-2^3 = -8` |
-| `0 0` | `0^0 = 1` |
-| `3 39` / `3 40` | `4052555153018976267` / overflow |
-| `1 1000000000` | `1` (31 calls, no loop of a billion steps) |
-| `5 -1` | negative exponent rejected |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(log b) time and O(log b) stack space. The naive `a × a^(b−1)` is O(b) and overflows the stack for large `b`.
+| You type (base exponent) | Output                                                                 |
+| ------------------------ | ---------------------------------------------------------------------- |
+| `2 10`                 | `2^10 = 1024`                                                        |
+| `2 20`                 | `2^20 = 1048576` (a plain `double` version prints `1.04858e+06`) |
+| `2 62`                 | `2^62 = 4611686018427387904`                                         |
+| `2 63`                 | overflow message                                                       |
+| `-2 3`                 | `-2^3 = -8`                                                          |
+| `0 0`                  | `0^0 = 1`                                                            |
+| `3 39` / `3 40`      | `4052555153018976267` / overflow                                     |
+| `1 1000000000`         | `1` (31 calls, no loop of a billion steps)                           |
+| `5 -1`                 | negative exponent rejected                                             |
 
-**Pitfalls:** calling `power(x, n/2)` twice (`power(x,n/2) * power(x,n/2)`) turns O(log n) back into O(n); not handling the odd exponent; printing a `double` without `setprecision`; assuming `0^0` is undefined (it is `1` by convention here).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(log b) time and O(log b) stack space. The naive `a × a^(b−1)` is O(b) and overflows the stack for large `b`.
+
+#### ⚠️ Pitfalls
+
+- Calling `power(x, n/2)` twice (`power(x,n/2) * power(x,n/2)`) turns O(log n) back into O(n)
+- Not handling the odd exponent
+- Printing a `double` without `setprecision`
+- Assuming `0^0` is undefined (it is `1` by convention here)
+
+#### 🎤 Follow-ups
+
 - *Negative exponent?* `1 / a^|b|` with `double`.
 - *Modular power (`a^b mod m`)?* Take `% m` after every multiplication: the foundation of RSA-style cryptography.
 - *Iterative form?* Loop over the bits of the exponent (Level 1, Q22 bonus).
 
+<sub></sub>
+
 ---
 
-## Q36. Binary Search Recursively
+### Q36. Binary Search Recursively
 
-**Review of your solution:** ✅ Very good, and it avoids three classic traps:
+> **Problem.** Implement binary search recursively on a sorted array.
 
-1. **Half-open interval `[low, high)`** with `size_t`. The usual version (`high = mid - 1`) underflows when `mid == 0` and `low`/`high` are unsigned; your `high = mid` never does.
-2. **`mid = low + (high - low) / 2`** instead of `(low + high) / 2` (which can overflow for huge indices).
-3. The base case `low >= high` correctly means "empty range, not found", and the return type `ptrdiff_t` can hold `-1`.
+🏷️ **Concepts:** divide and conquer, halving the search range, half-open intervals, preconditions.
 
-I tested: first element, last element, a middle element, absent values on both ends and in the middle, an empty vector, a single element, and duplicates. All correct. Notes: the array and target were hard-coded, so the program tests only one case; and with **duplicates** it returns *some* matching index (for `{1,2,2,2,3}` and target `2` it returns index 2), not necessarily the first. The precondition (the array must be sorted) is not checked.
+#### 💡 How to think
 
-**Problem:** Implement binary search recursively on a sorted array.
+Compare the target with the **middle** element. If equal, done. If the middle is bigger than the target, the answer can only be in the left half; otherwise only in the right half. Each call discards half of the remaining elements. An empty range means the target is not there.
 
-**Concepts:** divide and conquer, halving the search range, half-open intervals, preconditions.
+#### 🧩 Solution
 
-**How to think:** Compare the target with the **middle** element. If equal, done. If the middle is bigger than the target, the answer can only be in the left half; otherwise only in the right half. Each call discards half of the remaining elements. An empty range means the target is not there.
-
-**Solution** (your function, with input from the user)
 ```cpp
 #include <cstddef>
 #include <iostream>
@@ -3490,59 +3818,70 @@ int main() {
 }
 ```
 
-**Dry run (your array, target `455`):**
+#### 🔍 Dry run (target `455`)
 
-| call | [low, high) | mid | arr[mid] | decision |
-|---|---|---|---|---|
-| 1 | [0, 12) | 6 | 87 | `87 < 455` → right: `[7, 12)` |
-| 2 | [7, 12) | 9 | 92 | `92 < 455` → right: `[10, 12)` |
-| 3 | [10, 12) | 11 | 6345 | `6345 > 455` → left: `[10, 11)` |
-| 4 | [10, 11) | 10 | 455 | **found, index 10** |
+| call | [low, high) | mid | arr[mid] | decision                             |
+| ---- | ----------- | --- | -------- | ------------------------------------ |
+| 1    | [0, 12)     | 6   | 87       | `87 < 455` → right: `[7, 12)`   |
+| 2    | [7, 12)     | 9   | 92       | `92 < 455` → right: `[10, 12)`  |
+| 3    | [10, 12)    | 11  | 6345     | `6345 > 455` → left: `[10, 11)` |
+| 4    | [10, 11)    | 10  | 455      | **found, index 10**            |
 
 4 calls for 12 elements (`⌈log₂ 13⌉ = 4`).
 
-| Input | Result |
-|---|---|
-| target `2` (first) | index `0` |
-| target `6345` (last) | index `11` |
-| target `455` | index `10` |
-| target `1` / `100` (absent) | not found |
-| empty array | not found |
-| `{7}`, target `7` / `8` | index `0` / not found |
-| `{1,2,2,2,3}`, target `2` | index `2` (one of the matches) |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(log n) time and O(log n) stack. The recursive call is a **tail call**, so an iterative loop (Q38) uses O(1) space.
+| Input                           | Result                           |
+| ------------------------------- | -------------------------------- |
+| target `2` (first)            | index `0`                      |
+| target `6345` (last)          | index `11`                     |
+| target `455`                  | index `10`                     |
+| target `1` / `100` (absent) | not found                        |
+| empty array                     | not found                        |
+| `{7}`, target `7` / `8`   | index `0` / not found          |
+| `{1,2,2,2,3}`, target `2`   | index `2` (one of the matches) |
 
-**Pitfalls:** running it on an unsorted array (wrong answers, no error); `(low + high) / 2` overflow for `int` indices near 2³⁰; `high = mid - 1` with unsigned types; infinite recursion when the range does not shrink (`low = mid` instead of `mid + 1`).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(log n) time and O(log n) stack. The recursive call is a **tail call**, so an iterative loop (Q38) uses O(1) space.
+
+#### ⚠️ Pitfalls
+
+- Running it on an unsorted array (wrong answers, no error)
+- `(low + high) / 2` overflow for `int` indices near 2³⁰
+- `high = mid - 1` with unsigned types
+- Infinite recursion when the range does not shrink (`low = mid` instead of `mid + 1`)
+
+#### 🎤 Follow-ups
+
 - *Find the **first** occurrence (lower bound)?* When `arr[mid] == target`, keep searching the left half and remember `mid`.
 - *Standard library?* `binary_search`, `lower_bound`, `upper_bound` in `<algorithm>`.
 - *Search in a rotated sorted array? Find the square root of a number?* Same halving idea on a different predicate.
 
+<sub></sub>
+
 ---
 
-## Q37. Tower of Hanoi
+### Q37. Tower of Hanoi
 
-**Review of your solution:** ✅ The structure is the textbook solution: move `n − 1` disks to the helper rod, move the largest disk, then move the `n − 1` disks onto it. I traced and verified the output for 3 disks: 7 legal moves (`A→C, A→B, C→B, A→C, B→A, B→C, A→C`). One bug and two weaknesses:
+> **Problem.** Print the steps to move `n` disks from one rod to another using a third rod, following the rules (move one disk at a time; never place a larger disk on a smaller one).
 
-1. 🐞 **The base case is `n == 1` only, so `TOH(0, ...)` never stops.** `n = 0` calls `TOH(-1)`, then `TOH(-2)`, ... until the stack overflows. I tested this base-case pattern with `n = 0`: **segmentation fault (exit code 139)**. Your `main` hard-codes 3, so you never hit it, but any user input of `0` or a negative number would. Use `n == 0` as the base case ("nothing to move"): it is simpler and safe, and `n <= 0` is safer still.
-2. `numDisks = 3` is hard-coded; read it from the user.
-3. The number of moves is `2ⁿ − 1`, so large `n` prints an enormous amount of output. Validate the input and report the move count.
+🏷️ **Concepts:** recursion with two calls on a smaller problem (R4), role-swapping parameters, exponential growth.
 
-**Problem:** Print the steps to move `n` disks from one rod to another using a third rod, following the rules (move one disk at a time; never place a larger disk on a smaller one).
+#### 💡 How to think
 
-**Concepts:** recursion with two calls on a smaller problem (R4), role-swapping parameters, exponential growth.
+*Trust the recursion*
 
-**How to think (trust the recursion)**
 To move `n` disks from `from` to `to` using `via`:
+
 1. Move the top `n − 1` disks from `from` to `via` (using `to` as the helper).
 2. Move the biggest disk (disk `n`) from `from` to `to`. This is the only direct move.
 3. Move the `n − 1` disks from `via` onto `to` (using `from` as the helper).
 
 You never need to figure out *how* the `n − 1` disks move: the recursive call does it. Only the roles of the three rods change between calls.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 using namespace std;
@@ -3572,7 +3911,7 @@ int main() {
 }
 ```
 
-**Dry run (`n = 3`, rods A → C via B):**
+#### 🔍 Dry run (`n = 3`, rods A → C via B)
 
 ```
 hanoi(3, A, C, B)
@@ -3591,34 +3930,45 @@ Output: `1 A→C`, `2 A→B`, `1 C→B`, `3 A→C`, `1 B→A`, `2 B→C`, `1 A�
 
 **Moves needed: `T(n) = 2·T(n−1) + 1`, with `T(0) = 0`, which solves to `2ⁿ − 1`.**
 
-| Disks | Moves |
-|---|---|
-| 1 | 1 |
-| 2 | 3 |
-| 3 | 7 |
-| 4 | 15 |
-| 10 | 1,023 |
-| 20 | 1,048,575 |
-| 64 | 18,446,744,073,709,551,615 (at one move per second, about 585 billion years) |
+| Disks | Moves                                                                        |
+| ----- | ---------------------------------------------------------------------------- |
+| 1     | 1                                                                            |
+| 2     | 3                                                                            |
+| 3     | 7                                                                            |
+| 4     | 15                                                                           |
+| 10    | 1,023                                                                        |
+| 20    | 1,048,575                                                                    |
+| 64    | 18,446,744,073,709,551,615 (at one move per second, about 585 billion years) |
 
 **Why it is the minimum:** the largest disk must move at least once, and while it moves all `n − 1` smaller disks have to sit on the third rod. So you need `T(n−1)` moves before it, one for it, and `T(n−1)` after: `T(n) ≥ 2T(n−1) + 1`.
 
-**Complexity:** O(2ⁿ) time, O(n) stack space (the depth is `n`, and rods are only labels).
+#### ⏱️ Complexity
 
-**Pitfalls:** mixing up the order of `from`, `to` and `via` in the two recursive calls (swap the roles carefully: step 1 uses `(from, via, to)`, step 3 uses `(via, to, from)`); a base case that does not cover `n = 0` or negative values; printing for large `n`.
+O(2ⁿ) time, O(n) stack space (the depth is `n`, and rods are only labels).
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Mixing up the order of `from`, `to` and `via` in the two recursive calls (swap the roles carefully: step 1 uses `(from, via, to)`, step 3 uses `(via, to, from)`)
+- A base case that does not cover `n = 0` or negative values
+- Printing for large `n`
+
+#### 🎤 Follow-ups
+
 - *Iterative solution?* For odd `n` the smallest disk cycles A→C→B, for even `n` A→B→C; between those moves make the only legal move that does not involve the smallest disk.
 - *How would you verify the answer?* Simulate three stacks and assert that every move is legal.
 - *Four rods (Frame–Stewart)?* Fewer moves, but the optimal solution is harder.
 
----
+<sub></sub>
 
 ---
 
-# PART 0 (continued) — SEARCHING AND SORTING CONCEPTS (read once)
+## Module 6 — Searching and Sorting
 
-## B1. Binary search
+> 🔎 **Q38–Q44** · Binary search and the five classic sorts (bubble, selection, insertion, merge, quick) with their time, space and stability trade-offs and the effect of pivot choice.
+
+### 📘 Concepts
+
+#### B1. Binary search
 
 Binary search finds a value in a **sorted** array by repeatedly discarding half of the remaining range: O(log n) instead of O(n). One million elements need at most 20 comparisons.
 
@@ -3626,63 +3976,58 @@ Binary search finds a value in a **sorted** array by repeatedly discarding half 
 
 Bugs to avoid:
 
-| Bug | Why it happens | Prevention |
-|---|---|---|
-| Overflow in `(low + high) / 2` | the sum exceeds `INT_MAX` for huge arrays | `mid = low + (high - low) / 2` |
-| Infinite loop | `low = mid` or `high = mid` with a closed range `[low, high]` | use `mid + 1` / `mid - 1` (closed range) or a half-open range `[low, high)` with `high = mid` |
-| `size_t` underflow | `high = mid - 1` when `mid == 0` and `high` is unsigned | use `int`, or a half-open range |
-| Wrong answers | the array is not sorted | state and check the precondition |
-| Duplicates | any matching index may be returned | search again on the left side for the *first* occurrence |
+| Bug                              | Why it happens                                                      | Prevention                                                                                            |
+| -------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Overflow in `(low + high) / 2` | the sum exceeds `INT_MAX` for huge arrays                         | `mid = low + (high - low) / 2`                                                                      |
+| Infinite loop                    | `low = mid` or `high = mid` with a closed range `[low, high]` | use `mid + 1` / `mid - 1` (closed range) or a half-open range `[low, high)` with `high = mid` |
+| `size_t` underflow             | `high = mid - 1` when `mid == 0` and `high` is unsigned       | use `int`, or a half-open range                                                                     |
+| Wrong answers                    | the array is not sorted                                             | state and check the precondition                                                                      |
+| Duplicates                       | any matching index may be returned                                  | search again on the left side for the *first* occurrence                                            |
 
-## B2. Sorting vocabulary
+#### B2. Sorting vocabulary
 
 - **Comparison sort:** decides order only by comparing elements. No comparison sort can beat **O(n log n)** in the worst case.
 - **In place:** uses O(1) (or O(log n)) extra memory.
 - **Stable:** elements that compare equal keep their original relative order. It matters when you sort records by one field and want an earlier ordering by another field to survive (for example, sort by name, then stable-sort by age).
 - **Adaptive:** gets faster when the input is already (nearly) sorted.
 
-## B3. The five sorts at a glance
+#### B3. The five sorts at a glance
 
-| Sort | Best | Average | Worst | Extra space | Stable | Notes |
-|---|---|---|---|---|---|---|
-| Bubble | O(n) with early exit, else O(n²) | O(n²) | O(n²) | O(1) | yes | easy; almost never used in practice |
-| Selection | O(n²) | O(n²) | O(n²) | O(1) | **no** | exactly n(n−1)/2 comparisons; at most n−1 swaps |
-| Insertion | **O(n)** | O(n²) | O(n²) | O(1) | yes | excellent for small or nearly sorted data |
-| Merge | O(n log n) | O(n log n) | O(n log n) | **O(n)** | yes | predictable; used for linked lists and stable sorting |
-| Quick | O(n log n) | O(n log n) | **O(n²)** | O(log n) stack | no | fastest in practice; worst case depends on the pivot |
+| Sort      | Best                              | Average    | Worst            | Extra space    | Stable       | Notes                                                 |
+| --------- | --------------------------------- | ---------- | ---------------- | -------------- | ------------ | ----------------------------------------------------- |
+| Bubble    | O(n) with early exit, else O(n²) | O(n²)     | O(n²)           | O(1)           | yes          | easy; almost never used in practice                   |
+| Selection | O(n²)                            | O(n²)     | O(n²)           | O(1)           | **no** | exactly n(n−1)/2 comparisons; at most n−1 swaps     |
+| Insertion | **O(n)**                    | O(n²)     | O(n²)           | O(1)           | yes          | excellent for small or nearly sorted data             |
+| Merge     | O(n log n)                        | O(n log n) | O(n log n)       | **O(n)** | yes          | predictable; used for linked lists and stable sorting |
+| Quick     | O(n log n)                        | O(n log n) | **O(n²)** | O(log n) stack | no           | fastest in practice; worst case depends on the pivot  |
 
 `std::sort` is an *introsort* (quicksort + heapsort fallback + insertion sort for small ranges): O(n log n) worst case, not stable. `std::stable_sort` is merge-based and stable.
 
-## B4. Divide-and-conquer recurrences
+#### B4. Divide-and-conquer recurrences
 
-| Algorithm | Recurrence | Result |
-|---|---|---|
-| Merge sort | `T(n) = 2T(n/2) + O(n)` | O(n log n): `log₂ n` levels, O(n) merging work on each level |
-| Quicksort, balanced split | `T(n) = 2T(n/2) + O(n)` | O(n log n) |
-| Quicksort, worst split | `T(n) = T(n−1) + O(n)` | O(n²) |
-| Binary search | `T(n) = T(n/2) + O(1)` | O(log n) |
+| Algorithm                 | Recurrence                | Result                                                          |
+| ------------------------- | ------------------------- | --------------------------------------------------------------- |
+| Merge sort                | `T(n) = 2T(n/2) + O(n)` | O(n log n): `log₂ n` levels, O(n) merging work on each level |
+| Quicksort, balanced split | `T(n) = 2T(n/2) + O(n)` | O(n log n)                                                      |
+| Quicksort, worst split    | `T(n) = T(n−1) + O(n)` | O(n²)                                                          |
+| Binary search             | `T(n) = T(n/2) + O(1)`  | O(log n)                                                        |
 
----
-
-# MODULE 6 — SEARCHING AND SORTING
+### 📝 Problems
 
 ---
 
-## Q38. Binary Search Iteratively
+### Q38. Binary Search Iteratively
 
-**Review of your solution:** ✅ Correct and clean. The closed range `[low, high]`, `mid = low + (high - low) / 2`, and the updates `low = mid + 1` / `high = mid - 1` (both always shrink the range, so the loop must end) are exactly right. I verified: first element, last element, a middle element, absent values below / between / above the data, an empty vector, a single element, and duplicates. Small improvements:
+> **Problem.** Find a target in a sorted array using binary search (iteratively).
 
-1. `int high = arr.size() - 1;` converts a `size_t` to `int` implicitly. It works (even for an empty vector, where it gives `-1`), but write `static_cast<int>(arr.size()) - 1`.
-2. The array and the target are hard-coded, and the precondition (**sorted ascending**) is not checked.
-3. With **duplicates** it returns *some* matching index (for `{1,2,2,2,3}` and target `2` it returns index 2). The "first occurrence" version is a common follow-up.
+🏷️ **Concepts:** B1, loop invariant, O(log n).
 
-**Problem:** Find a target in a sorted array using binary search (iteratively).
+#### 💡 How to think
 
-**Concepts:** B1, loop invariant, O(log n).
+Keep a range `[low, high]` that must contain the target if it exists. Look at the middle element. If it is the target, done. If it is smaller than the target, everything at or left of it is too small: `low = mid + 1`. If larger, `high = mid - 1`. Stop when the range is empty.
 
-**How to think:** Keep a range `[low, high]` that must contain the target if it exists. Look at the middle element. If it is the target, done. If it is smaller than the target, everything at or left of it is too small: `low = mid + 1`. If larger, `high = mid - 1`. Stop when the range is empty.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <vector>
@@ -3759,48 +4104,58 @@ int main() {
 }
 ```
 
-**Dry run (target `12` in `{1,3,4,5,6,7,8,12,45,66,87,99,123}`):**
+#### 🔍 Dry run (target `12` in `{1,3,4,5,6,7,8,12,45,66,87,99,123}`)
 
-| iteration | low | high | mid | arr[mid] | decision |
-|---|---|---|---|---|---|
-| 1 | 0 | 12 | 6 | 8 | `8 < 12` → `low = 7` |
-| 2 | 7 | 12 | 9 | 66 | `66 > 12` → `high = 8` |
-| 3 | 7 | 8 | 7 | 12 | **found, index 7** |
+| iteration | low | high | mid | arr[mid] | decision                    |
+| --------- | --- | ---- | --- | -------- | --------------------------- |
+| 1         | 0   | 12   | 6   | 8        | `8 < 12` → `low = 7`   |
+| 2         | 7   | 12   | 9   | 66       | `66 > 12` → `high = 8` |
+| 3         | 7   | 8    | 7   | 12       | **found, index 7**    |
 
-| Input | Output |
-|---|---|
-| your array, target `12` | `Found at index 7` |
-| your array, target `1` / `123` | index `0` / `12` |
-| your array, target `100` (absent) | `Not found` |
-| `{1,2,2,2,3}`, target `2` | found at index 2; first occurrence: index **1** |
-| empty array, `{7}` with target `7` | `Not found` / index `0` |
-| unsorted input | `The array must be sorted in ascending order` |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(log n) time, O(1) space. Searching 1,000,000 elements takes at most 20 iterations.
+| Input                                  | Output                                                |
+| -------------------------------------- | ----------------------------------------------------- |
+| sample array, target `12`            | `Found at index 7`                                  |
+| sample array, target `1` / `123`   | index `0` / `12`                                  |
+| sample array, target `100` (absent)  | `Not found`                                         |
+| `{1,2,2,2,3}`, target `2`          | found at index 2; first occurrence: index **1** |
+| empty array, `{7}` with target `7` | `Not found` / index `0`                           |
+| unsorted input                         | `The array must be sorted in ascending order`       |
 
-**Pitfalls:** `(low + high) / 2` overflow; `low <= high` replaced by `low < high` (misses the one-element range); `high = mid` in a closed range (infinite loop); running it on unsorted data (no error, wrong answer).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(log n) time, O(1) space. Searching 1,000,000 elements takes at most 20 iterations.
+
+#### ⚠️ Pitfalls
+
+- `(low + high) / 2` overflow
+- `low <= high` replaced by `low < high` (misses the one-element range)
+- `high = mid` in a closed range (infinite loop)
+- Running it on unsorted data (no error, wrong answer)
+
+#### 🎤 Follow-ups
+
 - *Recursive version?* Q36. The recursive call is a tail call, so the loop version is the same algorithm using O(1) space.
 - *Last occurrence, insertion point, count of a value?* Variations of `firstOccurrence`; the standard library has `lower_bound`, `upper_bound` and `binary_search` (`<algorithm>`).
 - *Search on the answer?* The same halving works on any monotonic condition (square root, minimum capacity, ...).
 
+<sub></sub>
+
 ---
 
-## Q39. Bubble Sort
+### Q39. Bubble Sort
 
-**Review of your solution:** ✅ Correct: I tested sorted, reversed, random, duplicate-containing and empty input. The inner bound `arrSize - i - 1` (the last `i` elements are already in place) is the right optimization, and the strict `>` comparison makes the sort **stable**. One missing piece:
+> **Problem.** Sort an array in ascending order using bubble sort.
 
-1. **No early exit.** Even on an already-sorted array your version does every pass: **28 comparisons for 8 elements, whether the input is sorted, reversed or random**. Adding a `swapped` flag stops as soon as a full pass makes no swap, which makes the best case O(n) (7 comparisons for a sorted array of 8).
-2. The array is hard-coded.
+🏷️ **Concepts:** adjacent swaps, invariant "after pass `i`, the `i` largest elements are in their final place", early termination, stability.
 
-**Problem:** Sort an array in ascending order using bubble sort.
+#### 💡 How to think
 
-**Concepts:** adjacent swaps, invariant "after pass `i`, the `i` largest elements are in their final place", early termination, stability.
+Walk through the array comparing neighbours; swap any pair that is out of order. After the first pass the largest element has "bubbled" to the end; after the second pass the second largest is in place, and so on. If a whole pass makes **no swap**, the array is sorted and you can stop.
 
-**How to think:** Walk through the array comparing neighbours; swap any pair that is out of order. After the first pass the largest element has "bubbled" to the end; after the second pass the second largest is in place, and so on. If a whole pass makes **no swap**, the array is sorted and you can stop.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <utility>
@@ -3858,48 +4213,55 @@ int main() {
 }
 ```
 
-**Dry run (`{5, 1, 4, 2}`):**
+#### 🔍 Dry run (`{5, 1, 4, 2}`)
 
-| pass | array during the pass | result |
-|---|---|---|
-| 1 | `5 1 4 2` → `1 5 4 2` → `1 4 5 2` → `1 4 2 5` | 5 is in place |
-| 2 | `1 4 2 5` → `1 4 2 5` → `1 2 4 5` | 4 is in place |
-| 3 | `1 2 4 5`: no swaps → **stop** | sorted |
+| pass | array during the pass                                    | result        |
+| ---- | -------------------------------------------------------- | ------------- |
+| 1    | `5 1 4 2` → `1 5 4 2` → `1 4 5 2` → `1 4 2 5` | 5 is in place |
+| 2    | `1 4 2 5` → `1 4 2 5` → `1 2 4 5`                | 4 is in place |
+| 3    | `1 2 4 5`: no swaps → **stop**                  | sorted        |
 
-| Input (n = 8) | Comparisons, no early exit | With the `swapped` flag |
-|---|---|---|
-| sorted `1 2 3 4 5 6 7 8` | 28 | **7** |
-| reversed `8 7 … 1` | 28 | 28 |
-| `23 42 24 63 334 53 0 43` | 28 | 28 (the `0` needs 7 passes to travel to the front) |
-| `3 1 2 3 1 2` (duplicates) | | 14 |
-| empty / one element | 0 | 0 |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** best O(n) (sorted, with the flag), average and worst O(n²) time; O(1) space; **stable**, in place.
+| Input (n = 8)                | Comparisons, no early exit | With the `swapped` flag                            |
+| ---------------------------- | -------------------------- | ---------------------------------------------------- |
+| sorted `1 2 3 4 5 6 7 8`   | 28                         | **7**                                          |
+| reversed `8 7 … 1`        | 28                         | 28                                                   |
+| `23 42 24 63 334 53 0 43`  | 28                         | 28 (the `0` needs 7 passes to travel to the front) |
+| `3 1 2 3 1 2` (duplicates) |                            | 14                                                   |
+| empty / one element          | 0                          | 0                                                    |
 
-**Pitfalls:** running the inner loop to `n - 1` every time (wasted comparisons and an out-of-bounds read of `arr[j + 1]` if you also forget `- 1`); using `>=` (swaps equal elements: loses stability and does extra work).
+#### ⏱️ Complexity
 
-**Follow-ups**
+best O(n) (sorted, with the flag), average and worst O(n²) time; O(1) space; **stable**, in place.
+
+#### ⚠️ Pitfalls
+
+- Running the inner loop to `n - 1` every time (wasted comparisons and an out-of-bounds read of `arr[j + 1]` if you also forget `- 1`)
+- Using `>=` (swaps equal elements: loses stability and does extra work)
+
+#### 🎤 Follow-ups
+
 - *Why do small elements move so slowly?* An element can only move **one position left per pass** (the "turtle" problem); large elements move to the end in one pass ("rabbits"). Cocktail shaker sort alternates directions to fix this.
 - *Why is it rarely used?* O(n²) with many swaps; insertion sort does less work on the same inputs.
 - *How many swaps does bubble sort perform?* Exactly the number of **inversions** (pairs out of order) in the input.
 
+<sub></sub>
+
 ---
 
-## Q40. Selection Sort
+### Q40. Selection Sort
 
-**Review of your solution:** ✅ Correct (verified on your array and edge cases). The structure is textbook: find the minimum of the unsorted part, swap it to the front. Notes:
+> **Problem.** Sort an array using selection sort.
 
-1. When `minIndex == i` you still swap the element with itself: harmless, but skipping it is cleaner.
-2. Be ready to state its properties, because they are the interview question: **it always does n(n−1)/2 comparisons** (it cannot exit early), it does **at most n−1 swaps** (the fewest of the simple sorts), and it is **not stable**.
-3. Hard-coded data; no final newline.
+🏷️ **Concepts:** invariant "`arr[0..i-1]` already holds the `i` smallest elements, in order", minimum search, stability.
 
-**Problem:** Sort an array using selection sort.
+#### 💡 How to think
 
-**Concepts:** invariant "`arr[0..i-1]` already holds the `i` smallest elements, in order", minimum search, stability.
+Pass `i` selects the smallest element of the remaining part `arr[i..n-1]` and swaps it into position `i`. After `n − 1` passes the array is sorted (the last element is automatically the largest).
 
-**How to think:** Pass `i` selects the smallest element of the remaining part `arr[i..n-1]` and swaps it into position `i`. After `n − 1` passes the array is sorted (the last element is automatically the largest).
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <utility>
@@ -3960,44 +4322,56 @@ int main() {
 }
 ```
 
-**Dry run (`{29, 10, 14, 37, 13}`):**
+#### 🔍 Dry run (`{29, 10, 14, 37, 13}`)
 
-| pass | minimum found | array after the swap |
-|---|---|---|
-| 1 | 10 (index 1) | `10 29 14 37 13` |
-| 2 | 13 (index 4) | `10 13 14 37 29` |
-| 3 | 14 (index 2, already there) | `10 13 14 37 29` |
-| 4 | 29 (index 4) | `10 13 14 29 37` |
+| pass | minimum found               | array after the swap |
+| ---- | --------------------------- | -------------------- |
+| 1    | 10 (index 1)                | `10 29 14 37 13`   |
+| 2    | 13 (index 4)                | `10 13 14 37 29`   |
+| 3    | 14 (index 2, already there) | `10 13 14 37 29`   |
+| 4    | 29 (index 4)                | `10 13 14 29 37`   |
 
 **Why it is not stable:** in `(2,a) (2,b) (1,c)` the first pass swaps `(1,c)` with `(2,a)`, producing `(1,c) (2,b) (2,a)`: the two equal keys are now in the opposite order (shown by the program).
 
-| Input | Output |
-|---|---|
+#### 🧪 Sample runs and edge cases
+
+| Input                         | Output                                 |
+| ----------------------------- | -------------------------------------- |
 | `62 13 65 0 34 76 2 6 98 9` | `0 2 6 9 13 34 62 65 76 98`, 8 swaps |
-| empty | empty, 0 swaps |
+| empty                         | empty, 0 swaps                         |
 
-**Complexity:** O(n²) comparisons in **every** case; O(n) swaps at most; O(1) space; in place; not stable.
+#### ⏱️ Complexity
 
-**Pitfalls:** searching for the minimum from `0` instead of `i`; looping `i` up to `n` (a harmless extra pass); assuming it is stable.
+O(n²) comparisons in **every** case; O(n) swaps at most; O(1) space; in place; not stable.
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Searching for the minimum from `0` instead of `i`
+- Looping `i` up to `n` (a harmless extra pass)
+- Assuming it is stable
+
+#### 🎤 Follow-ups
+
 - *When is selection sort a good choice?* When writes are expensive (flash memory), because it does the minimum number of swaps.
 - *Make it stable?* Shift elements instead of swapping (insert the minimum at position `i`), at the cost of more moves.
 - *Heap sort?* Selection sort where "find the minimum" is done by a heap: O(n log n).
 
+<sub></sub>
+
 ---
 
-## Q41. Insertion Sort
+### Q41. Insertion Sort
 
-**Review of your solution:** 🐞 The sort itself is correct and **stable** (`arr[j] > key` shifts only strictly larger elements): the invariant "the prefix `arr[0..i-1]` is sorted" is maintained, the shifting loop is right, and `j >= 0` is checked **before** `arr[j]`. But **the question asks to test it on sorted, reversed and randomly ordered input**, and your `main` tests only one (random) array. Completing every requirement is part of the answer. The program below tests all three and counts the work, which also shows *why* the best case is O(n) and the worst case O(n²).
+> **Problem.** Implement insertion sort and test it on sorted, reversed and random input.
 
-**Problem:** Implement insertion sort and test it on sorted, reversed and random input.
+🏷️ **Concepts:** growing a sorted prefix, shifting, adaptive behaviour, stability.
 
-**Concepts:** growing a sorted prefix, shifting, adaptive behaviour, stability.
+#### 💡 How to think
 
-**How to think:** Take the next element (`key`) and slide it left into the already-sorted prefix: shift every larger element one place right, then drop `key` into the gap. It works like sorting playing cards in your hand.
+Take the next element (`key`) and slide it left into the already-sorted prefix: shift every larger element one place right, then drop `key` into the gap. It works like sorting playing cards in your hand.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -4068,49 +4442,57 @@ int main() {
 }
 ```
 
-**Dry run (`{4, 3, 1}`):**
+#### 🔍 Dry run (`{4, 3, 1}`)
 
-| i | key | shifting | array |
-|---|---|---|---|
-| 1 | 3 | `4 > 3`: shift 4 | `3 4 1` |
-| 2 | 1 | `4 > 1`, `3 > 1`: shift both | `1 3 4` |
+| i | key | shifting                         | array     |
+| - | --- | -------------------------------- | --------- |
+| 1 | 3   | `4 > 3`: shift 4               | `3 4 1` |
+| 2 | 1   | `4 > 1`, `3 > 1`: shift both | `1 3 4` |
 
 **Measured work for n = 1000** (seeded data, so the numbers repeat):
 
-| Input | Comparisons | Shifts | Why |
-|---|---|---|---|
-| sorted | **999** | **0** | each key is compared once and stays: O(n) |
+#### 🧪 Sample runs and edge cases
+
+| Input    | Comparisons       | Shifts            | Why                                                 |
+| -------- | ----------------- | ----------------- | --------------------------------------------------- |
+| sorted   | **999**     | **0**       | each key is compared once and stays: O(n)           |
 | reversed | **499,500** | **499,500** | every key moves all the way to the front: n(n−1)/2 |
-| random | 252,163 | 251,167 | about n²/4 on average |
+| random   | 252,163           | 251,167           | about n²/4 on average                              |
 
 The number of shifts equals the number of **inversions** (pairs in the wrong order) in the input.
 
-**Complexity:** best O(n), average and worst O(n²) time; O(1) space; **stable**, in place, **adaptive**, and an **online** algorithm (can sort items as they arrive).
+#### ⏱️ Complexity
 
-**Pitfalls:** testing `arr[j] > key` before `j >= 0` (reads `arr[-1]`); writing `arr[j] = key` instead of `arr[j + 1] = key` after the loop; using `>=` (loses stability).
+best O(n), average and worst O(n²) time; O(1) space; **stable**, in place, **adaptive**, and an **online** algorithm (can sort items as they arrive).
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Testing `arr[j] > key` before `j >= 0` (reads `arr[-1]`)
+- Writing `arr[j] = key` instead of `arr[j + 1] = key` after the loop
+- Using `>=` (loses stability)
+
+#### 🎤 Follow-ups
+
 - *Why do real libraries use it?* For small ranges (about 16 elements) and nearly sorted data it beats the O(n log n) sorts because of its low overhead; introsort and Timsort finish with insertion sort.
 - *Faster search for the insertion point?* Binary insertion sort reduces comparisons to O(n log n), but the shifting is still O(n²).
 - *Sorting a linked list?* Insertion needs no shifting there (only pointer changes).
 
+<sub></sub>
+
 ---
 
-## Q42. Merge Two Sorted Arrays
+### Q42. Merge Two Sorted Arrays
 
-**Review of your solution:** ✅ The merge logic is correct and stable: two indices walk the two inputs, the smaller front element is taken (`<=` takes from the first array on ties), and the two leftover loops copy the remaining tail. Improvements:
+> **Problem.** Merge two sorted arrays into one sorted array.
 
-1. 🐞 **The function prints instead of returning** the merged array, so it cannot be reused (this is the same design lesson as Q19: *compute in functions, print in `main`*). Return a `vector<int>`.
-2. The parameters are non-const references (`std::vector<int> &`) although the function only reads them: use `const std::vector<int> &`.
-3. Hard-coded data; sizes stored in `int`.
+🏷️ **Concepts:** the two-pointer merge (the core of merge sort, Q43), O(n + m), stability.
 
-**Problem:** Merge two sorted arrays into one sorted array.
+#### 💡 How to think
 
-**Concepts:** the two-pointer merge (the core of merge sort, Q43), O(n + m), stability.
+Both inputs are sorted, so the smallest unused element is always at the front of one of them. Compare the two front elements, take the smaller, advance that pointer. When one array runs out, append the rest of the other one unchanged.
 
-**How to think:** Both inputs are sorted, so the smallest unused element is always at the front of one of them. Compare the two front elements, take the smaller, advance that pointer. When one array runs out, append the rest of the other one unchanged.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <vector>
@@ -4162,49 +4544,57 @@ int main() {
 }
 ```
 
-**Dry run (`{1, 3, 5}` and `{2, 4}`):**
+#### 🔍 Dry run (`{1, 3, 5}` and `{2, 4}`)
 
-| i | j | compare | taken | result |
-|---|---|---|---|---|
-| 0 | 0 | 1 vs 2 | 1 | `1` |
-| 1 | 0 | 3 vs 2 | 2 | `1 2` |
-| 1 | 1 | 3 vs 4 | 3 | `1 2 3` |
-| 2 | 1 | 5 vs 4 | 4 | `1 2 3 4` |
-| 2 | 2 | second array exhausted: copy the rest | 5 | `1 2 3 4 5` |
+| i | j | compare                               | taken | result        |
+| - | - | ------------------------------------- | ----- | ------------- |
+| 0 | 0 | 1 vs 2                                | 1     | `1`         |
+| 1 | 0 | 3 vs 2                                | 2     | `1 2`       |
+| 1 | 1 | 3 vs 4                                | 3     | `1 2 3`     |
+| 2 | 1 | 5 vs 4                                | 4     | `1 2 3 4`   |
+| 2 | 2 | second array exhausted: copy the rest | 5     | `1 2 3 4 5` |
 
-| Input | Merged |
-|---|---|
-| `0 2 4 6 7 9` and `1 3 5 8 10 11` | `0 1 2 3 4 5 6 7 8 9 10 11` |
-| `{}` and `1 2 3` | `1 2 3` |
-| `1 1 2` and `1 2 2` | `1 1 1 2 2 2` |
-| an unsorted input | `... is not sorted` and `Invalid input` |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n + m) time, O(n + m) space for the result.
+| Input                                 | Merged                                      |
+| ------------------------------------- | ------------------------------------------- |
+| `0 2 4 6 7 9` and `1 3 5 8 10 11` | `0 1 2 3 4 5 6 7 8 9 10 11`               |
+| `{}` and `1 2 3`                  | `1 2 3`                                   |
+| `1 1 2` and `1 2 2`               | `1 1 1 2 2 2`                             |
+| an unsorted input                     | `... is not sorted` and `Invalid input` |
 
-**Pitfalls:** forgetting the leftover loops (the tail of the longer array is lost); `<` instead of `<=` (still sorted, but no longer stable); calling `result[k++] = ...` without sizing the result first.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n + m) time, O(n + m) space for the result.
+
+#### ⚠️ Pitfalls
+
+- Forgetting the leftover loops (the tail of the longer array is lost)
+- `<` instead of `<=` (still sorted, but no longer stable)
+- Calling `result[k++] = ...` without sizing the result first
+
+#### 🎤 Follow-ups
+
 - *Standard library?* `merge(a.begin(), a.end(), b.begin(), b.end(), back_inserter(result))` or `inplace_merge`.
 - *Merge into the first array in place* (when it has enough spare room at the end, a classic interview problem)? Fill from the **back**, comparing the largest elements, so nothing unread is overwritten.
 - *Merge k sorted arrays?* A min-heap of the k front elements: O(N log k).
 
+<sub></sub>
+
 ---
 
-## Q43. Merge Sort
+### Q43. Merge Sort
 
-**Review of your solution:** ✅ Correct, clean top-down merge sort: the base case `left >= right`, `mid = left + (right - left) / 2`, recursion on both halves, then merge, and `<=` in the merge, which makes it **stable**. I verified it against `std::sort` on 2,000 random arrays (0 to 40 elements, with duplicates and negatives): no mismatch. Improvements:
+> **Problem.** Implement merge sort using divide and conquer.
 
-1. **Two new vectors are allocated in every `merge` call** (`leftArr`, `rightArr`): that is O(n) separate allocations over the whole sort. Use **one** auxiliary buffer allocated once.
-2. **Name clash risk:** your function is called `merge`, like `std::merge`. It compiles because yours takes 4 arguments, but `std::vector` is a `std` type, so argument-dependent lookup also considers `std::merge`. A different name (`mergeHalves`) avoids any surprise.
-3. `mergeSort(arr, 0, arr.size() - 1)` on an **empty** vector computes `size_t(0) - 1` (a huge number) and converts it to `int`. It happens to give `-1` and work, but a wrapper with an explicit check is safer.
+🏷️ **Concepts:** divide, conquer, combine; the merge from Q42; recurrence `T(n) = 2T(n/2) + O(n)`.
 
-**Problem:** Implement merge sort using divide and conquer.
+#### 💡 How to think
 
-**Concepts:** divide, conquer, combine; the merge from Q42; recurrence `T(n) = 2T(n/2) + O(n)`.
+A one-element (or empty) range is already sorted. Otherwise split in the middle, sort each half recursively (trust it), and merge the two sorted halves (Q42). The real work happens in the merge, on the way back up.
 
-**How to think:** A one-element (or empty) range is already sorted. Otherwise split in the middle, sort each half recursively (trust it), and merge the two sorted halves (Q42). The real work happens in the merge, on the way back up.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -4269,6 +4659,7 @@ int main() {
 ```
 
 **Recursion on `{38, 27, 43, 3, 9, 82, 10}`:**
+
 ```
 [38 27 43 3 9 82 10]
 ├── [38 27 43 3]
@@ -4282,48 +4673,51 @@ int main() {
 merge → [3 9 10 27 38 43 82]
 ```
 
-**Complexity:** `log₂ n` levels, each doing O(n) merging work: **O(n log n) in the best, average and worst case.** O(n) extra space for the buffer plus O(log n) recursion depth. **Stable.**
+#### ⏱️ Complexity
 
-| Property | Merge sort |
-|---|---|
-| time (all cases) | O(n log n) |
-| extra space | O(n) |
-| stable | yes |
-| in place | no |
-| adaptive | no (always does the full work) |
+`log₂ n` levels, each doing O(n) merging work: **O(n log n) in the best, average and worst case.** O(n) extra space for the buffer plus O(log n) recursion depth. **Stable.**
 
-**Pitfalls:** an off-by-one in `mid` (`mid + 1` vs `mid`) that makes the recursion not shrink (infinite loop); forgetting the leftover loops in the merge; allocating inside the merge (slow).
+| Property         | Merge sort                     |
+| ---------------- | ------------------------------ |
+| time (all cases) | O(n log n)                     |
+| extra space      | O(n)                           |
+| stable           | yes                            |
+| in place         | no                             |
+| adaptive         | no (always does the full work) |
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- An off-by-one in `mid` (`mid + 1` vs `mid`) that makes the recursion not shrink (infinite loop)
+- Forgetting the leftover loops in the merge
+- Allocating inside the merge (slow)
+
+#### 🎤 Follow-ups
+
 - *Why is merge sort preferred for linked lists and for stable sorting?* Merging needs no random access, and equal elements keep their order.
 - *Bottom-up version?* Merge runs of size 1, 2, 4, ... in a loop: no recursion.
 - *Count inversions?* Count, while merging, how many left-half elements are bigger than a right-half element: O(n log n).
 - *External sorting (data bigger than memory)?* Merge sorted chunks from disk.
 
+<sub></sub>
+
 ---
 
-## Q44. Quick Sort
+### Q44. Quick Sort
 
-**Review of your solution:** ✅ This is a strong answer, and the written explanation of how pivot selection affects performance is clear and correct (balanced vs lopsided splits, the sorted-array trap, first/last vs random vs median-of-three). The implementation has two excellent details:
+> **Problem.** Implement quicksort and explain how pivot selection affects performance.
 
-- a **random pivot**, which defeats the "already sorted input" trap, and
-- **recursing into the smaller partition and looping on the larger one**, which keeps the stack depth at O(log n) *always* (I measured a maximum depth of 9 for 20,000 elements, even for sorted input).
+🏷️ **Concepts:** partitioning, recursion on subranges, worst-case analysis, randomization, stack depth.
 
-I verified it against `std::sort` on 2,000 random arrays. One real weakness, found by testing:
+#### 💡 How to think
 
-1. 🐞 **Many equal elements make it O(n²).** Your partition sends every element `<= pivot` to the left. If all elements are equal, *every* element goes left, the split is `n − 1 : 0`, and a random pivot cannot help because all choices are identical. For **20,000 equal elements it performed 199,990,000 comparisons (449 ms)**, versus about 340,000 for sorted, reversed or random data of the same size. The fix is a **three-way partition** (`< pivot`, `== pivot`, `> pivot`): elements equal to the pivot are grouped in the middle and never touched again.
-2. The explanation promises behaviour for sorted/reversed inputs, but the program never demonstrates it. The experiment below does.
-
-**Problem:** Implement quicksort and explain how pivot selection affects performance.
-
-**Concepts:** partitioning, recursion on subranges, worst-case analysis, randomization, stack depth.
-
-**How to think**
 1. Pick a **pivot**. Rearrange the range so smaller elements are on its left and larger ones on its right. The pivot is then in its final position.
 2. Recursively sort the left and right parts.
 3. *Performance depends on how balanced the split is.* Even splits give `T(n) = 2T(n/2) + O(n) = O(n log n)`; the worst split gives `T(n) = T(n−1) + O(n) = O(n²)`.
 
-**Solution (production version: random pivot, three-way partition, smaller-side recursion)**
+#### 🧩 Solution
+
+*Production version: random pivot, three-way partition, smaller-side recursion*
+
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -4396,7 +4790,9 @@ int main() {
 }
 ```
 
-**Experiment: how the pivot strategy and the partition scheme change the work** (n = 5000, the same seeded data for every column; the numbers are elements compared against the pivot):
+#### 🔬 Experiment: how the pivot strategy and the partition scheme change the work
+
+(n = 5000, the same seeded data for every column; the numbers are elements compared against the pivot):
 
 ```cpp
 // Experiment: how the pivot strategy and the partition scheme change the amount of work.
@@ -4505,39 +4901,56 @@ all equal                 12497500       12497500        12497500            500
 ```
 
 **What the table teaches**
+
 - **First-element pivot on sorted or reversed data: 12,497,500 comparisons** (exactly n(n−1)/2). That is the "sorted array trap".
 - **A random pivot** (or **median-of-three**) turns those inputs into ordinary O(n log n) work (about 52,000 to 100,000 comparisons).
 - **Duplicates are a separate problem.** With the classic partition, *every* pivot strategy needs 12.5 million comparisons on all-equal data, and about 2.5 million on only five distinct values. A **three-way partition** needs just 5,000 and about 12,000, respectively.
 - Median-of-three is deterministic and cheap, but an adversary can still build a bad input for it; a random pivot has no bad input, only unlucky coin flips (probability negligible).
 
-| Pivot strategy | Bad input | Typical use |
-|---|---|---|
-| first / last element | sorted, reversed | teaching examples only |
-| random element | none in practice (expected O(n log n)) | general purpose |
-| median of three (first, middle, last) | specially crafted inputs | library implementations |
-| true median (median of medians) | none (guaranteed O(n log n)) | theoretical; large constant factor |
+| Pivot strategy                        | Bad input                              | Typical use                        |
+| ------------------------------------- | -------------------------------------- | ---------------------------------- |
+| first / last element                  | sorted, reversed                       | teaching examples only             |
+| random element                        | none in practice (expected O(n log n)) | general purpose                    |
+| median of three (first, middle, last) | specially crafted inputs               | library implementations            |
+| true median (median of medians)       | none (guaranteed O(n log n))           | theoretical; large constant factor |
 
-**Complexity:** expected O(n log n); worst O(n²), made astronomically unlikely by the random pivot; O(log n) stack space thanks to recursing on the smaller side. **Not stable**, in place.
+#### ⏱️ Complexity
 
-| Input | Result |
-|---|---|
-| `10 7 8 9 1 5 7 10 1` | `1 1 5 7 7 8 9 10 10` |
+expected O(n log n); worst O(n²), made astronomically unlikely by the random pivot; O(log n) stack space thanks to recursing on the smaller side. **Not stable**, in place.
+
+#### 🧪 Sample runs and edge cases
+
+| Input                               | Result                     |
+| ----------------------------------- | -------------------------- |
+| `10 7 8 9 1 5 7 10 1`             | `1 1 5 7 7 8 9 10 10`    |
 | 2,000 random arrays with duplicates | identical to `std::sort` |
-| 200,000 equal elements | sorted in one linear pass |
+| 200,000 equal elements              | sorted in one linear pass  |
 
-**Pitfalls:** recursing on both partitions without the smaller-side trick (stack overflow on bad splits); a partition that does not make progress (infinite recursion); assuming a random pivot fixes duplicates; using quicksort when stability is required.
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- Recursing on both partitions without the smaller-side trick (stack overflow on bad splits)
+- A partition that does not make progress (infinite recursion)
+- Assuming a random pivot fixes duplicates
+- Using quicksort when stability is required
+
+#### 🎤 Follow-ups
+
 - *Why is quicksort usually faster than merge sort in practice?* It works in place with good cache behaviour and a small constant factor, even though merge sort has the better worst case.
 - *What does `std::sort` do?* Introsort: quicksort that switches to heapsort when the recursion gets too deep (guaranteeing O(n log n)) and to insertion sort for small ranges.
 - *Find the k-th smallest element in O(n) average time?* **Quickselect**: partition, then recurse into only one side.
 - *Hoare vs Lomuto partition?* Hoare's scheme does fewer swaps and handles duplicates better; Lomuto is simpler to write.
 
+<sub></sub>
+
 ---
 
-# PART 0 (continued) — MATRICES AND STL CONCEPTS (read once)
+## Module 7 — Matrices, STL, and Problem-Solving
 
-## M1. Two-dimensional data
+> 🧮 **Q45–Q50** · 2D vectors, matrix operations, and the standard containers (`unordered_map`, `set`, `stack`) applied to frequency counting, deduplication, bracket matching and Two Sum.
+
+### 📘 Concepts
+
+#### M1. Two-dimensional data
 
 ```cpp
 vector<vector<long long>> m(rows, vector<long long>(cols, 0));   // rows x cols, all zeros
@@ -4550,27 +4963,27 @@ m[0].size();            // number of columns (if the matrix is not empty!)
 - **Memory layout:** each row is its own array, but walking **row by row** (`i` outer, `j` inner) is cache-friendly; column-by-column is not.
 - **Operations and cost** (for `r × c` matrices):
 
-| Operation | Rule | Time |
-|---|---|---|
-| addition | same dimensions; `sum[i][j] = a[i][j] + b[i][j]` | O(r·c) |
-| transpose | `r × c` becomes `c × r`; `t[j][i] = m[i][j]` | O(r·c) |
+| Operation      | Rule                                                                               | Time                             |
+| -------------- | ---------------------------------------------------------------------------------- | -------------------------------- |
+| addition       | same dimensions; `sum[i][j] = a[i][j] + b[i][j]`                                 | O(r·c)                          |
+| transpose      | `r × c` becomes `c × r`; `t[j][i] = m[i][j]`                               | O(r·c)                          |
 | multiplication | `(r1 × c1)(c1 × c2) = (r1 × c2)`; **columns of A must equal rows of B** | O(r1·c1·c2), O(n³) for square |
 
 - **Overflow:** a product entry is a *sum of products*; accumulate in `long long`.
 
-## M2. Choosing an STL container
+#### M2. Choosing an STL container
 
-| Container | Order | Lookup / insert (average) | Typical use |
-|---|---|---|---|
-| `vector` | insertion order, contiguous | index O(1), push_back O(1) amortized | default sequence |
-| `unordered_map` / `unordered_set` | **none (unspecified)** | O(1) average, O(n) worst | counting, "have I seen this?", complement lookup |
-| `map` / `set` | **sorted by key** | O(log n) | sorted output, range queries, unique sorted values |
-| `stack` | LIFO (`push`, `pop`, `top`, `empty`) | O(1) | matching brackets, undo, DFS |
-| `queue` | FIFO | O(1) | BFS, scheduling |
+| Container                             | Order                                        | Lookup / insert (average)            | Typical use                                        |
+| ------------------------------------- | -------------------------------------------- | ------------------------------------ | -------------------------------------------------- |
+| `vector`                            | insertion order, contiguous                  | index O(1), push_back O(1) amortized | default sequence                                   |
+| `unordered_map` / `unordered_set` | **none (unspecified)**                 | O(1) average, O(n) worst             | counting, "have I seen this?", complement lookup   |
+| `map` / `set`                     | **sorted by key**                      | O(log n)                             | sorted output, range queries, unique sorted values |
+| `stack`                             | LIFO (`push`, `pop`, `top`, `empty`) | O(1)                                 | matching brackets, undo, DFS                       |
+| `queue`                             | FIFO                                         | O(1)                                 | BFS, scheduling                                    |
 
 Rules of thumb: need **order**? → `map`/`set`. Need **speed** and don't care about order? → `unordered_*`. Calling `top()` or `pop()` on an empty stack is undefined behavior: check `empty()` first.
 
-## M3. The hash-map patterns
+#### M3. The hash-map patterns
 
 1. **Frequency counting:** `freq[x]++` (a missing key is created with value 0). Q47.
 2. **"Seen before?":** keep a set of what you have processed. Q48.
@@ -4578,7 +4991,7 @@ Rules of thumb: need **order**? → `map`/`set`. Need **speed** and don't care a
 
 Hash maps trade **O(n) extra memory** for turning an O(n²) double loop into an O(n) single pass.
 
-## M4. Exceptions in one minute
+#### M4. Exceptions in one minute
 
 ```cpp
 try {
@@ -4590,30 +5003,23 @@ try {
 
 An exception that nobody catches calls `std::terminate`, and the program **aborts** (exit code 134 on Linux). Use exceptions for exceptional failures (bad dimensions); for *expected* "not found" outcomes prefer `bool`, `optional` or an empty result.
 
----
-
-# MODULE 7 — MATRICES, STL, AND PROBLEM-SOLVING
+### 📝 Problems
 
 ---
 
-## Q45. Matrix Addition and Transposition
+### Q45. Matrix Addition and Transposition
 
-**Review of your solution:** ✅ Well engineered: validated dimensions, an `isRectangular` check, `size_t` indexing, `long long` sums so `int` addition cannot overflow, and exceptions for incompatible shapes. I verified the 3×3 example, the transpose of a **non-square** 2×3 matrix (correctly 3×2), an empty matrix, and both mismatch cases (3×2 vs 2×3, and equal row counts with different columns). Two findings:
+> **Problem.** Add two compatible matrices and compute the transpose of a matrix.
 
-1. 🐞 **The exceptions are never caught.** `addMatrix` throws `invalid_argument`, but `main` has no `try/catch`, so a mismatch ends the program with `terminate called after throwing an instance of 'std::invalid_argument'` and **exit code 134** (I forced it). Catch it in `main` and print a friendly message.
-2. The demo uses only 3×3 matrices generated by `createMatrix`. The interesting cases are **non-square** matrices (transposing changes the shape) and **mismatched** shapes. Read the matrices from the user so you can test both.
+🏷️ **Concepts:** 2D vectors (M1), dimension rules, exceptions (M4).
 
-(Mixing `Matrix` of `int` for the inputs and `long long` for the sum works, but a single element type is simpler to read. The solution below uses `long long` throughout.)
+#### 💡 How to think
 
-**Problem:** Add two compatible matrices and compute the transpose of a matrix.
-
-**Concepts:** 2D vectors (M1), dimension rules, exceptions (M4).
-
-**How to think**
 - **Addition:** defined only for matrices with the **same** number of rows and columns; add element by element.
 - **Transpose:** an `r × c` matrix becomes `c × r`; the element at row `i`, column `j` moves to row `j`, column `i`.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <stdexcept>
@@ -4686,40 +5092,49 @@ int main() {
 }
 ```
 
-| Input | Output |
-|---|---|
+#### 🧪 Sample runs and edge cases
+
+| Input                                           | Output                                                                                              |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | A = `1 2 3 / 4 5 6`, B = `7 8 9 / 10 11 12` | `Aᵀ` = `1 4 / 2 5 / 3 6`; `Bᵀ` = `7 10 / 8 11 / 9 12`; `A + B` = `8 10 12 / 14 16 18` |
-| A is 2×3, B is 3×2 | transposes printed, then `Cannot add: matrices must have the same dimensions` (no crash) |
+| A is 2×3, B is 3×2                            | transposes printed, then `Cannot add: matrices must have the same dimensions` (no crash)          |
 
-**Dry run (transpose of `1 2 3 / 4 5 6`):** `t[0][0] = m[0][0] = 1`, `t[1][0] = m[0][1] = 2`, `t[2][0] = m[0][2] = 3`, `t[0][1] = m[1][0] = 4`, ... giving the 3×2 matrix `1 4 / 2 5 / 3 6`.
+#### 🔍 Dry run (transpose of `1 2 3 / 4 5 6`)
 
-**Complexity:** O(r·c) time for each operation, O(r·c) space for the result.
+`t[0][0] = m[0][0] = 1`, `t[1][0] = m[0][1] = 2`, `t[2][0] = m[0][2] = 3`, `t[0][1] = m[1][0] = 4`, ... giving the 3×2 matrix `1 4 / 2 5 / 3 6`.
 
-**Pitfalls:** allocating the transpose as `r × c` instead of `c × r` (wrong for non-square matrices); transposing "in place" a non-square matrix (impossible in a simple loop); assuming `m[0]` exists for an empty matrix.
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(r·c) time for each operation, O(r·c) space for the result.
+
+#### ⚠️ Pitfalls
+
+- Allocating the transpose as `r × c` instead of `c × r` (wrong for non-square matrices)
+- Transposing "in place" a non-square matrix (impossible in a simple loop)
+- Assuming `m[0]` exists for an empty matrix
+
+#### 🎤 Follow-ups
+
 - *In-place transpose of a square matrix?* Swap `m[i][j]` with `m[j][i]` for `j > i`.
 - *Rotate a matrix by 90°?* Transpose, then reverse each row.
 - *Why is the sum `long long`?* Two `int` entries near 2·10⁹ overflow `int`.
 
+<sub></sub>
+
 ---
 
-## Q46. Matrix Multiplication
+### Q46. Matrix Multiplication
 
-**Review of your solution:** ✅ The mathematics is correct and the performance choice is good. The loop order **i–k–j** reads both matrices row by row (cache-friendly), and the `long long` accumulator avoids overflow. Verified: the 3×3 example and a **non-square** product `(2×3) × (3×2) = 2×2` (`22 28 / 49 64`), and an incompatible pair throws correctly. Findings:
+> **Problem.** Multiply two matrices when their dimensions are compatible.
 
-1. 🐞 **Ragged input causes an out-of-bounds read.** The function takes the dimensions from `matrixA[0]` and `matrixB[0]` only. For a non-rectangular matrix such as `{{1,2,3},{4,5}}`, `matrixA[1][2]` reads past the end of the row. AddressSanitizer reported **heap-buffer-overflow** when I tried it. Q45 had an `isRectangular` check; Q46 needs the same.
-2. The exception for incompatible dimensions is not caught in `main` (same as Q45): the program aborts.
-3. An empty matrix silently returns an empty result, even when the other matrix is not empty. Decide on one rule (an error is clearer).
-4. Only the 3×3 case is demonstrated; test non-square and incompatible shapes.
+🏷️ **Concepts:** triple loop, dimension compatibility rule, accumulation, O(n³).
 
-**Problem:** Multiply two matrices when their dimensions are compatible.
+#### 💡 How to think
 
-**Concepts:** triple loop, dimension compatibility rule, accumulation, O(n³).
+`C = A × B` is defined when the **number of columns of A equals the number of rows of B**. If `A` is `r1 × c1` and `B` is `c1 × c2`, then `C` is `r1 × c2` and `C[i][j] = Σₖ A[i][k] × B[k][j]`: the dot product of row `i` of A and column `j` of B.
 
-**How to think:** `C = A × B` is defined when the **number of columns of A equals the number of rows of B**. If `A` is `r1 × c1` and `B` is `c1 × c2`, then `C` is `r1 × c2` and `C[i][j] = Σₖ A[i][k] × B[k][j]`: the dot product of row `i` of A and column `j` of B.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <stdexcept>
@@ -4781,41 +5196,52 @@ int main() {
 }
 ```
 
-**Dry run (`C[0][0]` for A = `1 2 3 / 4 5 6`, B = `1 2 / 3 4 / 5 6`):** `1·1 + 2·3 + 3·5 = 22`. The other entries: `C[0][1] = 1·2 + 2·4 + 3·6 = 28`, `C[1][0] = 4·1 + 5·3 + 6·5 = 49`, `C[1][1] = 4·2 + 5·4 + 6·6 = 64`.
+#### 🔍 Dry run (`C[0][0]` for A = `1 2 3 / 4 5 6`, B = `1 2 / 3 4 / 5 6`)
 
-| Input | Output |
-|---|---|
-| A is 2×3 `1 2 3 / 4 5 6`, B is 3×2 `1 2 / 3 4 / 5 6` | `22 28 / 49 64` |
-| A = `1 2 3 / 4 5 6 / 7 8 9`, B = `-5 -4 -3 / -2 -1 0 / 1 2 3` | `-6 0 6 / -24 -9 6 / -42 -18 6` |
-| A is 2×3, B is 2×3 | `Cannot multiply: columns of A (3) must equal rows of B (2)` |
-| A = `1 2 / 3 4`, B = identity | `1 2 / 3 4` (multiplying by the identity changes nothing) |
+`1·1 + 2·3 + 3·5 = 22`. The other entries: `C[0][1] = 1·2 + 2·4 + 3·6 = 28`, `C[1][0] = 4·1 + 5·3 + 6·5 = 49`, `C[1][1] = 4·2 + 5·4 + 6·6 = 64`.
 
-**Complexity:** O(r1 · c1 · c2) time, which is O(n³) for square matrices; O(r1 · c2) space for the result.
+#### 🧪 Sample runs and edge cases
 
-**Pitfalls:** swapping the compatibility rule (it is columns of **A** against rows of **B**); allocating the result as `r1 × c1`; forgetting that matrix multiplication is **not commutative** (`A × B ≠ B × A` in general); starting the accumulator uninitialized.
+| Input                                                             | Output                                                         |
+| ----------------------------------------------------------------- | -------------------------------------------------------------- |
+| A is 2×3 `1 2 3 / 4 5 6`, B is 3×2 `1 2 / 3 4 / 5 6`        | `22 28 / 49 64`                                              |
+| A = `1 2 3 / 4 5 6 / 7 8 9`, B = `-5 -4 -3 / -2 -1 0 / 1 2 3` | `-6 0 6 / -24 -9 6 / -42 -18 6`                              |
+| A is 2×3, B is 2×3                                              | `Cannot multiply: columns of A (3) must equal rows of B (2)` |
+| A = `1 2 / 3 4`, B = identity                                   | `1 2 / 3 4` (multiplying by the identity changes nothing)    |
 
-**Follow-ups**
+#### ⏱️ Complexity
+
+O(r1 · c1 · c2) time, which is O(n³) for square matrices; O(r1 · c2) space for the result.
+
+#### ⚠️ Pitfalls
+
+- Swapping the compatibility rule (it is columns of **A** against rows of **B**)
+- Allocating the result as `r1 × c1`
+- Forgetting that matrix multiplication is **not commutative** (`A × B ≠ B × A` in general)
+- Starting the accumulator uninitialized
+
+#### 🎤 Follow-ups
+
 - *Faster than O(n³)?* Strassen's algorithm is about O(n^2.81); practical code uses blocking and libraries (BLAS).
 - *Matrix power (for example Fibonacci via `[[1,1],[1,0]]ⁿ`)?* Use fast exponentiation (Q35) with matrix multiplication: O(log n) multiplications.
 - *Why `i-k-j` rather than `i-j-k`?* The inner loop then walks `b[k][*]` and `product[i][*]` sequentially in memory.
 
+<sub></sub>
+
 ---
 
-## Q47. Frequency Counter Using std::unordered_map
+### Q47. Frequency Counter Using std::unordered_map
 
-**Review of your solution:** ✅ Correct: `freq[num]++` (a missing key is created with value 0 and then incremented) counts every element in O(n) average time, and the structured binding `const auto &[num, count]` is a nice C++17 touch. Findings:
+> **Problem.** Count how many times each integer occurs, using the standard library.
 
-1. **The output order is unspecified.** An `unordered_map` iterates in an order decided by its hash table. On my machine your program printed the keys as `3, 1, 2, 4`; another compiler or library version can print them differently. If the order matters (it does for tests and for users), copy the entries into a `vector` and sort, or use `std::map`.
-2. The text says "1 times"; use a neutral format such as `value: count`.
-3. Hard-coded data. Reading `n` values lets you test empty input and larger inputs.
+🏷️ **Concepts:** hash map (M2, M3), `operator[]` semantics, deterministic output.
 
-**Problem:** Count how many times each integer occurs, using the standard library.
+#### 💡 How to think
 
-**Concepts:** hash map (M2, M3), `operator[]` semantics, deterministic output.
+For each element increment `freq[x]`. The map stores one counter per distinct value, so the work is one hash lookup per element.
 
-**How to think:** For each element increment `freq[x]`. The map stores one counter per distinct value, so the work is one hash lookup per element.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -4861,41 +5287,51 @@ int main() {
 }
 ```
 
-**Dry run (`4 2 4 1 2 4 3`):** `freq`: `4 → 1 → 2 → 3`, `2 → 1 → 2`, `1 → 1`, `3 → 1`. Sorted by value: `1:1, 2:2, 3:1, 4:3`.
+#### 🔍 Dry run (`4 2 4 1 2 4 3`)
 
-| Input | Output |
-|---|---|
+`freq`: `4 → 1 → 2 → 3`, `2 → 1 → 2`, `1 → 1`, `3 → 1`. Sorted by value: `1:1, 2:2, 3:1, 4:3`.
+
+#### 🧪 Sample runs and edge cases
+
+| Input             | Output                                                                 |
+| ----------------- | ---------------------------------------------------------------------- |
 | `4 2 4 1 2 4 3` | `1: 1`, `2: 2`, `3: 1`, `4: 3`, `Most frequent: 4 (3 times)` |
-| empty | only the heading |
+| empty             | only the heading                                                       |
 
-**Complexity:** O(n) average (O(n²) worst case with adversarial hash collisions) time; O(k) space for k distinct values.
+#### ⏱️ Complexity
+
+O(n) average (O(n²) worst case with adversarial hash collisions) time; O(k) space for k distinct values.
 
 **`unordered_map` vs `map`:** `map` keeps the keys sorted and costs O(log n) per operation; `unordered_map` is faster on average but has no order.
 
-**Pitfalls:** relying on iteration order; using `freq[x]` just to *check* membership (it **inserts** the key: use `find` or `count`); using `vector<int> counts(1000000)` when the values are unbounded or negative.
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- Relying on iteration order
+- Using `freq[x]` just to *check* membership (it **inserts** the key: use `find` or `count`)
+- Using `vector<int> counts(1000000)` when the values are unbounded or negative
+
+#### 🎤 Follow-ups
+
 - *Count characters or words?* The same code with `char` or `string` keys (Level 2, Q15).
 - *Top-k frequent elements?* Sort the entries by count, or use a heap: O(n log k).
 - *Why not an array of counters?* Only when the value range is small and known (for example letters).
 
+<sub></sub>
+
 ---
 
-## Q48. Remove Duplicates Using std::set
+### Q48. Remove Duplicates Using std::set
 
-**Review of your solution:** ✅ Correct and idiomatic: constructing a `std::set<int>` from an iterator range removes duplicates and sorts in one step. It runs in O(n log n) time and uses O(n) extra memory. Notes:
+> **Problem.** Remove duplicate values from a collection and print the unique values in sorted order.
 
-1. A `set` allocates one node per element (poor cache behaviour); `sort` + `unique` on a vector is often faster for plain data. Know all three approaches (below).
-2. The data is hard-coded; read it from the user to test the empty case.
-3. The question says "unique values in sorted order": a `set` gives exactly that, which is why it is the intended tool. If the **original order** had to be preserved, you would need a "seen" set and a vector (see Level 2, Q17 for the string version).
+🏷️ **Concepts:** `std::set` (ordered, unique keys, M2), `std::unique`, `unordered_set`.
 
-**Problem:** Remove duplicate values from a collection and print the unique values in sorted order.
+#### 💡 How to think
 
-**Concepts:** `std::set` (ordered, unique keys, M2), `std::unique`, `unordered_set`.
+A `set` rejects a value that is already present and keeps its elements sorted, so inserting everything leaves exactly the unique values in order.
 
-**How to think:** A `set` rejects a value that is already present and keeps its elements sorted, so inserting everything leaves exactly the unique values in order.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -4949,41 +5385,47 @@ int main() {
 }
 ```
 
-| Input | Output |
-|---|---|
+#### 🧪 Sample runs and edge cases
+
+| Input                 | Output                                                         |
+| --------------------- | -------------------------------------------------------------- |
 | `7 2 5 2 9 1 7 5 3` | `1 2 3 5 7 9` (all three methods), `Unique values: 6 of 9` |
-| empty | empty lines, `Unique values: 0 of 0` |
+| empty                 | empty lines, `Unique values: 0 of 0`                         |
 
-| Method | Time | Extra space | Notes |
-|---|---|---|---|
-| `std::set` | O(n log n) | O(n) | simplest, sorted result |
-| `sort` + `unique` + `erase` | O(n log n) | O(1) in place | contiguous memory, usually fastest |
-| `unordered_set` + `sort` | O(n) + O(k log k) | O(n) | best when there are very few distinct values |
+| Method                            | Time              | Extra space   | Notes                                        |
+| --------------------------------- | ----------------- | ------------- | -------------------------------------------- |
+| `std::set`                      | O(n log n)        | O(n)          | simplest, sorted result                      |
+| `sort` + `unique` + `erase` | O(n log n)        | O(1) in place | contiguous memory, usually fastest           |
+| `unordered_set` + `sort`      | O(n) + O(k log k) | O(n)          | best when there are very few distinct values |
 
-**Pitfalls:** forgetting `erase` after `std::unique` (it only moves the duplicates to the end and returns the new logical end; the container size does not change); calling `unique` on an unsorted vector (it removes only *adjacent* duplicates); expecting `unordered_set` to be sorted.
+#### ⚠️ Pitfalls
 
-**Follow-ups**
+- Forgetting `erase` after `std::unique` (it only moves the duplicates to the end and returns the new logical end; the container size does not change)
+- Calling `unique` on an unsorted vector (it removes only *adjacent* duplicates)
+- Expecting `unordered_set` to be sorted
+
+#### 🎤 Follow-ups
+
 - *`multiset`?* Like a set but keeps duplicates.
 - *Descending order?* `set<int, greater<int>>`.
 - *Count how many duplicates were removed?* `numbers.size() - unique.size()`.
 
+<sub></sub>
+
 ---
 
-## Q49. Balanced Parentheses
+### Q49. Balanced Parentheses
 
-**Review of your solution:** ✅ Correct. The stack logic is exactly right: push every opening bracket; on a closing bracket, **check `empty()` first** (so `top()` is never called on an empty stack, which would be undefined behavior), compare with the matching opener, then pop; finally the string is balanced only if the stack is empty. I verified your six test strings plus nine more: `a(b[c]d)e` (other characters are ignored), `(((`, `)))`, `([{}])`, `{[(])}`, `(a`, a string with no brackets, `()[]{}`, `(]`. All correct. Suggestions:
+> **Problem.** Determine whether the brackets `()`, `{}`, `[]` in a string are correctly balanced, using `std::stack`.
 
-1. State your assumption: characters other than brackets are **ignored** (so `"no brackets"` is balanced).
-2. Reading the string from the user (instead of a fixed list) lets you test anything.
-3. Interviewers often ask for **where** the first error is: the version below returns the index.
+🏷️ **Concepts:** stack (LIFO), matching, M2.
 
-**Problem:** Determine whether the brackets `()`, `{}`, `[]` in a string are correctly balanced, using `std::stack`.
+#### 💡 How to think
 
-**Concepts:** stack (LIFO), matching, M2.
+The most recently opened bracket must be the first one closed: that is exactly a stack. Scan left to right. An opening bracket is pushed. A closing bracket must match the bracket on top of the stack: otherwise the string is invalid. At the end, leftover opening brackets mean unclosed brackets.
 
-**How to think:** The most recently opened bracket must be the first one closed: that is exactly a stack. Scan left to right. An opening bracket is pushed. A closing bracket must match the bracket on top of the stack: otherwise the string is invalid. At the end, leftover opening brackets mean unclosed brackets.
+#### 🧩 Solution
 
-**Solution**
 ```cpp
 #include <iostream>
 #include <stack>
@@ -5027,55 +5469,61 @@ int main() {
 }
 ```
 
-**Dry run (`{[(])}`):**
+#### 🔍 Dry run (`{[(])}`)
 
-| char | action | stack (bottom → top) |
-|---|---|---|
-| `{` | push | `{` |
-| `[` | push | `{ [` |
-| `(` | push | `{ [ (` |
+| char  | action                  | stack (bottom → top)                       |
+| ----- | ----------------------- | ------------------------------------------- |
+| `{` | push                    | `{`                                       |
+| `[` | push                    | `{ [`                                     |
+| `(` | push                    | `{ [ (`                                   |
 | `]` | top is `(`, not `[` | **mismatch → not balanced, index 3** |
 
-| Input line | Output |
-|---|---|
-| `{[()]}` | Balanced |
-| `([)]` | Not balanced (problem at index 2) |
-| `((()))` | Balanced |
-| `(()` | Not balanced (problem at index 0: the unclosed `(`) |
-| `}{` | Not balanced (problem at index 0) |
-| *(empty line)* | Balanced |
-| `a(b[c]d)e` | Balanced |
+#### 🧪 Sample runs and edge cases
 
-**Complexity:** O(n) time; O(n) space in the worst case (a string of only opening brackets).
+| Input line       | Output                                                |
+| ---------------- | ----------------------------------------------------- |
+| `{[()]}`       | Balanced                                              |
+| `([)]`         | Not balanced (problem at index 2)                     |
+| `((()))`       | Balanced                                              |
+| `(()`          | Not balanced (problem at index 0: the unclosed `(`) |
+| `}{`           | Not balanced (problem at index 0)                     |
+| *(empty line)* | Balanced                                              |
+| `a(b[c]d)e`    | Balanced                                              |
 
-**Pitfalls:** calling `top()` or `pop()` on an empty stack; checking only that the **counts** of each bracket type match (`([)]` has equal counts but is invalid); forgetting the final `empty()` check (`(()`).
+#### ⏱️ Complexity
 
-**Follow-ups**
+O(n) time; O(n) space in the worst case (a string of only opening brackets).
+
+#### ⚠️ Pitfalls
+
+- Calling `top()` or `pop()` on an empty stack
+- Checking only that the **counts** of each bracket type match (`([)]` has equal counts but is invalid)
+- Forgetting the final `empty()` check (`(()`)
+
+#### 🎤 Follow-ups
+
 - *Only one bracket type?* A single counter is enough (never negative, zero at the end), with O(1) space.
 - *Minimum insertions or deletions to balance it?* Variations using a counter or stack.
 - *Where else are stacks used?* Expression evaluation, undo/redo, function calls, depth-first search.
 
+<sub></sub>
+
 ---
 
-## Q50. Two Sum
+### Q50. Two Sum
 
-**Review of your solution:** 🐞 The structure is exactly what the question asks for: a brute-force version first, then a one-pass `unordered_map` version that stores `{value, index}`, checks the complement **before** inserting the current element (which guarantees two *distinct* indices), and uses the C++17 `if` with an initializer. On your sample array both versions find the same three pairs. Findings:
+> **Problem.** Given an integer array and a target, find two distinct elements whose sum equals the target. Try brute force first, then improve with `std::unordered_map`.
 
-1. 🐞 **The hash-map version misses pairs when the array contains duplicates**, so the two versions disagree. For `{3, 3, 3}` with target `6`, brute force finds **3 pairs** (indices (0,1), (0,2), (1,2)) but the hash version finds **2**, because `seen[arr[i]] = i` overwrites the earlier index of the value `3`. Keep a *list* of indices per value (the third function below), or, if only one answer is needed, return as soon as the first pair is found.
-2. **Possible `int` overflow:** `arr[i] + arr[j]` and `target - arr[i]` overflow when the values are large (for example `INT_MAX + INT_MAX`). Compute in `long long`.
-3. **No message when nothing is found:** with no pair, the program prints nothing, so the user cannot tell "no answer" from "forgot to print".
-4. Classic Two Sum returns **one** pair (as indices); printing every pair is a different problem. The solution below does both.
+🏷️ **Concepts:** complement lookup (M3), time/space trade-off, duplicates, overflow.
 
-**Problem:** Given an integer array and a target, find two distinct elements whose sum equals the target. Try brute force first, then improve with `std::unordered_map`.
+#### 💡 How to think
 
-**Concepts:** complement lookup (M3), time/space trade-off, duplicates, overflow.
-
-**How to think**
 1. **Brute force:** try every pair `(i, j)` with `i < j`: O(n²) time, O(1) space.
 2. **Observation:** for each element `x` you only need to know whether `target − x` appeared **earlier**. A hash map answers that in O(1) on average.
 3. **One pass:** for each element, look up its complement, **then** store the element. Storing after the check prevents using the same element twice.
 
-**Solution**
+#### 🧩 Solution
+
 ```cpp
 #include <iostream>
 #include <optional>
@@ -5160,93 +5608,115 @@ int main() {
 }
 ```
 
-**Dry run (hash version, your array `{0, -90, 30, 4, 5, 25, -10, 45, -5, 10}`, target `35`):**
+#### 🔍 Dry run (hash version, array `{0, -90, 30, 4, 5, 25, -10, 45, -5, 10}`, target `35`)
 
-| i | value | complement | in map? | map after |
-|---|---|---|---|---|
-| 0 | 0 | 35 | no | `{0}` |
-| 1 | -90 | 125 | no | `{0, -90}` |
-| 2 | 30 | 5 | no | adds 30 |
-| 3 | 4 | 31 | no | adds 4 |
-| 4 | 5 | 30 | **yes (index 2)** → pair `30 + 5` | |
+| i | value | complement | in map?                                    | map after    |
+| - | ----- | ---------- | ------------------------------------------ | ------------ |
+| 0 | 0     | 35         | no                                         | `{0}`      |
+| 1 | -90   | 125        | no                                         | `{0, -90}` |
+| 2 | 30    | 5          | no                                         | adds 30      |
+| 3 | 4     | 31         | no                                         | adds 4       |
+| 4 | 5     | 30         | **yes (index 2)** → pair `30 + 5` |              |
 
-| Input | Output |
-|---|---|
-| your array, target `35` | first pair `30 + 5` (indices 2, 4); all pairs: `30 + 5`, `-10 + 45`, `25 + 10` (3 pairs) |
-| `3 3 3`, target `6` | 3 pairs: (0,1), (0,2), (1,2) |
-| `1 2 4`, target `100` | `no pair`, `All pairs: 0` |
-| `2147483647 2147483647`, target `4294967294` | found (needs `long long`) |
-| one element | `no pair` |
+#### 🧪 Sample runs and edge cases
 
-**Complexity**
+| Input                                            | Output                                                                                           |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| sample array, target `35`                      | first pair `30 + 5` (indices 2, 4); all pairs: `30 + 5`, `-10 + 45`, `25 + 10` (3 pairs) |
+| `3 3 3`, target `6`                          | 3 pairs: (0,1), (0,2), (1,2)                                                                     |
+| `1 2 4`, target `100`                        | `no pair`, `All pairs: 0`                                                                    |
+| `2147483647 2147483647`, target `4294967294` | found (needs `long long`)                                                                      |
+| one element                                      | `no pair`                                                                                      |
 
-| Approach | Time | Space |
-|---|---|---|
-| brute force | O(n²) | O(1) |
-| hash map (first pair) | O(n) average | O(n) |
-| all pairs | O(n + number of pairs) | O(n) |
+#### ⏱️ Complexity
 
-**Pitfalls:** inserting the element **before** the lookup (an element pairs with itself: `target = 6`, `x = 3`); overwriting indices of duplicate values; `int` arithmetic on large values; assuming the answer is unique.
+| Approach              | Time                   | Space |
+| --------------------- | ---------------------- | ----- |
+| brute force           | O(n²)                 | O(1)  |
+| hash map (first pair) | O(n) average           | O(n)  |
+| all pairs             | O(n + number of pairs) | O(n)  |
 
-**Follow-ups**
+#### ⚠️ Pitfalls
+
+- Inserting the element **before** the lookup (an element pairs with itself: `target = 6`, `x = 3`)
+- Overwriting indices of duplicate values
+- `int` arithmetic on large values
+- Assuming the answer is unique
+
+#### 🎤 Follow-ups
+
 - *Array is sorted?* Two pointers from both ends: O(n) time, O(1) space.
 - *Three Sum?* Sort, then fix one element and run two pointers: O(n²).
 - *Return values instead of indices?* Simpler: a `set` is enough.
 - *Count the number of pairs?* Keep `count[value]` and add `count[target - x]` for each `x`.
 
+<sub></sub>
+
 ---
 
-# LEVEL 2 WRAP-UP
+## Appendices
 
-## Complexity of every problem
+### A. Complexity of every problem
 
-| Q | Time | Space | | Q | Time | Space |
-|---|---|---|---|---|---|---|
-| 1, 2, 3, 6 | O(n) | O(1) | | 28 | O(n) | O(1) |
-| 4, 8, 10 | O(n) | O(1) | | 29 | O(n) | O(n) heap |
-| 5 | O(n) | O(1) | | 31 | O(n) | O(n) stack |
-| 7 | O(n) | O(1) | | 32 | O(2ⁿ) plain, O(n) memo | O(n) |
-| 9 | O(n) | O(1) | | 33 | O(log n) | O(log n) stack |
-| 11, 12 | O(n) | O(1) | | 34 | O(n) | O(n) stack |
-| 13, 14 | O(n) | O(1) | | 35 | O(log b) | O(log b) stack |
-| 15, 16, 17, 18 | O(n) | O(1) (table of 256) | | 36 | O(log n) | O(log n) stack |
-| 19, 22, 23, 24 | O(1) | O(1) | | 37 | O(2ⁿ) | O(n) stack |
-| 20 | O(log min(a, b)) | O(1) | | 38 | O(log n) | O(1) |
-| 21 | O(range · √N) | O(1) | | 39, 40, 41 | O(n²) (41 best O(n)) | O(1) |
-| 25, 26, 27 | O(1) / O(n) | O(1) | | 42 | O(n + m) | O(n + m) |
-| 43 | O(n log n) | O(n) | | 44 | O(n log n) expected | O(log n) |
-| 45 | O(r·c) | O(r·c) | | 46 | O(r1·c1·c2) | O(r1·c2) |
-| 47 | O(n) avg | O(k) | | 48 | O(n log n) | O(n) |
-| 49 | O(n) | O(n) | | 50 | O(n²) → O(n) | O(1) → O(n) |
+| Q              | Time             | Space               |  | Q          | Time                    | Space          |
+| -------------- | ---------------- | ------------------- | - | ---------- | ----------------------- | -------------- |
+| 1, 2, 3, 6     | O(n)             | O(1)                |  | 28         | O(n)                    | O(1)           |
+| 4, 8, 10       | O(n)             | O(1)                |  | 29         | O(n)                    | O(n) heap      |
+| 5              | O(n)             | O(1)                |  | 31         | O(n)                    | O(n) stack     |
+| 7              | O(n)             | O(1)                |  | 32         | O(2ⁿ) plain, O(n) memo | O(n)           |
+| 9              | O(n)             | O(1)                |  | 33         | O(log n)                | O(log n) stack |
+| 11, 12         | O(n)             | O(1)                |  | 34         | O(n)                    | O(n) stack     |
+| 13, 14         | O(n)             | O(1)                |  | 35         | O(log b)                | O(log b) stack |
+| 15, 16, 17, 18 | O(n)             | O(1) (table of 256) |  | 36         | O(log n)                | O(log n) stack |
+| 19, 22, 23, 24 | O(1)             | O(1)                |  | 37         | O(2ⁿ)                  | O(n) stack     |
+| 20             | O(log min(a, b)) | O(1)                |  | 38         | O(log n)                | O(1)           |
+| 21             | O(range · √N)  | O(1)                |  | 39, 40, 41 | O(n²) (41 best O(n))   | O(1)           |
+| 25, 26, 27     | O(1) / O(n)      | O(1)                |  | 42         | O(n + m)                | O(n + m)       |
+| 43             | O(n log n)       | O(n)                |  | 44         | O(n log n) expected     | O(log n)       |
+| 45             | O(r·c)          | O(r·c)             |  | 46         | O(r1·c1·c2)           | O(r1·c2)      |
+| 47             | O(n) avg         | O(k)                |  | 48         | O(n log n)              | O(n)           |
+| 49             | O(n)             | O(n)                |  | 50         | O(n²) → O(n)          | O(1) → O(n)   |
 
-## The patterns behind all 50 problems
+> **Reading the table:** `n` is the input size, `b` the exponent, `r × c` a matrix, `k` the number of distinct values. Recursive solutions also use O(depth) stack space.
 
-| Pattern | Problems |
-|---|---|
-| Running best (max, min, second max) | 1, 2, 5, 28 |
-| Two pointers (ends or reader/writer) | 4, 8, 10, 11, 12, 34, 42 |
-| Reverse / rotate by reversals | 4, 9, 11, 34 |
-| Counting table or hash map | 15, 16, 17, 18, 47, 50 |
-| State flag (`inWord`, `seen`, `swapped`) | 14, 17, 39 |
-| Recursion: base case + smaller problem | 31–37, 43, 44 |
-| Memoization | 32 |
-| Divide and conquer | 35, 36, 43, 44 |
-| Halving a search range | 36, 38 |
-| Stack (LIFO) | 49, and the call stack behind 31–37 |
-| Compute in functions, print in `main` | 19, 20, 21, 42 |
-| Pointers: `&`, `*`, arithmetic, `new`/`delete` | 25–30 |
-| Edge cases: empty, one element, extremes, duplicates | every problem |
+### B. Patterns behind the problems
 
-## The recurring mistakes (found in your own submissions)
+| Pattern                                                | Problems                             |
+| ------------------------------------------------------ | ------------------------------------ |
+| Running best (max, min, second max)                    | 1, 2, 5, 28                          |
+| Two pointers (ends or reader/writer)                   | 4, 8, 10, 11, 12, 34, 42             |
+| Reverse / rotate by reversals                          | 4, 9, 11, 34                         |
+| Counting table or hash map                             | 15, 16, 17, 18, 47, 50               |
+| State flag (`inWord`, `seen`, `swapped`)         | 14, 17, 39                           |
+| Recursion: base case + smaller problem                 | 31–37, 43, 44                       |
+| Memoization                                            | 32                                   |
+| Divide and conquer                                     | 35, 36, 43, 44                       |
+| Halving a search range                                 | 36, 38                               |
+| Stack (LIFO)                                           | 49, and the call stack behind 31–37 |
+| Compute in functions, print in `main`                | 19, 20, 21, 42                       |
+| Pointers: `&`, `*`, arithmetic, `new`/`delete` | 25–30                               |
+| Edge cases: empty, one element, extremes, duplicates   | every problem                        |
 
-1. **Boundary inputs:** `0`, empty, `INT_MAX`, one past the limit (Q5, Q32, Q37, Q41).
-2. **Incomplete requirements:** the question lists steps you skipped (Q25, Q30, Q41).
-3. **Uncaught failure paths:** exceptions never caught, silent exits, no message for "not found" (Q29, Q45, Q50).
-4. **Output that does not match** (formatting, order) (Q35, Q47).
-5. **Quadratic hidden inside "fast" code:** duplicates in quicksort, `substr` in recursion (Q44).
-6. **A fix that breaks an old case:** always re-run *all* previous tests (Q5).
+### C. Common mistakes and how to avoid them
 
-## Final interview checklist
+| #  | Mistake                                                                            | Where it appears  | How to avoid it                                                                   |
+| -- | ---------------------------------------------------------------------------------- | ----------------- | --------------------------------------------------------------------------------- |
+| 1  | Boundary inputs ignored (empty, `0`, one element, `INT_MAX`, one past a limit) | Q1, Q5, Q32, Q37  | test `0`, `1`, the maximum valid value and one past it                        |
+| 2  | A sentinel (`INT_MIN`, `0`) that is also a legal value                         | Q5                | start from the first element, or keep a `bool found` flag                       |
+| 3  | Signed overflow (undefined behavior)                                               | Q3, Q13, Q35, Q50 | widen to `long long`; pre-check with `a > MAX - b` or `a > MAX / b`         |
+| 4  | `size_t` arithmetic wrapping around (`size() - 1` on an empty container)       | Q11, Q38, Q43     | loop `i < n / 2`, check `empty()`, or cast once to `int`                    |
+| 5  | Computing and printing in the same function                                        | Q19, Q42          | return the result; print in `main`                                              |
+| 6  | Output format hides the answer (`1.04858e+06`)                                   | Q35               | use integers, or `setprecision`                                                 |
+| 7  | Relying on unspecified order (`unordered_map` iteration)                         | Q47               | copy to a vector and sort, or use `map`                                         |
+| 8  | A hidden quadratic: duplicates in quicksort, no early exit in bubble sort          | Q39, Q44          | three-way partition; a `swapped` flag                                           |
+| 9  | A hash map that overwrites duplicates                                              | Q50               | store a list of indices per value                                                 |
+| 10 | Stopping before every requirement is met                                           | Q25, Q30, Q41     | tick every bullet of the statement before submitting                              |
+| 11 | Uncaught exceptions that abort the program                                         | Q45, Q46          | catch in `main`, or return `bool` / `optional` for expected failures        |
+| 12 | Out-of-bounds access on ragged data                                                | Q46               | validate dimensions before indexing                                               |
+| 13 | Mismatched `new`/`delete`, leaks, dangling pointers                            | Q29, Q30          | `new[]` ↔ `delete[]`; set to `nullptr`; prefer `unique_ptr` / `vector` |
+| 14 | A fix that breaks an old case                                                      | any               | keep a regression list and re-run it after every change                           |
+
+### D. Interview checklist
 
 - [ ] Restate the problem and ask about sizes, negatives, duplicates, and empty input.
 - [ ] Say the brute force and its complexity, then the improvement and why it is correct.
@@ -5257,25 +5727,42 @@ int main() {
 - [ ] State time **and** space complexity, and whether a sort is stable or in place.
 - [ ] Compile with `-Wall -Wextra -Wpedantic` and (when you have it) `-fsanitize=address,undefined`.
 
-## What to do next
+### E. Tools: compiling, testing and debugging
 
-1. **Re-implement from memory** the ones that took you longest: Q5 (second largest), Q32 (memoized Fibonacci), Q37 (Hanoi), Q44 (quicksort), Q50 (Two Sum).
-2. **Explain each aloud** in 60 seconds: idea, complexity, one edge case.
-3. **Time yourself:** 20 minutes per problem, no notes.
-4. Move to **Level 3**: linked lists, stacks and queues from scratch, trees, hashing, graphs (BFS/DFS), and dynamic programming. The recursion and hash-map habits from this level are exactly what those topics build on.
+| Goal                                 | Command or technique                                                                                          |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| Strict warnings                      | `g++ -std=c++17 -Wall -Wextra -Wpedantic file.cpp -o program`                                               |
+| Memory errors and undefined behavior | add `-g -fsanitize=address,undefined` (finds out-of-bounds, use-after-free, leaks, overflow)                |
+| Leak check on Linux                  | `valgrind ./program`                                                                                        |
+| Step-through debugging               | compile with `-g`, then `gdb ./program`                                                                   |
+| Redirect input from a file           | `./program < input.txt`                                                                                     |
+| Compare with a trusted version       | **stress test**: generate random inputs and compare your function with `std::sort`, `std::gcd`, ... |
+| Measure time                         | `std::chrono::steady_clock` around the call, built with `-O2`                                             |
+
+### F. Glossary
+
+| Term                              | Meaning                                                                                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Undefined behavior (UB)** | operations the language does not define (signed overflow, out-of-bounds access, dereferencing `nullptr`); the program may crash, misbehave, or seem to work |
+| **Invariant**               | a statement that is true before and after every loop iteration; used to prove correctness                                                                     |
+| **Base case**               | the smallest input of a recursion, answered directly; without it the recursion never stops                                                                    |
+| **Stable sort**             | equal elements keep their original relative order                                                                                                             |
+| **In place**                | uses O(1) (or O(log n)) extra memory                                                                                                                          |
+| **Amortized O(1)**          | O(1) per operation averaged over a sequence (for example `vector::push_back`)                                                                               |
+| **Memoization**             | storing the result of a function call so it is never recomputed                                                                                               |
+| **Tail call**               | a call that is the last action of a function; compilers may turn it into a loop, but C++ does not guarantee it                                                |
+| **RAII**                    | resources (memory, files) are owned by objects and released automatically when the object goes out of scope                                                   |
+| **Half-open range**         | `[first, last)`: includes `first`, excludes `last`; empty when `first == last`                                                                        |
+| **Dangling pointer**        | a pointer to memory that has been freed or has gone out of scope                                                                                              |
+| **Hash collision**          | two keys mapping to the same bucket; with many collisions a hash table degrades from O(1) to O(n)                                                             |
+| **Two pointers**            | two indices walking an array, from opposite ends or as reader and writer                                                                                      |
+
+### G. Where to go next
+
+1. **Re-implement from memory** the solutions that were hardest for you; then explain each aloud in 60 seconds (idea, complexity, one edge case).
+2. **Practice under time pressure:** 20 minutes per problem, no notes, compiler warnings on.
+3. **Move on to Level 3:** linked lists, stacks and queues from scratch, trees and binary search trees, hashing in depth, graphs (BFS and DFS) and dynamic programming. The recursion and hash-map habits from this level are exactly what those topics build on.
 
 ---
 
-## Module status
-
-| Module | Done | Remaining |
-|---|---|---|
-| 1 — Arrays | Q1–Q10 ✅ | none |
-| 2 — Strings | Q11–Q18 ✅ | none |
-| 3 — Functions | Q19–Q24 ✅ | none |
-| 4 — Pointers and memory | Q25–Q30 ✅ | none |
-| 5 — Recursion | Q31–Q37 ✅ | none |
-| 6 — Searching and sorting | Q38–Q44 ✅ | none |
-| 7 — Matrices, STL, problem solving | Q45–Q50 ✅ | none |
-
-**All 50 questions of Level 2 are reviewed.**
+*End of the Level 2 handbook.*
